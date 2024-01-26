@@ -3,6 +3,14 @@ import facebook from "../assets/icons/facebook.svg";
 import linkedin from "../assets/icons/linkedin.svg";
 import instagram from "../assets/icons/instagram.svg";
 
+//header
+export const navLinks = [
+    { id: 1, label: "Home", slug: "" },
+    { id: 2, label: "Features", slug: "features" },
+    { id: 3, label: "Plan & Pricing", slug: "pricing" },
+    { id: 4, label: "About Us", slug: "about" },
+];
+
 //footer
 export const socialIcons = [
     { id: 1, icon: facebook, link: "" },

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "../../components/button";
-import Container from "../../components/Container";
+import { RedirectionButton } from "../../components/Button";
+import { Container } from "../../components/Container";
 import {
     socialIcons,
     footerPolicies,
@@ -20,7 +20,9 @@ const Footer = (props) => {
                         Empowering learning <br />
                         through live webinars
                     </h2>
-                    <Button>Download Webinar Now</Button>
+                    <RedirectionButton redirectLink="/">
+                        Download Webinar Now
+                    </RedirectionButton>
                 </div>
                 <div className="flex justify-end lg:gap-28">
                     <div className="flex flex-col gap-2.5">
@@ -62,7 +64,7 @@ const Footer = (props) => {
                 </div>
             </Container>
             <section className="lg:p-5 !text-white bg-black">
-                <Container className="flex items-center justify-between">
+                <Container className="flex items-center justify-between !py-0">
                     <div className="flex lg:gap-20">
                         <div className="flex gap-5">
                             {socialIcons?.map((item) => (

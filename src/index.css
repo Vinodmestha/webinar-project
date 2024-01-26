@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+img {
+    max-width: unset;
+}
+@font-face {
+    font-family: axiformaRegular;
+    src: url("./assets/fonts/Axiforma-Regular.ttf") format("opentype");
+}
+@font-face {
+    font-family: axiformaMedium;
+    src: url("./assets/Fonts/Axiforma-Medium.ttf") format("opentype");
+}
+@font-face {
+    font-family: axiformaSemiBold;
+    src: url("./assets/Fonts/Axiforma-SemiBold.ttf") format("opentype");
+}
+
+/* 
+.child:nth-child(3n-2) {
+    background-color: var(--color-1);
+  } .child:nth-child(3n-2) {
+    background-color: var(--color-1);
+  } .child:nth-child(3n-2) {
+    background-color: var(--color-1);
+  } */
