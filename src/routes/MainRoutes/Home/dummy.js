@@ -1,5 +1,182 @@
 import speaker from "../../../assets/icons/speaker.png";
 import reviewer from "../../../assets/icons/reviewer.png";
+import webinarDummy from "../../../assets/home/webinarDummy.jpg";
+import webinarDummy2 from "../../../assets/home/webinarDummy2.jpg";
+
+export const webinarsData = [
+    {
+        id: 1,
+        categoryType: "Upcoming",
+        categorySlug: "upcoming",
+        data: [
+            {
+                id: 1,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 2,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 3,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 4,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 5,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 6,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+        ],
+    },
+    {
+        id: 2,
+        categoryType: "Pre Recorded",
+        categorySlug: "pre-recorded",
+        data: [
+            {
+                id: 1,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 2,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 3,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 4,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 5,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 6,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+        ],
+    },
+    {
+        id: 3,
+        categoryType: "On Demand",
+        categorySlug: "on-demand",
+        data: [
+            {
+                id: 1,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 2,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 3,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 4,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 5,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+            {
+                id: 6,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy,
+            },
+        ],
+    },
+    {
+        id: 4,
+        categoryType: "CEU Approved",
+        categorySlug: "ceu-approved",
+        data: [
+            {
+                id: 1,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 2,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 3,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 4,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 5,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+            {
+                id: 6,
+                label: "Webinar",
+                desc: "Some Info about this webinar",
+                image: webinarDummy2,
+            },
+        ],
+    },
+];
 
 //whyus
 export const whyUs = [
@@ -36,18 +213,6 @@ export const whyUs = [
     {
         id: 6,
         label: "Feature 6",
-        desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
-        image: reviewer,
-    },
-    {
-        id: 7,
-        label: "Feature 7",
-        desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
-        image: reviewer,
-    },
-    {
-        id: 8,
-        label: "Feature 8",
         desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
         image: reviewer,
     },

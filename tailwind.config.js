@@ -9,6 +9,7 @@ export default {
                 tertiary: "#FF847F",
                 primaryBtn: "#775AFC",
                 black1: "#252525",
+                blue1: "#5C98F2",
             },
             borderRadius: {
                 type1: "30% 70% 70% 30% / 30% 29% 71% 70%",
@@ -18,6 +19,29 @@ export default {
                 axiforma: "axiformaRegular",
                 axiMedium: "axiformaMedium",
                 axiSemiBold: "axiformaSemiBold",
+            },
+            animation: {
+                fadeInDown: "fadeInDown 0.4s",
+                fadeUp: "fadeUp 0.15s forwards ",
+            },
+            keyframes: {
+                fadeInDown: {
+                    from: {
+                        opacity: 0,
+                        transform: "translate3d(0, -20%, 0)",
+                    },
+                    to: {
+                        opacity: 1,
+                        transform: "translate3d(0, 0, 0)",
+                    },
+                },
+                fadeUp: {
+                    "0%": { bottom: "0%" },
+                    "25%": { bottom: "5%" },
+                    "50%": { bottom: "10%" },
+                    "75%": { bottom: "15%" },
+                    "100%": { bottom: "20%" },
+                },
             },
         },
     },

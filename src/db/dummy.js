@@ -3,12 +3,38 @@ import facebook from "../assets/icons/facebook.svg";
 import linkedin from "../assets/icons/linkedin.svg";
 import instagram from "../assets/icons/instagram.svg";
 
+import upcoming from "../assets/vectors/upcoming.svg";
+import preRecorded from "../assets/vectors/preRecorded.svg";
+import onDemand from "../assets/vectors/onDemand.svg";
+import ceuApproved from "../assets/vectors/ceuApproved.svg";
+
 //header
 export const navLinks = [
-    { id: 1, label: "Home", slug: "" },
+    { id: 1, label: "About Us", slug: "about" },
     { id: 2, label: "Features", slug: "features" },
-    { id: 3, label: "Plan & Pricing", slug: "pricing" },
-    { id: 4, label: "About Us", slug: "about" },
+    {
+        id: 3,
+        label: "Webinars",
+        slug: "webinars",
+        child: [
+            { id: 1, label: "Upcoming", slug: "upcoming", image: upcoming },
+            {
+                id: 2,
+                label: "Pre Recorded",
+                slug: "pre-recorded",
+                image: preRecorded,
+            },
+            { id: 3, label: "On Demand", slug: "on-demand", image: onDemand },
+            {
+                id: 4,
+                label: "CEU Approved",
+                slug: "ceu-approved",
+                image: ceuApproved,
+            },
+        ],
+    },
+    { id: 4, label: "Plan & Pricing", slug: "pricing" },
+    { id: 5, label: "Contact", slug: "contact-us" },
 ];
 
 //footer
