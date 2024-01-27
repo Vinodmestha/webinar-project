@@ -6,7 +6,7 @@ import webinarDummy2 from "../../../assets/home/webinarDummy2.jpg";
 export const webinarsData = [
     {
         id: 1,
-        categoryType: "Upcoming",
+        categoryType: "Up Coming",
         categorySlug: "upcoming",
         data: [
             {

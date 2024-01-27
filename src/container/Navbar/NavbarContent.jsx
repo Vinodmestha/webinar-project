@@ -5,8 +5,8 @@ import userIcon from "../../assets/icons/user.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { navLinks } from "../../db/dummy";
-import { Container } from "../../components/Container";
-import MenuCard from "../../components/UI/MenuCard";
+import { Container } from "../../components/UI/Container";
+import { MenuCard } from "../../components/UI/MenuCard";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
@@ -29,7 +29,10 @@ export default function NavbarContent(props) {
     };
 
     return (
-        <Container className="border-b-2 border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
+        <Container
+            className="relative border-b-2 border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between"
+            onMouseLeave={() => menuChildHandler(false, null)}
+        >
             <figure>
                 <img
                     src={logo}
@@ -39,11 +42,11 @@ export default function NavbarContent(props) {
                 />
             </figure>
 
-            <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold ">
+            <ul className=" flex items-center h-full justify-center gap-16 text-lg font-semibold ">
                 {navLinks?.map((item) => (
                     <li
                         key={item?.id}
-                        className="relative"
+                        className=""
                         onMouseEnter={() => menuChildHandler(true, item?.child)}
                         // onMouseLeave={() =>
                         //     menuChildHandler(false,item?.child )
@@ -61,29 +64,28 @@ export default function NavbarContent(props) {
                         </NavLink>
 
                         {state?.menuChild && item?.child ? (
-                            <MenuCard className="!p-8">
-                                <ul className="grid lg:grid-cols-2 grid-col-2 justify-center text-center text-base font-medium">
+                            <MenuCard className="top-20 left-0 right-0 !p-8">
+                                <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
                                     {item?.child?.map((item) => (
                                         <li
                                             key={item?.id}
                                             className="p-5 shadow-md transition-all duration-200 cursor-pointer hover:bg-blue-300 hover:text-white"
                                             onClick={() => {
                                                 navigate(
-                                                    `/webinars/type?=${item?.slug}`,
+                                                    `/webinars?type=${item?.slug}`,
                                                     {
                                                         state: {
                                                             name: item?.slug,
                                                         },
                                                     }
                                                 );
-
                                                 menuChildHandler(false);
                                             }}
                                         >
                                             <img
                                                 src={item?.image}
                                                 alt={item?.slug}
-                                                className="w-28 h-28"
+                                                className="w-full h-36"
                                             />
                                             <p>{item?.label}</p>
                                         </li>

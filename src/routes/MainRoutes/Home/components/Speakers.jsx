@@ -2,12 +2,12 @@ import React from "react";
 
 import { speakers } from "../dummy";
 import { H2 } from "../../../../components/Typography";
-import { Container } from "../../../../components/Container";
+import { Container } from "../../../../components/UI/Container";
 
 export default function Speakers() {
     return (
         <Container className="">
-            <H2 className="text-center">Our Speakers</H2>
+            <H2 className="!mb-16">Our Speakers</H2>
 
             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
                 {speakers?.map((item) => (

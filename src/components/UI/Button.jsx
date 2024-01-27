@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import redirect from "../assets/icons/redirect.svg";
+import redirect from "../../assets/icons/redirect.svg";
 
 export const RedirectionButton = ({ label, className, redirectLink }) => {
     let navigate = useNavigate();

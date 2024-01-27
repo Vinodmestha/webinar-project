@@ -6,6 +6,7 @@ import Speakers from "./components/Speakers";
 import TrustedBy from "./components/TrustedBy";
 import HeroSection from "./components/HeroSection";
 import Testimonials from "./components/Testimonials";
+import ContactUs from "../../../components/Layout/ContactUs";
 
 export default function Home(props) {
     return (
@@ -16,6 +17,7 @@ export default function Home(props) {
             <WhyUs />
             <Speakers />
             <Testimonials />
+            <ContactUs />
         </>
     );
 }

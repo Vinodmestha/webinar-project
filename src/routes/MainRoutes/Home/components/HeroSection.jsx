@@ -4,9 +4,9 @@ import heroImage from "../../../../assets/home/heroImage.png";
 import bannerList from "../../../../assets/home/bannerList1.gif";
 
 import { H1 } from "../../../../components/Typography";
-import { Container } from "../../../../components/Container";
+import { Container } from "../../../../components/UI/Container";
 import { LineFlower } from "../../../../components/UI/Decorators";
-import { RedirectionButton, Button } from "../../../../components/Button";
+import { RedirectionButton, Button } from "../../../../components/UI/Button";
 
 export default function HeroSection(props) {
     return (

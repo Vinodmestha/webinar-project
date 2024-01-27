@@ -10,6 +10,7 @@ export default {
                 primaryBtn: "#775AFC",
                 black1: "#252525",
                 blue1: "#5C98F2",
+                blue2: "#F2F1FD",
             },
             borderRadius: {
                 type1: "30% 70% 70% 30% / 30% 29% 71% 70%",

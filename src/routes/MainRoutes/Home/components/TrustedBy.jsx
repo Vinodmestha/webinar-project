@@ -1,7 +1,7 @@
 import React from "react";
 import brand from "../../../../assets/icons/brand.svg";
 
-import { Container } from "../../../../components/Container";
+import { Container } from "../../../../components/UI/Container";
 
 export default function TrustedBy() {
     return (

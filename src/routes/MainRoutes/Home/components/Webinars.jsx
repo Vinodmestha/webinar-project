@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { webinarsData } from "../dummy";
-import { Container } from "../../../../components/Container";
+import { Container } from "../../../../components/UI/Container";
 import { H2, H5, SubHeading } from "../../../../components/Typography";
 
 export default function Webinars() {
@@ -72,7 +72,7 @@ export default function Webinars() {
                                     className="font-semibold text-blue1 cursor-pointer hover:text-[rgb(92,152,242/0.6)]"
                                     onClick={() =>
                                         navigate(
-                                            `/webinars/type?=${state?.currentMode}`,
+                                            `/webinars?type=${state?.currentMode}`,
                                             {
                                                 state: {
                                                     name: state?.currentMode,
