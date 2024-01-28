@@ -8,7 +8,7 @@ import Footer from "./container/Footer";
 const MainApp = (props) => {
     return (
         <Router>
-            <div className="relative min-h-[100vh] flex flex-col !font-axiforma">
+            <div className="relative min-h-[100vh] flex flex-col font-axiforma">
                 <div>
                     <Navbar {...props} />
                 </div>
