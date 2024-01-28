@@ -109,7 +109,7 @@ export default function NavbarContent(props) {
                     }
                 />
                 {state?.profileMenu ? (
-                    <MenuCard className="top-20 w-fit right-0 flex gap-5">
+                    <MenuCard className="top-20 !w-fit right-0 flex gap-5">
                         <Button
                             label="Signup"
                             className="border-none rounded-lg bg-pink-200 hover:shadow-2xl"
