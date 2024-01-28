@@ -112,7 +112,7 @@ export default function NavbarContent(props) {
                     <MenuCard className="top-20 !w-fit right-0 flex gap-5">
                         <Button
                             label="Signup"
-                            className="border-none rounded-lg bg-pink-200 hover:shadow-2xl"
+                            className="border-none rounded-lg !bg-pink-200 hover:!shadow-2xl"
                             onClick={() =>
                                 setState((prev) => {
                                     return { ...prev, profileMenu: false };
@@ -121,7 +121,7 @@ export default function NavbarContent(props) {
                         />
                         <Button
                             label="Login"
-                            className="border-none rounded-lg bg-blue-200 hover:shadow-2xl"
+                            className="border-none rounded-lg !bg-blue-200 hover:!shadow-2xl"
                             onClick={() =>
                                 setState((prev) => {
                                     return { ...prev, profileMenu: false };
