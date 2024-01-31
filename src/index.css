@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    background-color: #2a3237 !important;
+}
 img {
     max-width: unset;
 }
