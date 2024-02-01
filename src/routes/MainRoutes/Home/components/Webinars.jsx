@@ -39,7 +39,7 @@ export default function Webinars() {
                         key={item?.id}
                         className={`font-axiMedium mx-7 px-4 py-2 rounded-full cursor-pointer ${
                             item?.categorySlug === state?.currentMode
-                                ? "!bg-tertiary text-white"
+                                ? "!bg-yellow-700 text-white"
                                 : "bg-gray-100"
                         } transition-all duration-100 hover:bg-pink-100`}
                         onClick={() => webinarDataHandler(item?.categorySlug)}

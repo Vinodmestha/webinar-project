@@ -43,7 +43,7 @@ export default function NavbarContent(props) {
                 />
             </figure>
 
-            <ul className=" flex items-center h-full justify-center gap-16 text-lg font-semibold ">
+            <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold ">
                 {navLinks?.map((item) => (
                     <li
                         key={item?.id}

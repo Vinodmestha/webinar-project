@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-    background-color: #2a3237 !important;
+    background-color: #000000 !important;
+    /* #36454F */
 }
 img {
     max-width: unset;

@@ -1,13 +1,13 @@
 import React from "react";
 
 import { speakers } from "../dummy";
-import { H2 } from "../../../../components/Typography";
+import { H2, H5 } from "../../../../components/Typography";
 import { Container } from "../../../../components/UI/Container";
 
 export default function Speakers() {
     return (
         <Container className="">
-            <H2 className="!mb-16">Our Speakers</H2>
+            <H2 className="!mb-20">Our Speakers</H2>
 
             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
                 {speakers?.map((item) => (
@@ -16,7 +16,7 @@ export default function Speakers() {
                             <figure
                                 className={`flex items-end justify-center w-56 h-52 !pt-10 [nth-child(3n-1):pb-2] ${
                                     item?.id % 2
-                                        ? "!bg-secondary  rounded-type1"
+                                        ? "!bg-secondary rounded-type1"
                                         : "!bg-tertiary rounded-type2"
                                 }`}
                             >
@@ -27,9 +27,9 @@ export default function Speakers() {
                                 />
                             </figure>
                             <div>
-                                <h5 className="text-xl font-axiSemiBold">
+                                <H5 className="text-xl font-axiSemiBold !text-white">
                                     {item?.name}
-                                </h5>
+                                </H5>
                                 <p className="text-sm text-gray-500">
                                     {item?.designation ?? ""}
                                 </p>
