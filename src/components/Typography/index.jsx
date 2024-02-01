@@ -11,7 +11,7 @@ export const H1 = ({ children, className }) => {
 export const H2 = ({ children, className }) => {
     return (
         <h2
-            className={`flex flex-col items-center text-[40px] !text-h2Color !mb-5 font-axiSemiBold ${className}`}
+            className={`flex flex-col items-center text-[40px] !mb-5 !font-axiSemiBold text-white ${className}`}
         >
             {children}
             <p className="w-36 h-[4px] bg-tertiary rounded-full -mt-1" />
@@ -34,7 +34,7 @@ export const H4 = ({ children, className }) => {
 export const H5 = ({ children, className }) => {
     return (
         <h5
-            className={`text-[15px] font-axiMedium !text-gray-600 ${className}`}
+            className={`text-[15px] font-axiMedium text-gray-600 !text-h2Color ${className}`}
         >
             {children}
         </h5>
@@ -44,7 +44,7 @@ export const H5 = ({ children, className }) => {
 export const SubHeading = ({ children, className }) => {
     return (
         <h3
-            className={`max-w-screen-lg mx-auto text-[17px] font-medium text-center text-gray-400 ${className}`}
+            className={`max-w-screen-lg mx-auto text-[18px] font-medium text-center text-gray-400 ${className}`}
         >
             {children}
         </h3>

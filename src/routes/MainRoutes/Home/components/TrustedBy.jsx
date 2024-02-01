@@ -6,7 +6,7 @@ import { Container } from "../../../../components/UI/Container";
 export default function TrustedBy() {
     return (
         <Container className="text-center">
-            <h4 className="text-2xl mb-10 text-gray-600">
+            <h4 className="text-2xl mb-10 text-gray-200">
                 Trusted by nearly 5000+ users
             </h4>
             <div className="grid grid-cols-6 items-center gap-5">
