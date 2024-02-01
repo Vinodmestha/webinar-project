@@ -7,6 +7,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { navLinks } from "../../db/dummy";
 import { Container } from "../../components/UI/Container";
 import { MenuCard } from "../../components/UI/MenuCard";
+import { Button } from "../../components/UI/Button";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
@@ -101,7 +102,34 @@ export default function NavbarContent(props) {
                     src={userIcon}
                     alt="webinar user"
                     className="w-12 h-12 border-2 border-gray-200 rounded-full cursor-pointer"
+                    onClick={() =>
+                        setState((prev) => {
+                            return { ...prev, profileMenu: !prev?.profileMenu };
+                        })
+                    }
                 />
+                {state?.profileMenu ? (
+                    <MenuCard className="top-20 !w-fit right-0 flex gap-5">
+                        <Button
+                            label="Signup"
+                            className="border-none rounded-lg !bg-pink-200 hover:!shadow-2xl"
+                            onClick={() =>
+                                setState((prev) => {
+                                    return { ...prev, profileMenu: false };
+                                })
+                            }
+                        />
+                        <Button
+                            label="Login"
+                            className="border-none rounded-lg !bg-blue-200 hover:!shadow-2xl"
+                            onClick={() =>
+                                setState((prev) => {
+                                    return { ...prev, profileMenu: false };
+                                })
+                            }
+                        />
+                    </MenuCard>
+                ) : null}
             </figure>
         </Container>
     );

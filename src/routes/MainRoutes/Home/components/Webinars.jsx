@@ -16,7 +16,6 @@ export default function Webinars() {
     }, []);
 
     const webinarDataHandler = (type) => {
-        console.log(type);
         let data = webinarsData?.filter((item) => {
             return item?.categorySlug === type;
         });

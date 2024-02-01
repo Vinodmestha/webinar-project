@@ -33,7 +33,7 @@ export default function Webinars() {
                         <img
                             src={item?.image}
                             alt={item?.label}
-                            className="h-56 rounded-3xl"
+                            className="h-48 rounded-3xl"
                         />
 
                         <div className="w-full flex justify-between items-center p-5">
@@ -58,8 +58,8 @@ export default function Webinars() {
                             </div>
                             <Button
                                 label="Order Now"
-                                className="border-none text-white bg-primary transition-all duration-300 hover:scale-105"
-                                onClick={() => alert("Order Placed")}
+                                className="border-none text-white !bg-primary transition-all duration-300 hover:scale-105"
+                                onClick={() => alert("Order Place")}
                             />
                             {/* <div className=" rounded-r-3xl p-2 "></div> */}
                         </div>

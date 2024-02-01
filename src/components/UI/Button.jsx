@@ -26,6 +26,7 @@ export const Button = ({ label, icon, className, onClick }) => {
     return (
         <button
             className={`group flex items-center gap-3 px-4 py-3 rounded-3xl font-semibold border border-black text-black bg-transparent ${className}`}
+            onClick={() => onClick()}
         >
             {icon ? (
                 <img

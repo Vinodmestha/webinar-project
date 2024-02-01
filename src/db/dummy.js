@@ -11,7 +11,7 @@ import ceuApproved from "../assets/vectors/ceuApproved.svg";
 //header
 export const navLinks = [
     { id: 1, label: "About Us", slug: "about" },
-    { id: 2, label: "Features", slug: "features" },
+    // { id: 2, label: "Features", slug: "features" },
     {
         id: 3,
         label: "Webinars",
@@ -33,7 +33,7 @@ export const navLinks = [
             },
         ],
     },
-    { id: 4, label: "Plan & Pricing", slug: "pricing" },
+    // { id: 4, label: "Plan & Pricing", slug: "pricing" },
     { id: 5, label: "Contact", slug: "contact-us" },
 ];
 
