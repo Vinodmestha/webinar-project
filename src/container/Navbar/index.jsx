@@ -3,7 +3,7 @@ import NavbarContent from "./NavbarContent";
 
 const Navbar = (props) => {
     return (
-        <header className="bg-primary">
+        <header className="bg-bgHero">
             <NavbarContent {...props} />
         </header>
     );

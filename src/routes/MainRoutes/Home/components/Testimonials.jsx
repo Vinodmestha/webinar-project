@@ -8,7 +8,7 @@ import { Container } from "../../../../components/UI/Container";
 export default function Testimonials() {
     return (
         <Container className="text-center">
-            <H2 className="!mb-20">Give our users a great experience</H2>
+            <H2 className="!mb-16">Give our users a great experience</H2>
             <div className="grid lg:grid-cols-3 grid-cols-2 gap-8">
                 {testimonials?.map((item) => (
                     <div
