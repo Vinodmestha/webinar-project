@@ -10,13 +10,14 @@ import {
     footerAbout,
     footerHelp,
 } from "../../db/dummy";
+import { H4, H5 } from "../../components/Typography";
 
 const Footer = (props) => {
     return (
-        <div className="">
-            <Container className="grid grid-cols-2 justify-between lg:py-20 lg:px-5 border-t-2 border-gray-200">
+        <div className="bg-bgHero">
+            <Container className="grid grid-cols-2 justify-between lg:py-20 lg:px-5">
                 <div className="flex flex-col gap-6 items-start lg:px-5 ">
-                    <h2 className="text-4xl font-semibold leading-[3rem]">
+                    <h2 className="text-4xl font-semibold leading-[3rem] text-white">
                         Empowering learning <br />
                         through live webinars
                     </h2>
@@ -27,36 +28,36 @@ const Footer = (props) => {
                 </div>
                 <div className="flex justify-end lg:gap-28">
                     <div className="flex flex-col gap-2.5">
-                        <h5 className="text-lg font-bold">Services</h5>
+                        <H4>Services</H4>
                         {footerServices?.map((item) => (
                             <Link
                                 key={item?.id}
                                 to={item?.slug}
-                                className="font-medium text-gray-500"
+                                className="font-medium text-gray-400"
                             >
                                 {item?.label}
                             </Link>
                         ))}
                     </div>
                     <div className="flex flex-col gap-2.5">
-                        <h5 className="text-lg font-bold">About</h5>
+                        <H4>About</H4>
                         {footerAbout?.map((item) => (
                             <Link
                                 key={item?.id}
                                 to={item?.slug}
-                                className="font-medium text-gray-500"
+                                className="font-medium text-gray-400"
                             >
                                 {item?.label}
                             </Link>
                         ))}
                     </div>
                     <div className="flex flex-col gap-2.5">
-                        <h5 className="text-lg font-bold">Help</h5>
+                        <H4>Help</H4>
                         {footerHelp?.map((item) => (
                             <Link
                                 key={item?.id}
                                 to={item?.slug}
-                                className="font-medium text-gray-500"
+                                className="font-medium text-gray-400"
                             >
                                 {item?.label}
                             </Link>

@@ -31,7 +31,7 @@ export default function NavbarContent(props) {
 
     return (
         <Container
-            className="relative border-b-2 border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between"
+            className="relative border-b border-gray-700 h-full !p-2.5 !my-0 flex items-center justify-between"
             onMouseLeave={() => menuChildHandler(false, null)}
         >
             <figure>
@@ -43,7 +43,7 @@ export default function NavbarContent(props) {
                 />
             </figure>
 
-            <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold ">
+            <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
                 {navLinks?.map((item) => (
                     <li
                         key={item?.id}
@@ -57,9 +57,9 @@ export default function NavbarContent(props) {
                             to={item?.slug}
                             className={`${
                                 pathname === item?.slug
-                                    ? "text-primary"
-                                    : "text-gray-600"
-                            } hover:text-primary`}
+                                    ? "text-tertiary"
+                                    : "text-white"
+                            } hover:text-tertiary`}
                         >
                             {item?.label}
                         </NavLink>
@@ -70,7 +70,7 @@ export default function NavbarContent(props) {
                                     {item?.child?.map((item) => (
                                         <li
                                             key={item?.id}
-                                            className="p-5 shadow-md transition-all duration-200 cursor-pointer hover:bg-blue-300 hover:text-white"
+                                            className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
                                             onClick={() => {
                                                 navigate(
                                                     `/webinars?type=${item?.slug}`,
@@ -112,7 +112,7 @@ export default function NavbarContent(props) {
                     <MenuCard className="top-20 !w-fit right-0 flex gap-5">
                         <Button
                             label="Signup"
-                            className="border-none rounded-lg !bg-pink-200 hover:!shadow-2xl"
+                            className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
                             onClick={() =>
                                 setState((prev) => {
                                     return { ...prev, profileMenu: false };
@@ -121,7 +121,7 @@ export default function NavbarContent(props) {
                         />
                         <Button
                             label="Login"
-                            className="border-none rounded-lg !bg-blue-200 hover:!shadow-2xl"
+                            className="border-none rounded-lg !bg-blue-600 hover:!shadow-2xl"
                             onClick={() =>
                                 setState((prev) => {
                                     return { ...prev, profileMenu: false };

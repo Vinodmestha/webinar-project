@@ -17,7 +17,7 @@ export default function WhyUs() {
                 {whyUs?.map((item) => (
                     <div
                         key={item?.id}
-                        className="p-3 flex flex-col items-center text-center rounded-xl transition-all duration-200 hover:shadow-lg hover:scale-105 bg-secondary"
+                        className="p-3 flex flex-col items-center text-center rounded-lg transition-all duration-200 hover:scale-105 bg-bgHero"
                     >
                         <img
                             src={item?.image}

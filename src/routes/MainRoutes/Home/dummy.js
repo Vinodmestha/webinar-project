@@ -220,14 +220,62 @@ export const whyUs = [
 
 //speakers
 export const speakers = [
-    { id: 1, name: "Speaker1", designation: "Designation", image: speaker },
-    { id: 2, name: "Speaker2", designation: "Designation", image: speaker },
-    { id: 3, name: "Speaker3", designation: "Designation", image: speaker },
-    { id: 4, name: "Speaker4", designation: "Designation", image: speaker },
-    { id: 5, name: "Speaker5", designation: "Designation", image: speaker },
-    { id: 6, name: "Speaker6", designation: "Designation", image: speaker },
-    { id: 7, name: "Speaker7", designation: "Designation", image: speaker },
-    { id: 8, name: "Speaker8", designation: "Designation", image: speaker },
+    {
+        id: 1,
+        name: "Speaker1",
+        slug: "speaker1",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 2,
+        name: "Speaker2",
+        slug: "speaker2",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 3,
+        name: "Speaker3",
+        slug: "speaker3",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 4,
+        name: "Speaker4",
+        slug: "speaker4",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 5,
+        name: "Speaker5",
+        slug: "speaker5",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 6,
+        name: "Speaker6",
+        slug: "speaker6",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 7,
+        name: "Speaker7",
+        slug: "speaker7",
+        designation: "Designation",
+        image: speaker,
+    },
+    {
+        id: 8,
+        name: "Speaker8",
+        slug: "speaker8",
+        designation: "Designation",
+        image: speaker,
+    },
 ];
 
 //testimonials

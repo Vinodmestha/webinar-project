@@ -10,7 +10,7 @@ import { RedirectionButton, Button } from "../../../../components/UI/Button";
 
 export default function HeroSection(props) {
     return (
-        <div className="bg-primary">
+        <div className="bg-bgHero">
             <Container className="grid lg:grid-cols-[0.8fr_1fr] grid-cols-1 px-2 !pb-1">
                 <section className="flex flex-col items-center justify-center px-6 py-20">
                     <H1 className="mb-8">
@@ -29,8 +29,8 @@ export default function HeroSection(props) {
                     </div>
                 </section>
                 <section className="relative flex justify-ceter px-20">
-                    <div className="p-5 w-[450px]  rounded-full border-2 border-gray-800">
-                        <div className="w-full h-full rounded-full bg-gradient-to-b from-primary via-secondary to-primary" />
+                    <div className="p-5 w-[450px]  rounded-full border-2 border-white">
+                        <div className="w-full h-full rounded-full bg-gradient-to-b from-secondary via-tertiary to-primary" />
                         <img
                             src={heroImage}
                             className="absolute  bottom-0  -left-36 !w-[900px] h-[660px]"

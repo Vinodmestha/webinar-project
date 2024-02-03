@@ -1,7 +1,7 @@
 export const H1 = ({ children, className }) => {
     return (
         <h1
-            className={`text-7xl [letter-spacing:0.4px] leading-[5.3rem] font-axiSemiBold ${className}`}
+            className={`text-7xl [letter-spacing:0.4px] leading-[5.3rem] font-axiSemiBold text-textColor ${className}`}
         >
             {children}
         </h1>
@@ -11,7 +11,7 @@ export const H1 = ({ children, className }) => {
 export const H2 = ({ children, className }) => {
     return (
         <h2
-            className={`flex flex-col items-center text-[40px] !mb-5 !font-axiSemiBold text-white ${className}`}
+            className={`flex flex-col items-center text-[40px] mb-5 !font-axiSemiBold text-white ${className}`}
         >
             {children}
             <p className="w-36 h-[4px] bg-tertiary rounded-full -mt-1" />
@@ -28,14 +28,14 @@ export const H3 = ({ children, className }) => {
 };
 export const H4 = ({ children, className }) => {
     return (
-        <h4 className={`text-lg font-axiSemiBold ${className}`}>{children}</h4>
+        <h4 className={`text-lg font-axiSemiBold text-tertiary ${className}`}>
+            {children}
+        </h4>
     );
 };
 export const H5 = ({ children, className }) => {
     return (
-        <h5
-            className={`text-[15px] font-axiMedium text-gray-600 !text-h2Color ${className}`}
-        >
+        <h5 className={`text-[15px] font-axiMedium text-white ${className}`}>
             {children}
         </h5>
     );

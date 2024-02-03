@@ -7,6 +7,8 @@ export default {
                 primary: "#36454F",
                 secondary: "#252525",
                 tertiary: "#C49102",
+                bgHero: "#11151c",
+                textColor: "#ffd60a",
                 primaryBtn: "#C49102",
                 h2Color: "#f1f1f1",
                 bg1: "#011627",
