@@ -1,7 +1,7 @@
-import speaker from "../../../assets/icons/speaker.png";
-import reviewer from "../../../assets/icons/reviewer.png";
-import webinarDummy from "../../../assets/home/webinarDummy.jpg";
-import webinarDummy2 from "../../../assets/home/webinarDummy2.jpg";
+import speaker from "../../assets/icons/speaker.png";
+import reviewer from "../../assets/icons/reviewer.png";
+import webinarDummy from "../../assets/home/webinarDummy.jpg";
+import webinarDummy2 from "../../assets/home/webinarDummy2.jpg";
 
 export const webinarsData = [
     {

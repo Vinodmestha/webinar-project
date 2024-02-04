@@ -1,7 +1,7 @@
 import React from "react";
 import quote from "../../../../assets/icons/quote.svg";
 
-import { testimonials } from "../dummy";
+import { testimonials } from "../../dummy";
 import { H2, H5 } from "../../../../components/Typography";
 import { Container } from "../../../../components/UI/Container";
 

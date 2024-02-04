@@ -8,7 +8,7 @@ import { Container } from "../UI/Container";
 
 export default function ContactUs() {
     return (
-        <section className="relative z-[1] sm:py-10 xl:px-8 md:px-6 px-3">
+        <section className="relative overflow-hidden z-[1] sm:py-10 xl:px-8 md:px-6 px-3">
             <div className="hidden sm:block">
                 {/* <img
                     src={contactBg}
@@ -47,7 +47,7 @@ export default function ContactUs() {
                     </div>
                 </div>
                 <div className="px-3 py-10 mx-3 bg-secondary md:w-1/2 rounded-3xl sm:px-6 md:px-10 before:bg-homeGradient before:-top-4 before:left-0 before:absolute shadow-services ">
-                    <div className="flex flex-wrap ">
+                    <div className="flex flex-wrap">
                         <div className="w-full px-3 my-2 sm:w-1/2">
                             <Input placeholder="Fill Name" type="mail" />
                         </div>
@@ -73,10 +73,12 @@ export default function ContactUs() {
                         <Button
                             className="!text-white border-none !bg-primaryBtn"
                             label="Send Message"
-                        ></Button>
+                        />
                     </div>
                 </div>
             </Container>
+
+            <div className="absolute -bottom-60 -left-60 -z-[100] w-[500px] h-[500px] bg-secondary rounded-full"></div>
         </section>
     );
 }

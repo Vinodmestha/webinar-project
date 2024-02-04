@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { webinarsData } from "../dummy";
+import { webinarsData } from "../../dummy";
 import { Container } from "../../../../components/UI/Container";
 import { H2, H5, SubHeading } from "../../../../components/Typography";
+import { Button } from "../../../../components/UI/Button";
 
 export default function Webinars() {
     const [state, setState] = useState({ currentMode: "", data: [] });
@@ -26,7 +27,7 @@ export default function Webinars() {
 
     return (
         <Container>
-            <H2 className="">Our Latest Webinars</H2>
+            <H2>Our Latest Webinars</H2>
             <SubHeading className="mb-20">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -35,17 +36,16 @@ export default function Webinars() {
 
             <div className="flex items-center justify-center mb-10">
                 {webinarsData?.map((item) => (
-                    <h4
+                    <Button
+                        label={item?.categoryType}
                         key={item?.id}
-                        className={`font-axiMedium mx-7 px-4 py-2 rounded-full cursor-pointer ${
+                        className={`mx-7 border-none ${
                             item?.categorySlug === state?.currentMode
-                                ? "!bg-yellow-700 text-white"
-                                : "bg-gray-100"
-                        } transition-all duration-100 hover:bg-pink-100`}
+                                ? "!bg-yellow-800 !text-white"
+                                : "!bg-gray-100 !text-black"
+                        } transition-all duration-100 hover:bg-yellow-200`}
                         onClick={() => webinarDataHandler(item?.categorySlug)}
-                    >
-                        {item?.categoryType}
-                    </h4>
+                    />
                 ))}
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
