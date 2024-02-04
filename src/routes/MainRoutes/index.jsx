@@ -4,6 +4,7 @@ import { useRoutes, Outlet } from "react-router-dom";
 import Home from "./Home";
 import AboutUs from "./AboutUs";
 import Webinars from "./Webinars";
+import Speakers from "./Speakers";
 import ContactUs from "../../components/Layout/ContactUs";
 
 import { navLinks } from "../../db/dummy";
@@ -28,6 +29,7 @@ export default function MainRoutes(props) {
         { path: "/about", element: <AboutUs /> },
         { path: "/contact-us", element: <ContactUs /> },
         { path: "webinars", element: <Webinars /> },
+        { path: "speakers", element: <Speakers /> },
         Outlet,
     ]);
     return (

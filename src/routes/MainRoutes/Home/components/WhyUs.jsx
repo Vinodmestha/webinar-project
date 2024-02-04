@@ -1,6 +1,6 @@
 import React from "react";
 
-import { whyUs } from "../dummy";
+import { whyUs } from "../../dummy";
 import { Container } from "../../../../components/UI/Container";
 import { H2, H5, SubHeading } from "../../../../components/Typography";
 

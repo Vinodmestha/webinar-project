@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
-import { webinarsData } from "../Home/dummy";
+import { webinarsData } from "../dummy";
 import { Button } from "../../../components/UI/Button";
 import { Container } from "../../../components/UI/Container";
 import { H2, H3, H4, H5 } from "../../../components/Typography";
@@ -11,6 +11,9 @@ export default function Webinars() {
     const [state, setState] = useState({ data: {} });
     let location = useLocation();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     useEffect(() => {
         let data = webinarsData?.filter((item) => {
             return item?.categorySlug === location?.state?.name;
@@ -25,21 +28,24 @@ export default function Webinars() {
 
     return (
         <Container>
-            <H2>{data?.categoryType} Webinars</H2>
+            <H2 className="!mb-16">{data?.categoryType} Webinars</H2>
 
             <div className="flex flex-col gap-5">
                 {data?.data?.map((item) => (
-                    <div key={item?.id} className="flex rounded-3xl bg-blue2">
+                    <div
+                        key={item?.id}
+                        className="flex rounded-3xl bg-secondary"
+                    >
                         <img
                             src={item?.image}
                             alt={item?.label}
-                            className="h-48 rounded-3xl"
+                            className="h-36 rounded-xl object-cover"
                         />
 
                         <div className="w-full flex justify-between items-center p-5">
                             <div className="">
                                 <H3 className="">{item?.label}</H3>
-                                <p className="text-gray-600">{item?.desc}</p>
+                                <p className="text-gray-400">{item?.desc}</p>
                             </div>
 
                             <div className="">

@@ -54,7 +54,7 @@ export const SubHeading = ({ children, className }) => {
 export const Mail = ({ children, className }) => {
     return (
         <a
-            className={`text-xl font-semibold text-primar ${className}`}
+            className={`text-xl font-axiSemiBold w-fit ${className}`}
             href="mailto:ggcs@globalgarner.com"
         >
             {children}
@@ -64,7 +64,7 @@ export const Mail = ({ children, className }) => {
 export const Telephone = ({ children, className }) => {
     return (
         <a
-            className={`text-xl font-semibold text-primar ${className}`}
+            className={`text-xl font-axiSemiBold w-fit ${className}`}
             href="tel:+916354917511"
         >
             {children}

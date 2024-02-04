@@ -2,7 +2,7 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { speakers } from "../dummy";
+import { speakers } from "../../dummy";
 import { H2, H5 } from "../../../../components/Typography";
 import { Container } from "../../../../components/UI/Container";
 
@@ -23,7 +23,9 @@ export default function Speakers() {
                                         : "!bg-tertiary rounded-type2"
                                 }`}
                                 onClick={() =>
-                                    navigate(`/speakers?name=${item?.slug}`)
+                                    navigate(`/speakers?name=${item?.slug}`, {
+                                        state: { speaker: item?.slug },
+                                    })
                                 }
                             >
                                 <img
