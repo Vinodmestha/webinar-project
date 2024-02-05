@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 
-import Modal from "../components/UI/Modal";
+import { Input } from "../components/Input";
+import { Button } from "../components/UI/Button";
 
 export default function Login(props) {
-    const [state, setState] = useState({ authModal: true });
     return (
-        <Modal
-            title="Login"
-            open={state?.authModal}
-            onClose={setState((prev) => {
-                return { ...prev, authModal: false };
-            })}
-        >
-            Login
-        </Modal>
+        <form className="flex flex-col gap-5 w-4/5" onSubmit={() => {}}>
+            <Input
+                // label="Username"
+                placeholder="username"
+                className="bg-primary"
+            />
+            <Input
+                // label="Password"
+                placeholder="password"
+                className="bg-primary"
+            />
+            <Button
+                label="Login"
+                className="mt-5 border-none rounded-lg !bg-tertiary"
+            />
+        </form>
     );
 }
