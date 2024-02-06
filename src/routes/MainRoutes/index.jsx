@@ -9,6 +9,7 @@ import ContactUs from "../../components/Layout/ContactUs";
 
 import { navLinks } from "../../db/dummy";
 import BackNavigate from "../../components/UI/BackNavigate";
+import WebinarDetails from "./Webinars/WebinarDetails";
 
 export default function MainRoutes(props) {
     const [state, setState] = useState({ title: "" });
@@ -28,7 +29,13 @@ export default function MainRoutes(props) {
         { path: "/", element: <Home /> },
         { path: "/about", element: <AboutUs /> },
         { path: "/contact-us", element: <ContactUs /> },
-        { path: "webinars", element: <Webinars /> },
+        {
+            path: "webinars",
+            children: [
+                { path: "", element: <Webinars /> },
+                { path: ":key", element: <WebinarDetails /> },
+            ],
+        },
         { path: "speakers", element: <Speakers /> },
         Outlet,
     ]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import { webinarsData } from "../dummy";
 import { Button } from "../../../components/UI/Button";
@@ -9,20 +9,22 @@ import { H2, H3, H4, H5 } from "../../../components/Typography";
 
 export default function Webinars() {
     const [state, setState] = useState({ data: {} });
-    let location = useLocation();
+    let [searchParams, setSearchParams] = useSearchParams();
+    let location = useLocation(),
+        navigate = useNavigate();
+
+    let currentType = location?.state?.name ?? searchParams?.get("type");
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, []);
-    useEffect(() => {
         let data = webinarsData?.filter((item) => {
-            return item?.categorySlug === location?.state?.name;
+            return item?.categorySlug === currentType;
         });
 
         setState((prev) => {
             return { ...prev, data: data[0] };
         });
-    }, [location]);
+    }, [currentType]);
 
     const { data } = state;
 
@@ -43,8 +45,8 @@ export default function Webinars() {
                         />
 
                         <div className="w-full flex justify-between items-center p-5">
-                            <div className="">
-                                <H3 className="">{item?.label}</H3>
+                            <div>
+                                <H3>{item?.label}</H3>
                                 <p className="text-gray-400">{item?.desc}</p>
                             </div>
 
@@ -65,7 +67,9 @@ export default function Webinars() {
                             <Button
                                 label="Order Now"
                                 className="border-none text-white !bg-primary transition-all duration-300 hover:scale-105"
-                                onClick={() => alert("Order Place")}
+                                onClick={() =>
+                                    navigate(`/webinars/${item?.id}`)
+                                }
                             />
                             {/* <div className=" rounded-r-3xl p-2 "></div> */}
                         </div>
