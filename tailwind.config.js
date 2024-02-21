@@ -27,7 +27,7 @@ export default {
             },
             animation: {
                 fadeInDown: "fadeInDown 0.4s",
-                fadeUp: "fadeUp 0.15s forwards ",
+                fadeUp: "fadeUp 0.15s forwards",
             },
             keyframes: {
                 fadeInDown: {
