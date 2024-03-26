@@ -6,8 +6,14 @@ import { webinarsData } from "../../dummy";
 import { Container } from "../../../../components/UI/Container";
 import { H2, H5, SubHeading } from "../../../../components/Typography";
 import { Button } from "../../../../components/UI/Button";
+import { getAPI } from "../../../../utils/api";
 
 export default function Webinars() {
+    useEffect(() => {
+        getAPI("/api/rajWebinar/webinars/list").then((res) => {
+            console.log(res);
+        });
+    }, []);
     const [state, setState] = useState({ currentMode: "", data: [] });
 
     let navigate = useNavigate();
