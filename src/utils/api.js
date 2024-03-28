@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const endpt = "http://localhost:8080";
+const path = "http://localhost:8080";
+const preffix = "/api/rajWebinar";
 
-export const getAPI = async (path, config) => {
+export const getAPI = async (url, config) => {
     // let cancelToken = axios.CancelToken.source();
     // cancelToken.cancel();
     config = {
@@ -10,7 +11,7 @@ export const getAPI = async (path, config) => {
         ...config,
     };
 
-    let base_path = import.meta.env.VITE_API_BASE_URL ?? endpt + path;
+    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + preffix + url;
     let headers = {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -38,18 +39,16 @@ export const getAPI = async (path, config) => {
     return result;
 };
 
-export const postAPI = async (path, data, config) => {
+export const postAPI = async (url, data, config) => {
     config = {
         headers: null,
         ...config,
     };
 
-    let base_path = import.meta.env.VITE_API_BASE_URL ?? endpt + path;
-
+    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + preffix + url;
     let headers = {
         Accept: "application/json",
         "Content-Type": "application/json",
-        country: country,
     };
 
     if (config.headers) {
