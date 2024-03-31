@@ -1,25 +1,21 @@
 import axios from "axios";
 
 const path = "http://localhost:8080";
-const preffix = "/api/rajWebinar";
+const prefix = "/api/rajWebinar";
+
+let authData = JSON.parse(localStorage.getItem("userAuth"));
+
+let headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: "Bearer" + authData?.data?.token,
+};
 
 export const getAPI = async (url, config) => {
     // let cancelToken = axios.CancelToken.source();
     // cancelToken.cancel();
-    config = {
-        headers: null,
-        ...config,
-    };
 
-    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + preffix + url;
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-    };
-
-    if (config.headers) {
-        headers = { ...headers, ...config.headers };
-    }
+    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + prefix + url;
 
     let result = await new Promise((resolve, reject) => {
         axios
@@ -40,20 +36,11 @@ export const getAPI = async (url, config) => {
 };
 
 export const postAPI = async (url, data, config) => {
-    config = {
-        headers: null,
-        ...config,
-    };
+    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + prefix + url;
 
-    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + preffix + url;
-    let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-    };
-
-    if (config.headers) {
-        headers = { ...headers, ...config.headers };
-    }
+    // if (config.headers) {
+    //     headers = { ...headers, ...config.headers };
+    // }
 
     let result = await new Promise((resolve, reject) => {
         axios

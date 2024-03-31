@@ -5,17 +5,15 @@ import userIcon from "../../assets/icons/user.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import useTypes from "../../utils/helpers/useTypes";
 
-import Auth from "../../auth";
-// import { navLinks } from "../../db/dummy";
 import { Button } from "../../components/UI/Button";
 import { MenuCard } from "../../components/UI/MenuCard";
 import { Container } from "../../components/UI/Container";
 import NoDataFound from "../../components/UI/NoDataFound";
+import { H4 } from "../../components/Typography";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
         authComp: "",
-        authModal: false,
         menuChild: false,
         profileMenu: false,
     });
@@ -23,6 +21,7 @@ export default function NavbarContent(props) {
         location = useLocation(),
         webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
+    let authData = JSON.parse(localStorage.getItem("userAuth"))?.data;
 
     const { typesData, typesLoading } = useTypes();
 
@@ -36,19 +35,12 @@ export default function NavbarContent(props) {
     };
 
     const setAuthModal = (type) => {
+        navigate(`/auth?action=${type}`);
         setState((prev) => {
             return {
                 ...prev,
                 profileMenu: false,
-                authModal: true,
-                authComp: type,
             };
-        });
-    };
-
-    const closeAuthModal = () => {
-        setState((prev) => {
-            return { ...prev, authComp: "", authModal: false };
         });
     };
 
@@ -184,28 +176,31 @@ export default function NavbarContent(props) {
                         }
                     />
                     {state?.profileMenu ? (
-                        <MenuCard className="top-20 !w-fit right-0 flex gap-5">
-                            <Button
-                                label="Signup"
-                                className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
-                                onClick={() => setAuthModal("signup")}
-                            />
-                            <Button
-                                label="Login"
-                                className="border-none rounded-lg !bg-blue-600 hover:!shadow-2xl"
-                                onClick={() => setAuthModal("login")}
-                            />
+                        <MenuCard className="top-20 w-fit max-w-60 right-0 ">
+                            {authData?.token ? (
+                                <div>
+                                    <span className="flex items-center gap-2">
+                                        Hi<H4>{authData?.email}</H4>
+                                    </span>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-2 gap-5">
+                                    <Button
+                                        label="Signup"
+                                        className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
+                                        onClick={() => setAuthModal("signup")}
+                                    />
+                                    <Button
+                                        label="Login"
+                                        className="border-none rounded-lg !bg-blue-600 hover:!shadow-2xl"
+                                        onClick={() => setAuthModal("login")}
+                                    />
+                                </div>
+                            )}
                         </MenuCard>
                     ) : null}
                 </div>
             </Container>
-            {state?.authModal ? (
-                <Auth
-                    authComp={state?.authComp}
-                    authModal={state?.authModal}
-                    closeAuthModal={closeAuthModal}
-                />
-            ) : null}
         </>
     );
 }

@@ -12,3 +12,13 @@ export const speakersURL = {
 export const otherURL = {
     WHY_US: "/why-us",
 };
+
+export const authURL = {
+    REGISTER: "/auth/signup",
+    LOGIN: "/auth/login",
+};
+
+export const contactURL = {
+    DETAILS: "/contact/details",
+    FORM: "/contact/submit",
+};

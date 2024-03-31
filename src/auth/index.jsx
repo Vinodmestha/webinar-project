@@ -1,62 +1,40 @@
 import React, { useState } from "react";
-import authUser from "../assets/icons/authUser.png";
-import loginBanner from "../assets/images/loginBanner.svg";
-import signupBanner from "../assets/images/signupBanner.svg";
+import { authImage, authBg } from "../assets";
+
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import Login from "./Login";
 import SignUp from "./SignUp";
-import ForgotPassword from "./ForgotPassword";
-import Modal from "../components/UI/Modal";
 
 export default function Auth(props) {
     const [state, setState] = useState({
-        authModal: props?.authModal ?? false,
-        authComp: props?.authComp ?? "login",
+        detailsData: {},
+        detailsLoading: false,
     });
 
-    const setAuthModal = (type) => {
-        setState((prev) => {
-            return {
-                ...prev,
-                authComp: type,
-            };
-        });
-    };
+    let navigate = useNavigate();
+    const [params, setParams] = useSearchParams();
 
-    let banners = { login: loginBanner, signup: signupBanner };
+    let authPage = params?.get("action");
+
+    const currentAuthHandler = () => {
+        switch (authPage) {
+            case "login":
+                return <Login navigate={navigate} />;
+            case "signup":
+                return <SignUp navigate={navigate} />;
+            default:
+                return <Login navigate={navigate} />;
+        }
+    };
     return (
-        <Modal
-            size="sm"
-            backOption={state?.authComp === "forgotPassword"}
-            backAction={() =>
-                setState((prev) => {
-                    return { ...prev, authComp: "login" };
-                })
-            }
-            open={props?.authModal}
-            onClose={props?.closeAuthModal}
-        >
-            <div className="grid grid-cols-1 lg:grid-cols-1">
-                <div className="flex flex-col justify-start items-center">
-                    <img
-                        src={authUser}
-                        alt="login/signup"
-                        className="w-16 h-16"
-                    />
-                    {state?.authComp === "login" ? (
-                        <Login setAuthModal={setAuthModal} />
-                    ) : state?.authComp === "signup" ? (
-                        <SignUp />
-                    ) : (
-                        <ForgotPassword />
-                    )}
-                </div>
-                {/* <img
-                    src={banners[props?.authComp]}
-                    alt={props?.authComp}
-                    className=""
-                /> */}
+        <div className="grid md:grid-cols-2">
+            <div className=" w-full flex justify-center px-10 py-20">
+                {currentAuthHandler()}
             </div>
-        </Modal>
+            <div className="flex justify-center py-20">
+                <img src={authImage} className="size-[400px]" />
+            </div>
+        </div>
     );
 }

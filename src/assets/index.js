@@ -6,6 +6,8 @@ import webinarDummy from "./home/webinarDummy.jpg";
 import webinarDummy2 from "./home/webinarDummy2.jpg";
 import noDataFound from "./vectors/noDataFound.svg";
 
+import authImage from "./vectors/login.svg";
+import authBg from "./vectors/authBg.jpg";
 export {
     bannerList,
     bannerList1,
@@ -13,4 +15,6 @@ export {
     webinarDummy,
     webinarDummy2,
     noDataFound,
+    authImage,
+    authBg,
 };

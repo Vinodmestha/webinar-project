@@ -55,7 +55,7 @@ export default function Speakers() {
                                     className="w-80 !rounded-2xl hover:scale-105 transition-all duration-300"
                                     onClick={() =>
                                         navigate(
-                                            `/speakers/details?_name=${item?.slug}`,
+                                            `/speakers/details?name=${item?.slug}`,
                                             {
                                                 state: { speaker: item?.slug },
                                             }

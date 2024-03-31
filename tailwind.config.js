@@ -48,6 +48,9 @@ export default {
                     "100%": { bottom: "20%" },
                 },
             },
+            backgroundImage: {
+                authBg: "url('../src/vectors/authBg.jpg')",
+            },
         },
     },
     plugins: [],
