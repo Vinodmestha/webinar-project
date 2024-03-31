@@ -3,3 +3,12 @@ export const webinarsURL = {
     LIST: "/webinars/list",
     DETAILS: "/webinars/details",
 };
+
+export const speakersURL = {
+    LIST: "/speakers/list",
+    DETAILS: "/speakers/details",
+};
+
+export const otherURL = {
+    WHY_US: "/why-us",
+};

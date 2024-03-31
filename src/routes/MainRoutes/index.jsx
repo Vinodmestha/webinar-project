@@ -4,12 +4,13 @@ import { useRoutes, Outlet } from "react-router-dom";
 import Home from "./Home";
 import AboutUs from "./AboutUs";
 import Webinars from "./Webinars";
-import Speakers from "./Speakers";
+import WebinarDetails from "./Webinars/WebinarDetails";
+import SpeakersDetails from "./Speakers/SpeakersDetails";
 import ContactUs from "../../components/Layout/ContactUs";
 
 import { navLinks } from "../../db/dummy";
 import BackNavigate from "../../components/UI/BackNavigate";
-import WebinarDetails from "./Webinars/WebinarDetails";
+import Speakers from "./Home/components/Speakers";
 
 export default function MainRoutes(props) {
     const [state, setState] = useState({ title: "" });
@@ -36,12 +37,20 @@ export default function MainRoutes(props) {
                 { path: ":key", element: <WebinarDetails /> },
             ],
         },
-        { path: "speakers", element: <Speakers /> },
+        {
+            path: "speakers",
+            children: [
+                { path: "", element: <Speakers /> },
+                { path: "details", element: <SpeakersDetails /> },
+            ],
+        },
         Outlet,
     ]);
     return (
         <div className="">
-            {state?.title ? <BackNavigate backLabel={state?.title} /> : null}
+            {window.location?.pathname !== "/" ? (
+                <BackNavigate backLabel={state?.title} />
+            ) : null}
             {routes}
         </div>
     );

@@ -25,7 +25,6 @@ export default function Modal({
         customedSize = "lg:!w-1/4 !w-11/12 ";
     }
 
-    console.log(props);
     return (
         <div
             className={`z-[200]  fixed inset-0 flex justify-center items-center transition-colors ${

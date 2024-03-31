@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../assets/icons/logo.png";
 import userIcon from "../../assets/icons/user.svg";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import useTypes from "../../utils/helpers/useTypes";
 
 import Auth from "../../auth";
-import { navLinks } from "../../db/dummy";
+// import { navLinks } from "../../db/dummy";
 import { Button } from "../../components/UI/Button";
 import { MenuCard } from "../../components/UI/MenuCard";
 import { Container } from "../../components/UI/Container";
+import NoDataFound from "../../components/UI/NoDataFound";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
@@ -18,10 +20,11 @@ export default function NavbarContent(props) {
         profileMenu: false,
     });
     const navigate = useNavigate(),
-        location = useLocation();
+        location = useLocation(),
+        webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
 
-    useEffect(() => {}, []);
+    const { typesData, typesLoading } = useTypes();
 
     const menuChildHandler = (v, child) => {
         setState((prev) => {
@@ -49,6 +52,34 @@ export default function NavbarContent(props) {
         });
     };
 
+    const navLinks = [
+        { id: 1, label: "About Us", slug: "about" },
+        {
+            id: 2,
+            label: "Webinars",
+            slug: "webinars",
+            child: { data: typesData, loading: typesLoading, ref: webinarRef },
+
+            //  [
+            //     { id: 1, label: "Upcoming", slug: "upcoming", image: upcoming },
+            //     {
+            //         id: 2,
+            //         label: "Pre Recorded",
+            //         slug: "pre-recorded",
+            //         image: preRecorded,
+            //     },
+            //     { id: 3, label: "On Demand", slug: "on-demand", image: onDemand },
+            //     {
+            //         id: 4,
+            //         label: "CEU Approved",
+            //         slug: "ceu-approved",
+            //         image: ceuApproved,
+            //     },
+            // ],
+        },
+        { id: 3, label: "Contact", slug: "contact-us" },
+    ];
+
     return (
         <>
             <Container
@@ -70,7 +101,7 @@ export default function NavbarContent(props) {
                             key={item?.id}
                             className=""
                             onMouseEnter={() =>
-                                menuChildHandler(true, item?.child)
+                                menuChildHandler(true, item?.child?.data)
                             }
                             // onMouseLeave={() =>
                             //     menuChildHandler(false,item?.child )
@@ -88,33 +119,51 @@ export default function NavbarContent(props) {
                             </NavLink>
 
                             {state?.menuChild && item?.child ? (
-                                <MenuCard className="top-20 left-0 right-0 !p-8">
-                                    <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
-                                        {item?.child?.map((item) => (
-                                            <li
-                                                key={item?.id}
-                                                className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
-                                                onClick={() => {
-                                                    navigate(
-                                                        `/webinars?type=${item?.slug}`,
-                                                        {
-                                                            state: {
-                                                                name: item?.slug,
-                                                            },
-                                                        }
-                                                    );
-                                                    menuChildHandler(false);
-                                                }}
-                                            >
-                                                <img
-                                                    src={item?.image}
-                                                    alt={item?.slug}
-                                                    className="w-full h-36"
-                                                />
-                                                <p>{item?.label}</p>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <MenuCard
+                                    className="top-20 left-0 right-0 !p-8"
+                                    ref={item?.child?.ref}
+                                >
+                                    {item?.child?.loading ? (
+                                        <div className="grid lg:grid-cols-4 grid-col-2 gap-5">
+                                            {new Array(4)
+                                                ?.fill("")
+                                                ?.map((v, i) => (
+                                                    <div
+                                                        className="animate-pulse bg-gray-800 h-60 rounded-lg"
+                                                        key={i}
+                                                    />
+                                                ))}
+                                        </div>
+                                    ) : item?.child?.data?.length ? (
+                                        <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
+                                            {item?.child?.data?.map((item) => (
+                                                <li
+                                                    key={item?._id}
+                                                    className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
+                                                    onClick={() => {
+                                                        navigate(
+                                                            `/webinars?typeId=${item?._id}&type=${item?.slug}`,
+                                                            {
+                                                                state: {
+                                                                    name: item?.slug,
+                                                                },
+                                                            }
+                                                        );
+                                                        menuChildHandler(false);
+                                                    }}
+                                                >
+                                                    <img
+                                                        src={item?.image}
+                                                        alt={item?.slug}
+                                                        className="w-full h-36"
+                                                    />
+                                                    <p>{item?.label}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <NoDataFound />
+                                    )}
                                 </MenuCard>
                             ) : null}
                         </li>

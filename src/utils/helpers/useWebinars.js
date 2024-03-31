@@ -6,19 +6,28 @@ import { webinarsURL } from "../endpoints";
 export default function useWebinars(filterQuery, ...props) {
     const [state, setState] = useState({
         webinarsData: [],
-        loading: true,
+        webinarsLoading: true,
         loadMore: false,
     });
 
     useEffect(() => {
-        postAPI(webinarsURL?.LIST, { ...filterQuery }).then((res) => {
-            let responseData = res?.data?.data;
-            setState((prev) => {
-                return { ...prev, webinarsData: responseData?.webinars };
-            });
+        setState((prev) => {
+            return { ...prev, webinarsLoading: true };
         });
+        postAPI(webinarsURL?.LIST, { ...filterQuery })
+            .then((res) => {
+                let responseData = res?.data?.data;
+                setState((prev) => {
+                    return { ...prev, webinarsData: responseData?.webinars };
+                });
+            })
+            .finally(() => {
+                setState((prev) => {
+                    return { ...prev, webinarsLoading: false };
+                });
+            });
     }, [filterQuery]);
 
-    const { webinarsData, loading } = state;
-    return { webinarsData, loading };
+    const { webinarsData, webinarsLoading } = state;
+    return { webinarsData, webinarsLoading };
 }
