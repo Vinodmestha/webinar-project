@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const Input = ({
     label,
     type,
+    value,
     placeholder,
     onChange,
     className,
@@ -19,6 +20,7 @@ export const Input = ({
             </label>
             <input
                 type={type}
+                value={value}
                 placeholder={placeholder}
                 className={`w-full rounded-xl !px-5 !py-3 !outline-none border-none bg-black ${
                     state?.focused ? "border-2 !border-tertiary" : ""

@@ -65,3 +65,9 @@ export const footerHelp = [
     { id: 1, label: "FAQs", slug: "" },
     { id: 2, label: "Contact Us", slug: "" },
 ];
+
+export const navMenu = [
+    { id: 1, label: "Profile", slug: "profile" },
+    { id: 2, label: "Orders", slug: "orders" },
+    { id: 3, label: "Webinars", slug: "webinars" },
+];

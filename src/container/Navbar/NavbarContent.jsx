@@ -10,6 +10,9 @@ import { MenuCard } from "../../components/UI/MenuCard";
 import { Container } from "../../components/UI/Container";
 import NoDataFound from "../../components/UI/NoDataFound";
 import { H4 } from "../../components/Typography";
+import { navMenu } from "../../db/dummy";
+import useLogout from "../../utils/helpers/useLogout";
+import DotedLoader from "../../components/UI/loaders/DotedLoader";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
@@ -21,9 +24,10 @@ export default function NavbarContent(props) {
         location = useLocation(),
         webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
-    let authData = JSON.parse(localStorage.getItem("userAuth"))?.data;
+    let authData = JSON.parse(localStorage.getItem("userAuth"));
 
     const { typesData, typesLoading } = useTypes();
+    const { logoutHandler, logoutLoading } = useLogout();
 
     const menuChildHandler = (v, child) => {
         setState((prev) => {
@@ -34,7 +38,7 @@ export default function NavbarContent(props) {
         });
     };
 
-    const setAuthModal = (type) => {
+    const setAuthPage = (type) => {
         navigate(`/auth?action=${type}`);
         setState((prev) => {
             return {
@@ -71,6 +75,9 @@ export default function NavbarContent(props) {
         },
         { id: 3, label: "Contact", slug: "contact-us" },
     ];
+
+    let menuListStyles =
+        "cursor-pointer hover:bg-yellow-800 rounded-lg p-2 my-1";
 
     return (
         <>
@@ -176,24 +183,56 @@ export default function NavbarContent(props) {
                         }
                     />
                     {state?.profileMenu ? (
-                        <MenuCard className="top-20 w-fit max-w-60 right-0 ">
-                            {authData?.token ? (
-                                <div>
-                                    <span className="flex items-center gap-2">
-                                        Hi<H4>{authData?.email}</H4>
-                                    </span>
-                                </div>
+                        <MenuCard className="top-20 w-fit max-w-60 right-0">
+                            {authData?.info?.loggedIn &&
+                            authData?.info?.data?.token ? (
+                                <>
+                                    <div
+                                        className={`flex items-center gap-2 border-b border-gray-600 p-2 capitalize`}
+                                    >
+                                        Hi<H4>{authData?.info?.data?.name}</H4>
+                                    </div>
+                                    <ul>
+                                        {navMenu?.map((item, i) => (
+                                            <li
+                                                key={item?.id}
+                                                className={`${menuListStyles}`}
+                                                onClick={() =>
+                                                    navigate(item?.slug)
+                                                }
+                                            >
+                                                <div>{item?.label}</div>
+                                            </li>
+                                        ))}
+                                        <li
+                                            onClick={() => logoutHandler()}
+                                            className={`${
+                                                logoutLoading
+                                                    ? "!bg-red-500"
+                                                    : ""
+                                            } ${menuListStyles}`}
+                                        >
+                                            {logoutLoading ? (
+                                                <div className="flex justify-center ">
+                                                    <DotedLoader fill="#fff" />
+                                                </div>
+                                            ) : (
+                                                "Logout"
+                                            )}
+                                        </li>
+                                    </ul>
+                                </>
                             ) : (
                                 <div className="grid grid-cols-2 gap-5">
                                     <Button
                                         label="Signup"
                                         className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
-                                        onClick={() => setAuthModal("signup")}
+                                        onClick={() => setAuthPage("signup")}
                                     />
                                     <Button
                                         label="Login"
                                         className="border-none rounded-lg !bg-blue-600 hover:!shadow-2xl"
-                                        onClick={() => setAuthModal("login")}
+                                        onClick={() => setAuthPage("login")}
                                     />
                                 </div>
                             )}

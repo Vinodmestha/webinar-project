@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 
 import { Input } from "../components/Input";
 import { Button } from "../components/UI/Button";
+import DotedLoader from "../components/UI/loaders/DotedLoader";
+
 import { postAPI } from "../utils/api";
 import { authURL } from "../utils/endpoints";
-import DotedLoader from "../components/UI/loaders/DotedLoader";
-import { H1, H2, H3 } from "../components/Typography";
 
 export default function Login(props) {
     const [state, setState] = useState({
@@ -30,7 +30,6 @@ export default function Login(props) {
             };
         });
     };
-
     const submitHandler = () => {
         let formValid = true;
         for (let i in inputData) {
@@ -57,7 +56,6 @@ export default function Login(props) {
         formValid = true;
         formValid && apiHandler();
     };
-
     const apiHandler = () => {
         setState((prev) => {
             return { ...prev, loginLoading: true };
@@ -65,8 +63,14 @@ export default function Login(props) {
         postAPI(authURL?.LOGIN, { ...inputData })
             .then((res) => {
                 const responseData = res?.data?.data;
+                let authData = {
+                    info: {
+                        loggedIn: true,
+                        ...responseData,
+                    },
+                };
 
-                localStorage.setItem("userAuth", JSON.stringify(responseData));
+                localStorage.setItem("userAuth", JSON.stringify(authData));
             })
             .then(() => {
                 props?.navigate("/");
@@ -82,31 +86,29 @@ export default function Login(props) {
     };
 
     return (
-        <div className="flex flex-col gap-5 w-4/5">
-            <div className="*:text-gray-400 text-center mb-10">
-                <H2>Login</H2>
-                <p>Please enter log in details</p>
-            </div>
+        <div className="flex flex-col gap-5 ">
             {[
                 { label: "Email", name: "email", required: true },
                 { label: "Password", name: "password", required: true },
             ]?.map((item) => (
-                <Input
-                    onChange={(v) => setData(item?.name, v)}
-                    label={item?.label}
-                    placeholder={item?.name}
-                    required={item?.required}
-                    className="bg-primary"
-                    errorText={errorData[item?.name]}
-                />
+                <Fragment key={item?.name}>
+                    <Input
+                        onChange={(v) => setData(item?.name, v)}
+                        label={item?.label}
+                        placeholder={`Enter your ${item?.name}`}
+                        required={item?.required}
+                        className="bg-primary"
+                        errorText={errorData[item?.name]}
+                    />
+                </Fragment>
             ))}
 
-            <p
-                className="underline cursor-pointer"
-                // onClick={() => props?.setAuthModal("forgotPassword")}
+            {/* <p
+                className="underline cursor-pointer w-fit"
+                onClick={() => props?.setAuthPage("forgotPassword")}
             >
                 Forgot Password?
-            </p>
+            </p> */}
 
             <Button
                 label={loginLoading ? <DotedLoader fill="#fff" /> : "Login"}

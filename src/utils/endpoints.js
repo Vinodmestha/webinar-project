@@ -14,7 +14,7 @@ export const otherURL = {
 };
 
 export const authURL = {
-    REGISTER: "/auth/signup",
+    SIGNUP: "/auth/signup",
     LOGIN: "/auth/login",
 };
 
