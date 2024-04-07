@@ -3,8 +3,8 @@ import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { webinarsURL } from "../../../utils/endpoints";
-import { Button } from "../../../components/UI/Button";
+import { expressCartURL, webinarsURL } from "../../../utils/endpoints";
+import { Button, RedirectionButton } from "../../../components/UI/Button";
 import { H2, H3, H4 } from "../../../components/Typography";
 import { Container } from "../../../components/UI/Container";
 
@@ -25,7 +25,7 @@ export default function WebinarDetails() {
         currentWebinarName = params?.get("name");
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         setState((prev) => {
             return { ...prev, detailsLoading: true };
         });
@@ -50,7 +50,15 @@ export default function WebinarDetails() {
     }, [location]);
 
     const { detailsData, detailsLoading, selectedInfo } = state;
-    // console.log(detailsData);
+    console.log(detailsData);
+
+    const addToCartHandler = () => {
+        postAPI(expressCartURL?.ADD_TO_CART, { _id: detailsData?._id })
+            .then((res) => {
+                console.log(res);
+            })
+            .finally(() => {});
+    };
 
     return (
         <>
@@ -60,8 +68,8 @@ export default function WebinarDetails() {
                         "loading"
                     ) : (
                         <section className="grid grid-cols-[0.5fr,1fr] gap-10">
-                            <figure className="w-full md:h-80 rounded-xl overflow-hidden">
-                                <img src={webinarDummy} className="size-full" />
+                            <figure className="flex items-center rounded-xl overflow-hidden">
+                                <img src={webinarDummy} className="md:h-80" />
                             </figure>
                             <section className="border-gray-900 rounded-xl h-full">
                                 <H2 className=" text-tertiary capitalize">
@@ -73,10 +81,15 @@ export default function WebinarDetails() {
                                         __html: detailsData?.description,
                                     }}
                                 />
-                                <div className="flex justify-center w-full my-5">
+                                <div className="flex justify-center gap-5 w-full my-5 *:w-40">
+                                    <Button
+                                        label="Buy Now"
+                                        onClick={addToCartHandler}
+                                        className="bg-transparent border-2 border-white transition-all duration-200 hover:scale-105"
+                                    />
                                     <Button
                                         label="Add to Cart"
-                                        className="border-none w-60 bg-blue-700 hover:scale-105"
+                                        className="border-none !bg-tertiary transition-all duration-200 hover:scale-105"
                                     />
                                 </div>
                             </section>

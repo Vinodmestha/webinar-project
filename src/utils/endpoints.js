@@ -22,3 +22,12 @@ export const contactURL = {
     DETAILS: "/contact/details",
     FORM: "/contact/submit",
 };
+
+export const expressCartURL = {
+    ADD_TO_CART: "/webinars/express-cart/add-to-cart",
+    UPDATE_CART: "/webinars/express-cart/update-cart",
+};
+export const cartURL = {
+    ADD_TO_CART: "/add-to-cart",
+    UPDATE_CART: "/update-cart",
+};
