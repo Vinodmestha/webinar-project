@@ -28,6 +28,8 @@ export const expressCartURL = {
     UPDATE_CART: "/webinars/express-cart/update-cart",
 };
 export const cartURL = {
-    ADD_TO_CART: "/add-to-cart",
-    UPDATE_CART: "/update-cart",
+    ADD_TO_CART: "/cart/add",
+    UPDATE_CART: "/cart/update",
+    CART_COUNT: "/cart/count",
+    CART_SUMMARY: "/cart/summary",
 };

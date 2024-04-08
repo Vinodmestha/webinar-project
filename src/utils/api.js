@@ -8,7 +8,7 @@ let authData = JSON.parse(localStorage.getItem("userAuth"));
 let headers = {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: "Bearer" + authData?.data?.token,
+    Authorization: "Bearer " + authData?.info?.data?.token,
 };
 
 export const getAPI = async (url, config) => {

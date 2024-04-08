@@ -3,18 +3,21 @@ import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { expressCartURL, webinarsURL } from "../../../utils/endpoints";
-import { Button, RedirectionButton } from "../../../components/UI/Button";
 import { H2, H3, H4 } from "../../../components/Typography";
 import { Container } from "../../../components/UI/Container";
+import DotedLoader from "../../../components/UI/loaders/DotedLoader";
+import { Button, RedirectionButton } from "../../../components/UI/Button";
 
 import { postAPI } from "../../../utils/api";
+import useCartCount from "../../../utils/helpers/useCartCount";
+import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 
 export default function WebinarDetails() {
     const [state, setState] = useState({
         detailsData: {},
         selectedInfo: "",
         detailsLoading: false,
+        addLoading: false,
     });
     const location = useLocation();
     const [params, setParams] = useSearchParams();
@@ -49,15 +52,23 @@ export default function WebinarDetails() {
             });
     }, [location]);
 
-    const { detailsData, detailsLoading, selectedInfo } = state;
-    console.log(detailsData);
+    const { detailsData, detailsLoading, selectedInfo, addLoading } = state;
+
+    const { cartCountHandler } = useCartCount();
 
     const addToCartHandler = () => {
-        postAPI(expressCartURL?.ADD_TO_CART, { _id: detailsData?._id })
+        setState((prev) => {
+            return { ...prev, addLoading: true };
+        });
+        postAPI(cartURL?.ADD_TO_CART, { id: detailsData?._id })
             .then((res) => {
-                console.log(res);
+                cartCountHandler();
             })
-            .finally(() => {});
+            .finally(() => {
+                setState((prev) => {
+                    return { ...prev, addLoading: false };
+                });
+            });
     };
 
     return (
@@ -84,11 +95,18 @@ export default function WebinarDetails() {
                                 <div className="flex justify-center gap-5 w-full my-5 *:w-40">
                                     <Button
                                         label="Buy Now"
-                                        onClick={addToCartHandler}
+                                        // onClick={addToCartHandler}
                                         className="bg-transparent border-2 border-white transition-all duration-200 hover:scale-105"
                                     />
                                     <Button
-                                        label="Add to Cart"
+                                        label={
+                                            addLoading ? (
+                                                <DotedLoader />
+                                            ) : (
+                                                "Add to Cart"
+                                            )
+                                        }
+                                        onClick={addToCartHandler}
                                         className="border-none !bg-tertiary transition-all duration-200 hover:scale-105"
                                     />
                                 </div>

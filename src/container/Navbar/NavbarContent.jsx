@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import logo from "../../assets/icons/logo.png";
+import { logo, cartIcon } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import useTypes from "../../utils/helpers/useTypes";
 
+import { navMenu } from "../../db/dummy";
+import { H4 } from "../../components/Typography";
 import { Button } from "../../components/UI/Button";
 import { MenuCard } from "../../components/UI/MenuCard";
 import { Container } from "../../components/UI/Container";
 import NoDataFound from "../../components/UI/NoDataFound";
-import { H4 } from "../../components/Typography";
-import { navMenu } from "../../db/dummy";
-import useLogout from "../../utils/helpers/useLogout";
 import DotedLoader from "../../components/UI/loaders/DotedLoader";
+
+import useTypes from "../../utils/helpers/useTypes";
+import useLogout from "../../utils/helpers/useLogout";
+import useCartCount from "../../utils/helpers/useCartCount";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
@@ -29,6 +31,12 @@ export default function NavbarContent(props) {
     const { typesData, typesLoading } = useTypes();
     const { logoutHandler, logoutLoading } = useLogout();
 
+    const { cartCount, cartCountHandler } = useCartCount();
+    let count = localStorage.getItem("cart-count");
+
+    useEffect(() => {
+        cartCountHandler();
+    }, [count]);
     const menuChildHandler = (v, child) => {
         setState((prev) => {
             return {
@@ -168,7 +176,17 @@ export default function NavbarContent(props) {
                         </li>
                     ))}
                 </ul>
+
                 <div className="flex items-center gap-10">
+                    <figure
+                        className="relative cursor-pointer"
+                        onClick={() => navigate("/cart")}
+                    >
+                        <img src={cartIcon} alt="cart" className="w-20 h-11 " />
+                        <p className="absolute -top-1 right-6 bg-tertiary text-white font-axiSemiBold rounded-full w-fit px-2">
+                            {cartCount}
+                        </p>
+                    </figure>
                     <img
                         src={userIcon}
                         alt="webinar user"
