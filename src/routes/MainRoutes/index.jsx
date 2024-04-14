@@ -11,6 +11,7 @@ import ContactUs from "../../components/Layout/ContactUs";
 import { navLinks } from "../../db/dummy";
 import BackNavigate from "../../components/UI/BackNavigate";
 import Speakers from "./Home/components/Speakers";
+import Cart from "./Cart/Cart";
 
 export default function MainRoutes(props) {
     const [state, setState] = useState({ title: "" });
@@ -44,6 +45,7 @@ export default function MainRoutes(props) {
                 { path: "details", element: <SpeakersDetails /> },
             ],
         },
+        { path: "/cart", element: <Cart /> },
         Outlet,
     ]);
     return (

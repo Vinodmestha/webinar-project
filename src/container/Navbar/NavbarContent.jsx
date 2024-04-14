@@ -33,10 +33,12 @@ export default function NavbarContent(props) {
 
     const { cartCount, cartCountHandler } = useCartCount();
     let count = localStorage.getItem("cart-count");
+    console.log(count);
 
     useEffect(() => {
         cartCountHandler();
     }, [count]);
+
     const menuChildHandler = (v, child) => {
         setState((prev) => {
             return {
