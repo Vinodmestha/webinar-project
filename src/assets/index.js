@@ -7,7 +7,8 @@ import webinarDummy from "./home/webinarDummy.jpg";
 import webinarDummy2 from "./home/webinarDummy2.jpg";
 import noDataFound from "./vectors/noDataFound.svg";
 import cartIcon from "./icons/cart.svg";
-
+import calendar from "./icons/calendar.svg";
+import paypalIcon from "./icons/paypal.svg";
 import authImage from "./vectors/login.svg";
 import authBg from "./vectors/authBg.jpg";
 export {
@@ -21,4 +22,6 @@ export {
     authImage,
     authBg,
     cartIcon,
+    calendar,
+    paypalIcon,
 };
