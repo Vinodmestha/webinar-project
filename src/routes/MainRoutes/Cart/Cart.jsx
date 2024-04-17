@@ -19,7 +19,7 @@ export default function Cart(props) {
     }, []);
 
     const { cartData } = state;
-    console.log(cartData);
+    // console.log(cartData);
 
     return (
         <Container className="py-0 sm:!py-10">
