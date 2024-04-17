@@ -9,6 +9,8 @@ import noDataFound from "./vectors/noDataFound.svg";
 import cartIcon from "./icons/cart.svg";
 import calendar from "./icons/calendar.svg";
 import paypalIcon from "./icons/paypal.svg";
+import minus from "./icons/minus.svg";
+import plus from "./icons/plus.svg";
 import authImage from "./vectors/login.svg";
 import authBg from "./vectors/authBg.jpg";
 export {
@@ -24,4 +26,6 @@ export {
     cartIcon,
     calendar,
     paypalIcon,
+    minus,
+    plus,
 };
