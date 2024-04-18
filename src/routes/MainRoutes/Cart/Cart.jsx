@@ -77,7 +77,7 @@ export default function Cart(props) {
                 </section>
                 <CartSummary cartData={cartData} />
             </div>
-            {/* <Paypal /> */}
+            <Paypal />
         </Container>
     );
 }
