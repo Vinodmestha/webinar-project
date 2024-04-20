@@ -21,8 +21,11 @@ export default function Cart(props) {
     }, []);
 
     const { cartData } = state;
-    // console.log(cartData);
+    console.log(cartData);
 
+    const placeOrder = (id) => {
+        console.log(id);
+    };
     return (
         <Container className="py-0 sm:!py-10">
             <div className="grid grid-cols-[1fr_0.65fr] gap-4">
@@ -75,9 +78,11 @@ export default function Cart(props) {
                         </>
                     ))}
                 </section>
-                <CartSummary cartData={cartData} />
+                <section>
+                    <CartSummary cartData={cartData} />
+                    <Paypal placeOrder={placeOrder} cartData={cartData} />
+                </section>
             </div>
-            <Paypal />
         </Container>
     );
 }

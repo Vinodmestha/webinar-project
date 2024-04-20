@@ -24,10 +24,12 @@ export default function CartSummary(props) {
                 paymentGateways={cartData?.payment_gateways}
                 currentGateway={cartData?.gateway}
             />
-            <Button
-                label="Place Order"
-                className="!rounded-2xl border-none !bg-tertiary"
-            />
+            {cartData?.gateway?.slug === "paypal" ? null : (
+                <Button
+                    label="Place Order"
+                    className="!rounded-2xl border-none !bg-tertiary"
+                />
+            )}
         </section>
     );
 }
