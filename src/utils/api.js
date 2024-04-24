@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const path = "https://localhost:8080";
+const path = "http://localhost:8080";
 const prefix = "/api/rajWebinar";
 
 let authData = JSON.parse(localStorage.getItem("userAuth"));

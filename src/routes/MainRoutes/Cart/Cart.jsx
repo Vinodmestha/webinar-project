@@ -86,7 +86,7 @@ export default function Cart(props) {
                     </section>
                 </div>
             ) : (
-                <NoDataFound label="Cart is empty" imageSize="size-96" />
+                <NoDataFound label="Cart is empty" imageSize="size-[400px]" />
             )}
         </Container>
     );
