@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const path = "http://localhost:8080";
+const path = import.meta.env.VITE_API_URL;
+console.log(path);
 const prefix = "/api/rajWebinar";
 
 let authData = JSON.parse(localStorage.getItem("userAuth"));
