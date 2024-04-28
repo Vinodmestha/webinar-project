@@ -1,45 +1,45 @@
 import React from "react";
 
-export default function DotedLoader({ fill }) {
+export default function DotedLoader(props) {
     return (
         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 24 24"
+            x="0px"
+            y="0px"
+            viewBox="0 0 100 100"
+            enableBackground="new 0 0 0 0"
+            className={props?.className}
+            style={{
+                display: "inlineBlock",
+                height: "15px",
+                width: "30px",
+            }}
         >
-            <circle cx="18" cy="12" r="0" fill={fill}>
+            <circle fill={props.fill} stroke="none" cx="10" cy="60" r="15">
                 <animate
-                    attributeName="r"
-                    begin=".67"
-                    calcMode="spline"
-                    dur="1.5s"
-                    keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                    attributeName="opacity"
+                    dur="1s"
+                    values="0;1;0"
                     repeatCount="indefinite"
-                    values="0;2;0;0"
-                />
+                    begin="0.1"
+                ></animate>
             </circle>
-            <circle cx="12" cy="12" r="0" fill={fill}>
+            <circle fill={props.fill} stroke="none" cx="50" cy="60" r="15">
                 <animate
-                    attributeName="r"
-                    begin=".33"
-                    calcMode="spline"
-                    dur="1.5s"
-                    keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                    attributeName="opacity"
+                    dur="1s"
+                    values="0;1;0"
                     repeatCount="indefinite"
-                    values="0;2;0;0"
-                />
+                    begin="0.2"
+                ></animate>
             </circle>
-            <circle cx="6" cy="12" r="0" fill={fill}>
+            <circle fill={props.fill} stroke="none" cx="90" cy="60" r="15">
                 <animate
-                    attributeName="r"
-                    begin="0"
-                    calcMode="spline"
-                    dur="1.5s"
-                    keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                    attributeName="opacity"
+                    dur="1s"
+                    values="0;1;0"
                     repeatCount="indefinite"
-                    values="0;2;0;0"
-                />
+                    begin="0.3"
+                ></animate>
             </circle>
         </svg>
     );
