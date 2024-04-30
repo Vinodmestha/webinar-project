@@ -14,7 +14,7 @@ export default function DotedLoader(props) {
                 width: "30px",
             }}
         >
-            <circle fill={props.fill} stroke="none" cx="10" cy="60" r="15">
+            <circle fill={props?.fill} stroke="none" cx="10" cy="60" r="15">
                 <animate
                     attributeName="opacity"
                     dur="1s"
@@ -23,7 +23,7 @@ export default function DotedLoader(props) {
                     begin="0.1"
                 ></animate>
             </circle>
-            <circle fill={props.fill} stroke="none" cx="50" cy="60" r="15">
+            <circle fill={props?.fill} stroke="none" cx="50" cy="60" r="15">
                 <animate
                     attributeName="opacity"
                     dur="1s"
@@ -32,7 +32,7 @@ export default function DotedLoader(props) {
                     begin="0.2"
                 ></animate>
             </circle>
-            <circle fill={props.fill} stroke="none" cx="90" cy="60" r="15">
+            <circle fill={props?.fill} stroke="none" cx="90" cy="60" r="15">
                 <animate
                     attributeName="opacity"
                     dur="1s"

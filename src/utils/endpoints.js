@@ -33,3 +33,7 @@ export const cartURL = {
     CART_COUNT: "/cart/count",
     CART_SUMMARY: "/cart/summary",
 };
+
+export const orderURL = {
+    CREATE_ORDER: "/cart/create-order",
+};
