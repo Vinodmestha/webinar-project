@@ -82,7 +82,6 @@ import ReactDOM from "react-dom";
 // }
 
 const Paypal = (props) => {
-    console.log(props);
     useEffect(() => {
         const initializePayPalButton = () => {
             window.paypal
