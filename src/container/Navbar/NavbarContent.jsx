@@ -15,47 +15,56 @@ import DotedLoader from "../../components/UI/loaders/DotedLoader";
 import useTypes from "../../utils/helpers/useTypes";
 import useLogout from "../../utils/helpers/useLogout";
 import useCartCount from "../../utils/helpers/useCartCount";
+import useClickOutside from "../../utils/helpers/useClickOutside";
 
 export default function NavbarContent(props) {
     const [state, setState] = useState({
         authComp: "",
         menuChild: false,
+        childData: {},
         profileMenu: false,
     });
     const navigate = useNavigate(),
         location = useLocation(),
-        webinarRef = useRef();
+        webinarRef = useRef(),
+        profileRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
     let authData = JSON.parse(localStorage.getItem("userAuth"));
+
+    const menuChildHandler = (v, child) => {
+        console.log(v);
+        setState((prev) => {
+            return {
+                ...prev,
+                menuChild: v,
+            };
+        });
+    };
+    const profileMenuHandler = (v) => {
+        setState((prev) => {
+            return {
+                ...prev,
+                profileMenu: v,
+            };
+        });
+    };
+
+    useClickOutside(webinarRef, menuChildHandler);
+    useClickOutside(profileRef, profileMenuHandler);
 
     const { typesData, typesLoading } = useTypes();
     const { logoutHandler, logoutLoading } = useLogout();
 
     const { cartCount, cartCountHandler } = useCartCount();
     let count = localStorage.getItem("cart-count");
-    console.log(count);
 
     useEffect(() => {
         cartCountHandler();
     }, [count]);
 
-    const menuChildHandler = (v, child) => {
-        setState((prev) => {
-            return {
-                ...prev,
-                menuChild: child ? v : false,
-            };
-        });
-    };
-
     const setAuthPage = (type) => {
         navigate(`/auth?action=${type}`);
-        setState((prev) => {
-            return {
-                ...prev,
-                profileMenu: false,
-            };
-        });
+        profileMenuHandler(false);
     };
 
     const navLinks = [
@@ -64,6 +73,7 @@ export default function NavbarContent(props) {
             id: 2,
             label: "Webinars",
             slug: "webinars",
+            ref: webinarRef,
             child: { data: typesData, loading: typesLoading, ref: webinarRef },
 
             //  [
@@ -89,12 +99,11 @@ export default function NavbarContent(props) {
     let menuListStyles =
         "cursor-pointer hover:bg-yellow-800 rounded-lg p-2 my-1";
 
+    const { menuChild, childData } = state;
+
     return (
         <>
-            <Container
-                className="relative border-b border-gray-700 h-full !p-2.5 !my-0 flex items-center justify-between"
-                onMouseLeave={() => menuChildHandler(false, null)}
-            >
+            <Container className="relative border-b border-gray-700 h-full !p-2.5 !my-0 flex items-center justify-between">
                 <figure>
                     <img
                         src={logo}
@@ -108,75 +117,74 @@ export default function NavbarContent(props) {
                     {navLinks?.map((item) => (
                         <li
                             key={item?.id}
-                            className=""
-                            onMouseEnter={() =>
-                                menuChildHandler(true, item?.child?.data)
+                            onClick={() =>
+                                item?.child
+                                    ? (() => {
+                                          setState((prev) => {
+                                              return {
+                                                  ...prev,
+                                                  childData: item?.child,
+                                              };
+                                          });
+                                          menuChildHandler(!!item?.child);
+                                      })()
+                                    : navigate(item?.slug)
                             }
-                            // onMouseLeave={() =>
-                            //     menuChildHandler(false,item?.child )
-                            // }
+                            ref={item?.ref}
+                            className={`cursor-pointer ${
+                                pathname === item?.slug
+                                    ? "text-tertiary"
+                                    : "text-white"
+                            } hover:text-tertiary`}
                         >
-                            <NavLink
-                                to={item?.slug}
-                                className={`${
-                                    pathname === item?.slug
-                                        ? "text-tertiary"
-                                        : "text-white"
-                                } hover:text-tertiary`}
-                            >
-                                {item?.label}
-                            </NavLink>
-
-                            {state?.menuChild && item?.child ? (
-                                <MenuCard
-                                    className="top-20 left-0 right-0 !p-8"
-                                    ref={item?.child?.ref}
-                                >
-                                    {item?.child?.loading ? (
-                                        <div className="grid lg:grid-cols-4 grid-col-2 gap-5">
-                                            {new Array(4)
-                                                ?.fill("")
-                                                ?.map((v, i) => (
-                                                    <div
-                                                        className="animate-pulse bg-gray-800 h-60 rounded-lg"
-                                                        key={i}
-                                                    />
-                                                ))}
-                                        </div>
-                                    ) : item?.child?.data?.length ? (
-                                        <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
-                                            {item?.child?.data?.map((item) => (
-                                                <li
-                                                    key={item?._id}
-                                                    className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
-                                                    onClick={() => {
-                                                        navigate(
-                                                            `/webinars?typeId=${item?._id}&type=${item?.slug}`,
-                                                            {
-                                                                state: {
-                                                                    name: item?.slug,
-                                                                },
-                                                            }
-                                                        );
-                                                        menuChildHandler(false);
-                                                    }}
-                                                >
-                                                    <img
-                                                        src={item?.image}
-                                                        alt={item?.slug}
-                                                        className="w-full h-36"
-                                                    />
-                                                    <p>{item?.label}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    ) : (
-                                        <NoDataFound />
-                                    )}
-                                </MenuCard>
-                            ) : null}
+                            {item?.label}
                         </li>
                     ))}
+                    {menuChild && childData ? (
+                        <MenuCard className="top-20 left-0 right-0 !p-8">
+                            <div ref={childData?.ref}>
+                                {childData?.loading ? (
+                                    <div className="grid lg:grid-cols-4 grid-col-2 gap-5">
+                                        {new Array(4)?.fill("")?.map((v, i) => (
+                                            <div
+                                                className="animate-pulse bg-gray-800 h-60 rounded-lg"
+                                                key={i}
+                                            />
+                                        ))}
+                                    </div>
+                                ) : childData?.data?.length ? (
+                                    <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
+                                        {childData?.data?.map((item) => (
+                                            <li
+                                                key={item?._id}
+                                                className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/webinars?typeId=${item?._id}&type=${item?.slug}`,
+                                                        {
+                                                            state: {
+                                                                name: item?.slug,
+                                                            },
+                                                        }
+                                                    );
+                                                    menuChildHandler(false);
+                                                }}
+                                            >
+                                                <img
+                                                    src={item?.image}
+                                                    alt={item?.slug}
+                                                    className="w-full h-36"
+                                                />
+                                                <p>{item?.label}</p>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <NoDataFound />
+                                )}
+                            </div>
+                        </MenuCard>
+                    ) : null}
                 </ul>
 
                 <div className="flex items-center gap-10">
@@ -192,21 +200,15 @@ export default function NavbarContent(props) {
                     <img
                         src={userIcon}
                         alt="webinar user"
+                        ref={profileRef}
                         className="w-12 h-12 border-2 border-gray-200 rounded-full cursor-pointer"
-                        onClick={() =>
-                            setState((prev) => {
-                                return {
-                                    ...prev,
-                                    profileMenu: !prev?.profileMenu,
-                                };
-                            })
-                        }
+                        onClick={() => profileMenuHandler(true)}
                     />
                     {state?.profileMenu ? (
                         <MenuCard className="top-20 w-fit max-w-60 right-0">
                             {authData?.info?.loggedIn &&
                             authData?.info?.data?.token ? (
-                                <>
+                                <div ref={profileRef}>
                                     <div
                                         className={`flex items-center gap-2 border-b border-gray-600 p-2 capitalize`}
                                     >
@@ -217,9 +219,10 @@ export default function NavbarContent(props) {
                                             <li
                                                 key={item?.id}
                                                 className={`${menuListStyles}`}
-                                                onClick={() =>
-                                                    navigate(item?.slug)
-                                                }
+                                                onClick={() => {
+                                                    navigate(item?.slug);
+                                                    profileMenuHandler(false);
+                                                }}
                                             >
                                                 <div>{item?.label}</div>
                                             </li>
@@ -241,7 +244,7 @@ export default function NavbarContent(props) {
                                             )}
                                         </li>
                                     </ul>
-                                </>
+                                </div>
                             ) : (
                                 <div className="grid grid-cols-2 gap-5">
                                     <Button
