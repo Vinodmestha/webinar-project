@@ -22,12 +22,3 @@ img {
     font-family: axiformaSemiBold;
     src: url("./assets/fonts/Axiforma-SemiBold.ttf") format("opentype");
 }
-
-/* 
-.child:nth-child(3n-2) {
-    background-color: var(--color-1);
-  } .child:nth-child(3n-2) {
-    background-color: var(--color-1);
-  } .child:nth-child(3n-2) {
-    background-color: var(--color-1);
-  } */

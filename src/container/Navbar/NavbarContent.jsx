@@ -31,8 +31,7 @@ export default function NavbarContent(props) {
     let pathname = location?.pathname?.replace("/", "");
     let authData = JSON.parse(localStorage.getItem("userAuth"));
 
-    const menuChildHandler = (v, child) => {
-        console.log(v);
+    const menuChildHandler = (v) => {
         setState((prev) => {
             return {
                 ...prev,
