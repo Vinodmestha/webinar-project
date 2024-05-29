@@ -11,7 +11,7 @@ export const Input = ({
 }) => {
     const [state, setState] = useState({ focused: false });
     return (
-        <div className="flex flex-col gap-2 items-start ">
+        <div className="flex flex-col gap-2 items-start">
             <label className="text-white font-semibold">
                 {label}
                 {props?.required ? (
