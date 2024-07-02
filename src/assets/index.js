@@ -13,6 +13,7 @@ import minus from "./icons/minus.svg";
 import plus from "./icons/plus.svg";
 import authImage from "./vectors/login.svg";
 import authBg from "./vectors/authBg.jpg";
+
 export {
     logo,
     bannerList,

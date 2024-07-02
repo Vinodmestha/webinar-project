@@ -3,10 +3,15 @@ import play from "../../../../assets/icons/play.svg";
 import heroImage from "../../../../assets/home/heroImage.png";
 import bannerList from "../../../../assets/home/bannerList1.gif";
 
-import { H1 } from "../../../../components/Typography";
-import { Container } from "../../../../components/UI/Container";
-import { LineFlower } from "../../../../components/UI/Decorators";
-import { RedirectionButton, Button } from "../../../../components/UI/Button";
+import { H1, H4 } from "../../../../components/Typography";
+import {
+    Container,
+    LineFlower,
+    RedirectionButton,
+    Button,
+} from "../../../../components";
+
+import { heroHighlights } from "../../../../db/dummy";
 
 export default function HeroSection(props) {
     return (
@@ -28,7 +33,7 @@ export default function HeroSection(props) {
                         <Button label="How It works" icon={play} />
                     </div>
                 </section>
-                <section className="relative flex justify-ceter px-20">
+                <section className="relative flex justify-center px-20">
                     <div className="p-5 w-[450px]  rounded-full border-2 border-[#7b2cbf]">
                         <div className="w-full h-full rounded-full bg-gradient-to-b from-secondary via-tertiary to-primary" />
                         <img
@@ -43,6 +48,25 @@ export default function HeroSection(props) {
                     {/* <figure> */}
 
                     {/* </figure> */}
+                </section>
+            </Container>
+            <Container className="relative">
+                <section className="absolute w-full h-28 top-1/2 grid grid-cols-3 gap-10">
+                    {heroHighlights?.map((item) => (
+                        <div
+                            key={item?.id}
+                            className="flex items-center gap-3 shadow-lg p-4 rounded-lg z-50  bg-white"
+                        >
+                            <img
+                                src={item.icon}
+                                className={`size-12 border rounded-full p-2 ${item?.bg} border-dashed ${item?.border}`}
+                            />
+                            <div className="*:!text-black">
+                                <H4>{item?.label}</H4>
+                                <p className="text-sm mt-1">{item?.desc}</p>
+                            </div>
+                        </div>
+                    ))}
                 </section>
             </Container>
         </div>

@@ -7,7 +7,7 @@ export default {
                 primary: "#b100e8",
                 secondary: "#e0aaff",
                 tertiary: "#9d4edd",
-                // bgHero: "#dec9e9",
+                bgHero: "#f4f5f7",
                 textColor: "#7b2cbf",
                 primaryBtn: "#9d4edd",
                 h2Color: "#f1f1f1",

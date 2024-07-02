@@ -101,8 +101,8 @@ export default function NavbarContent(props) {
     const { menuChild, childData } = state;
 
     return (
-        <>
-            <Container className="relative border-b border-gray-700 h-full !p-2.5 !my-0 flex items-center justify-between">
+        <header className="">
+            <Container className=" bg-green-400 relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
                 <figure>
                     <img
                         src={logo}
@@ -262,6 +262,6 @@ export default function NavbarContent(props) {
                     ) : null}
                 </div>
             </Container>
-        </>
+        </header>
     );
 }

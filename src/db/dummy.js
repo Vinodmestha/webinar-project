@@ -8,6 +8,10 @@ import preRecorded from "../assets/vectors/preRecorded.svg";
 import onDemand from "../assets/vectors/onDemand.svg";
 import ceuApproved from "../assets/vectors/ceuApproved.svg";
 
+import journalWhills from "../assets/icons/journal-whills.svg";
+import businessTime from "../assets/icons/business-time.svg";
+import userShield from "../assets/icons/user-shield.svg";
+
 //header
 export const navLinks = [
     { id: 1, label: "About Us", slug: "about" },
@@ -35,6 +39,34 @@ export const navLinks = [
     },
     // { id: 4, label: "Plan & Pricing", slug: "pricing" },
     { id: 5, label: "Contact", slug: "contact-us" },
+];
+
+//hero
+export const heroHighlights = [
+    {
+        id: 1,
+        icon: journalWhills,
+        label: "20+ Webinars",
+        border: "border-[#ff5722]",
+        bg: "bg-[#ff57221c]",
+        desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
+    },
+    {
+        id: 2,
+        icon: businessTime,
+        label: "Lifetime Access",
+        border: "border-[#906ad4]",
+        bg: "bg-[#906ad41f]",
+        desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
+    },
+    {
+        id: 3,
+        icon: userShield,
+        label: "1k+ Enrolled",
+        border: "border-[#7cbf2f]",
+        bg: "bg-[#7cbf2f1f]",
+        desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
+    },
 ];
 
 //footer
