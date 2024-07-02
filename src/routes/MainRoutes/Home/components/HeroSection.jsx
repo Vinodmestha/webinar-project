@@ -29,16 +29,16 @@ export default function HeroSection(props) {
                     </div>
                 </section>
                 <section className="relative flex justify-ceter px-20">
-                    <div className="p-5 w-[450px]  rounded-full border-2 border-white">
+                    <div className="p-5 w-[450px]  rounded-full border-2 border-[#7b2cbf]">
                         <div className="w-full h-full rounded-full bg-gradient-to-b from-secondary via-tertiary to-primary" />
                         <img
                             src={heroImage}
                             className="absolute  bottom-0  -left-36 !w-[900px] h-[660px]"
                         />
-                        <img
+                        {/* <img
                             src={bannerList}
                             className="absolute -top-10 right-6 w-56 h-56"
-                        />
+                        /> */}
                     </div>
                     {/* <figure> */}
 

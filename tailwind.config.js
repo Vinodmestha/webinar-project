@@ -4,16 +4,17 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: "#36454F",
-                secondary: "#252525",
-                tertiary: "#C49102",
-                bgHero: "#11151c",
-                textColor: "#ffd60a",
-                primaryBtn: "#C49102",
+                primary: "#b100e8",
+                secondary: "#e0aaff",
+                tertiary: "#9d4edd",
+                // bgHero: "#dec9e9",
+                textColor: "#7b2cbf",
+                primaryBtn: "#9d4edd",
                 h2Color: "#f1f1f1",
                 bg1: "#011627",
                 black1: "#252525",
                 blue1: "#5C98F2",
+                btnColor2: "#7b2cbf",
                 blue2: "#F2F1FD",
             },
             borderRadius: {
