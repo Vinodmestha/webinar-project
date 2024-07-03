@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import reviewer from "../../../../assets/icons/reviewer.png";
 
-import { Container } from "../../../../components/UI/Container";
+import { whyUsIcons, whyUsColors } from "../../../../db/dummy";
+import { Container, NoDataFound } from "../../../../components";
 import { H2, H5, SubHeading } from "../../../../components/Typography";
 
 import { getAPI } from "../../../../utils/api";
 import { otherURL } from "../../../../utils/endpoints";
-import NoDataFound from "../../../../components/UI/NoDataFound";
 
 export default function WhyUs() {
     const [state, setState] = useState({ whyUsData: [], loading: false });
@@ -41,18 +41,20 @@ export default function WhyUs() {
             {loading ? (
                 <div className="grid lg:grid-cols-3 grid-cols-1 gap-4"></div>
             ) : whyUsData?.length ? (
-                <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-                    {whyUsData?.map((item) => (
+                <div className="grid lg:grid-cols-3 grid-cols-1 gap-x-12 gap-y-8">
+                    {whyUsData?.map((item, i) => (
                         <div
                             key={item?._id}
-                            className="p-3 flex flex-col items-center text-center rounded-lg transition-all duration-200 hover:scale-105 bg-bgHero"
+                            className={`p-3 flex flex-col items-center text-center rounded-lg transition-all duration-500 hover:scale-105 shadow-md  ${
+                                whyUsColors[i % whyUsColors?.length]
+                            }`}
                         >
                             <img
-                                src={reviewer}
+                                src={whyUsIcons[i % whyUsIcons?.length]}
                                 alt={item?.label}
-                                className="w-12 h-12 mb-4"
+                                className="size-10 mb-4"
                             />
-                            <h3 className="text-2xl font-axiSemiBold mb-2 text-tertiary">
+                            <h3 className="text-xl font-axiSemiBold mb-2 text-black">
                                 {item?.label}
                             </h3>
                             <h5

@@ -64,7 +64,7 @@ export default function Speakers() {
                                 />
                             </figure>
                             <div>
-                                <H5 className="text-xl font-axiSemiBold !text-white">
+                                <H5 className="text-xl font-axiSemiBold !text-black1">
                                     {item?.name}
                                 </H5>
                                 <p className="text-sm text-gray-500">

@@ -14,6 +14,10 @@ import plus from "./icons/plus.svg";
 import authImage from "./vectors/login.svg";
 import authBg from "./vectors/authBg.jpg";
 
+import certificate from "./icons/certificate.svg";
+import comment from "./icons/comment.svg";
+import learning from "./icons/learning.svg";
+
 export {
     logo,
     bannerList,
@@ -29,4 +33,7 @@ export {
     paypalIcon,
     minus,
     plus,
+    certificate,
+    comment,
+    learning,
 };

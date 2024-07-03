@@ -2,9 +2,8 @@ import React from "react";
 import contactBg from "../../assets/images/contactBg.webp";
 
 import { Input } from "../Input";
-import { Button } from "../UI/Button";
+import { Button, Container } from "../UI";
 import { H2, H5, Mail, SubHeading, Telephone } from "../Typography";
-import { Container } from "../UI/Container";
 
 export default function ContactUs() {
     return (
@@ -46,7 +45,7 @@ export default function ContactUs() {
                         </Button>
                     </div>
                 </div>
-                <div className="px-3 py-10 mx-3 bg-secondary md:w-1/2 rounded-3xl sm:px-6 md:px-10 before:bg-homeGradient before:-top-4 before:left-0 before:absolute shadow-services ">
+                <div className="px-3 py-10 mx-3 bg-gray-100 md:w-1/2 rounded-3xl sm:px-6 md:px-10 before:bg-homeGradient before:-top-4 before:left-0 before:absolute shadow-services">
                     <div className="flex flex-wrap">
                         <div className="w-full px-3 my-2 sm:w-1/2">
                             <Input placeholder="Fill Name" type="mail" />
@@ -66,7 +65,7 @@ export default function ContactUs() {
                             id=""
                             cols="30"
                             rows="10"
-                            className="w-full p-5 border-gray-200 relative rounded-xl  mx-4 h-40 px-5 my-3 outline-none  bg-black"
+                            className="w-full p-5 border-gray-200 relative rounded-xl  mx-4 h-40 px-5 my-3 outline-none bg-blac"
                         />
                     </div>
                     <div className="w-full mx-4 mt-3">

@@ -65,7 +65,7 @@ export default function Webinars() {
                         key={item?._id}
                         className={`mx-7 border-none ${
                             item?.slug === state?.currentMode
-                                ? "!bg-yellow-800 !text-white"
+                                ? "!bg-tertiary !text-white"
                                 : "!bg-gray-100 !text-black"
                         } transition-all duration-100 hover:bg-yellow-200`}
                         onClick={() => changeTypeHandler(item?.slug, item?._id)}

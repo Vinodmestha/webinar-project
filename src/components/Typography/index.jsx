@@ -11,7 +11,7 @@ export const H1 = ({ children, className }) => {
 export const H2 = ({ children, className }) => {
     return (
         <h2
-            className={`flex flex-col items-center text-[40px] mb-5 !font-axiSemiBold text-white ${className}`}
+            className={`flex flex-col items-center text-[33px] mb-5 !font-axiSemiBold text-textColor ${className}`}
         >
             {children}
             <p className="w-36 h-[4px] bg-tertiary rounded-full -mt-1" />

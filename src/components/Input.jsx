@@ -22,7 +22,7 @@ export const Input = ({
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`w-full rounded-xl !px-5 !py-3 !outline-none border-none bg-black ${
+                className={`w-full rounded-xl !px-5 !py-3 !outline-none border-none bg-blac ${
                     state?.focused ? "border-2 !border-tertiary" : ""
                 } ${className ?? ""}`}
                 onChange={(v) => onChange(v?.target?.value)}

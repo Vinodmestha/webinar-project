@@ -37,7 +37,7 @@ export const RedirectionButton = ({
 export const Button = ({ label, icon, className, onClick }) => {
     return (
         <button
-            className={`group flex items-center justify-center gap-3 px-4 py-3 rounded-3xl font-semibold border border-white text-white bg-transparent ${className}`}
+            className={`group flex items-center justify-center gap-3 px-4 py-3 rounded-3xl font-semibold border-2 border-primaryBtn text-primaryBtn bg-transparent ${className}`}
             onClick={() => onClick()}
         >
             {icon ? (

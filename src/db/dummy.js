@@ -12,6 +12,8 @@ import journalWhills from "../assets/icons/journal-whills.svg";
 import businessTime from "../assets/icons/business-time.svg";
 import userShield from "../assets/icons/user-shield.svg";
 
+import { certificate, comment, learning } from "../assets";
+
 //header
 export const navLinks = [
     { id: 1, label: "About Us", slug: "about" },
@@ -47,26 +49,35 @@ export const heroHighlights = [
         id: 1,
         icon: journalWhills,
         label: "20+ Webinars",
-        border: "border-[#ff5722]",
-        bg: "bg-[#ff57221c]",
+        border: "border-orange1",
+        bg: "bg-orange2",
         desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
     },
     {
         id: 2,
         icon: businessTime,
         label: "Lifetime Access",
-        border: "border-[#906ad4]",
-        bg: "bg-[#906ad41f]",
+        border: "border-purple1",
+        bg: "bg-purple2",
         desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
     },
     {
         id: 3,
         icon: userShield,
         label: "1k+ Enrolled",
-        border: "border-[#7cbf2f]",
-        bg: "bg-[#7cbf2f1f]",
+        border: "border-green1",
+        bg: "bg-green2",
         desc: "Duis aute irure dolor in voluptate velit esse cillum labore .",
     },
+];
+
+//why us
+export const whyUsIcons = [certificate, comment, learning];
+export const whyUsColors = [
+    "bg-orange2",
+    "bg-purple2",
+    "bg-green2",
+    "bg-light1",
 ];
 
 //footer

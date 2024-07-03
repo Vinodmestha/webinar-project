@@ -102,7 +102,7 @@ export default function NavbarContent(props) {
 
     return (
         <header className="">
-            <Container className=" bg-green-400 relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
+            <Container className="  relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
                 <figure>
                     <img
                         src={logo}
@@ -133,7 +133,7 @@ export default function NavbarContent(props) {
                             className={`cursor-pointer ${
                                 pathname === item?.slug
                                     ? "text-tertiary"
-                                    : "text-white"
+                                    : "text-gray-500"
                             } hover:text-tertiary`}
                         >
                             {item?.label}
