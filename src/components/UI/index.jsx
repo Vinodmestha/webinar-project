@@ -8,3 +8,4 @@ export { default as DotedLoader } from "./loaders/DotedLoader";
 export { default as Modal } from "./Modal";
 export { default as BackNavigate } from "./BackNavigate";
 export { default as NoDataFound } from "./NoDataFound";
+export { default as WebinarCard } from "./WebinarCard";

@@ -41,14 +41,17 @@ export const Button = ({ label, icon, className, onClick }) => {
             onClick={() => onClick()}
         >
             {icon ? (
-                <img
-                    src={icon}
-                    alt="webinar"
-                    className="w-6 h-6 group-hover:scale-125 transition-all duration-200"
-                    onClick={() => onClick()}
-                />
+                React.isValidElement(icon) ? null : (
+                    <img
+                        src={icon}
+                        alt="webinar"
+                        className="w-6 h-6 group-hover:scale-125 transition-all duration-200"
+                        onClick={() => onClick()}
+                    />
+                )
             ) : null}
             <p>{label}</p>
+            {React.isValidElement(icon) ? icon : null}
         </button>
     );
 };
