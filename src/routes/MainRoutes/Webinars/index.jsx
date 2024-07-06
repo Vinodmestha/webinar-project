@@ -43,7 +43,7 @@ export default function Webinars() {
                         ?.fill("")
                         ?.map((v, i) => (
                             <div
-                                className="animate-pulse bg-gray-800 h-40 rounded-lg"
+                                className="animate-pulse bg-gray-300 h-40 rounded-lg"
                                 key={i}
                             />
                         ))
