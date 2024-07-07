@@ -17,7 +17,7 @@ export default function BackNavigate({ backLabel, backLink, className }) {
                 className="w-6 transition-all duration-200 cursor-pointer sm:w-8 hover:scale-110"
                 onClick={() => navigate(backLink ?? -1)}
             />
-            {backLabel ? <H3 className="!mb-0">{backLabel}</H3> : null}
+            {backLabel ? <H3 className="!my-0">{backLabel}</H3> : null}
         </div>
     );
 }

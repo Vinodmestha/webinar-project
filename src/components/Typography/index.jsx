@@ -24,7 +24,7 @@ export const H2 = ({ children, className, ...props }) => {
 export const H3 = ({ children, className }) => {
     return (
         <h3
-            className={`text-2xl !mb-3 font-axiSemiBold text-textColor ${className}`}
+            className={`text-2xl mb-3 font-axiSemiBold text-textColor ${className}`}
         >
             {children}
         </h3>

@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { logo, cartIcon } from "../../assets";
+import { logo, cartIcon, webinarDummy } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { navMenu } from "../../db/dummy";
 import { H4 } from "../../components/Typography";
-import { Button } from "../../components/UI/Button";
-import { MenuCard } from "../../components/UI/MenuCard";
-import { Container } from "../../components/UI/Container";
-import NoDataFound from "../../components/UI/NoDataFound";
-import DotedLoader from "../../components/UI/loaders/DotedLoader";
+import {
+    Button,
+    MenuCard,
+    Container,
+    NoDataFound,
+    DotedLoader,
+} from "../../components/UI";
 
 import useTypes from "../../utils/helpers/useTypes";
 import useLogout from "../../utils/helpers/useLogout";
@@ -140,10 +142,10 @@ export default function NavbarContent(props) {
                         </li>
                     ))}
                     {menuChild && childData ? (
-                        <MenuCard className="top-20 left-0 right-0 !p-8">
+                        <MenuCard className="top-24 !p-3">
                             <div ref={childData?.ref}>
                                 {childData?.loading ? (
-                                    <div className="grid lg:grid-cols-4 grid-col-2 gap-5">
+                                    <div className="grid lg:grid-cols-2 grid-col-2 gap-5">
                                         {new Array(4)?.fill("")?.map((v, i) => (
                                             <div
                                                 className="animate-pulse bg-gray-800 h-60 rounded-lg"
@@ -152,11 +154,11 @@ export default function NavbarContent(props) {
                                         ))}
                                     </div>
                                 ) : childData?.data?.length ? (
-                                    <ul className="grid lg:grid-cols-4 grid-col-2 gap-5 justify-center text-center text-base font-medium">
+                                    <ul className="grid lg:grid-cols-2 grid-col-2 gap-5 justify-center text-center text-base font-medium">
                                         {childData?.data?.map((item) => (
                                             <li
                                                 key={item?._id}
-                                                className="p-5 shadow-md transition-all duration-200 cursor-pointer text-white hover:bg-tertiary hover:text-white"
+                                                className="flex items-center gap-3 p-2 rounded-lg transition-all duration-200 cursor-pointer text-tertiary bg-gray-200 hover:bg-gray-300"
                                                 onClick={() => {
                                                     navigate(
                                                         `/webinars?typeId=${item?._id}&type=${item?.slug}`,
@@ -170,11 +172,13 @@ export default function NavbarContent(props) {
                                                 }}
                                             >
                                                 <img
-                                                    src={item?.image}
+                                                    src={webinarDummy}
                                                     alt={item?.slug}
-                                                    className="w-full h-36"
+                                                    className="size-14 mb-2 rounded-lg"
                                                 />
-                                                <p>{item?.label}</p>
+                                                <p className="font-semibold">
+                                                    {item?.label}
+                                                </p>
                                             </li>
                                         ))}
                                     </ul>
@@ -200,7 +204,7 @@ export default function NavbarContent(props) {
                         src={userIcon}
                         alt="webinar user"
                         ref={profileRef}
-                        className="w-12 h-12 border-2 border-gray-200 rounded-full cursor-pointer"
+                        className="w-12 h-12 border-2 border-gray-300 rounded-full cursor-pointer"
                         onClick={() => profileMenuHandler(true)}
                     />
                     {state?.profileMenu ? (
