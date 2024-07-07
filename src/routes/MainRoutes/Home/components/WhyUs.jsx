@@ -45,8 +45,8 @@ export default function WhyUs() {
                     {whyUsData?.map((item, i) => (
                         <div
                             key={item?._id}
-                            className={`p-3 flex flex-col items-center text-center rounded-lg transition-all duration-500 hover:scale-105 shadow-md  ${
-                                whyUsColors[i % whyUsColors?.length]
+                            className={`p-3 flex flex-col items-center text-center rounded-lg transition-all duration-500 hover:scale-105 shadow-md bg-gray-100 ${
+                                "" // whyUsColors[i % whyUsColors?.length]
                             }`}
                         >
                             <img

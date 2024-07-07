@@ -76,6 +76,7 @@ export const whyUsIcons = [certificate, comment, learning];
 export const whyUsColors = [
     "bg-orange2",
     "bg-purple2",
+    "bg-secondary",
     "bg-green2",
     "bg-light1",
 ];

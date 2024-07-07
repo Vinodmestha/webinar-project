@@ -14,9 +14,9 @@ import { H4, H5 } from "../../components/Typography";
 
 const Footer = (props) => {
     return (
-        <div className="bg-bgHero">
+        <div className="bg-[#1d2636]">
             <Container className="grid grid-cols-2 justify-between lg:py-20 lg:px-5">
-                <div className="flex flex-col gap-6 items-start lg:px-5 ">
+                <div className="flex flex-col gap-6 items-start lg:px-5">
                     <h2 className="text-4xl font-semibold leading-[3rem] text-white">
                         Empowering learning <br />
                         through live webinars

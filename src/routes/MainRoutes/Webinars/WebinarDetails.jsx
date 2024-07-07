@@ -130,16 +130,18 @@ export default function WebinarDetails() {
                     </div>
                 )}
             </Container>
-            <div className="bg-bgHero">
+
+            <div className="bg-bgHero py-10">
                 <Container className="!py-0">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-[1fr_0.6fr] gap-8">
                         {detailsData?.webinar_info?.length ? (
-                            <Tabs value={activeTab}>
-                                <div className=" ">
+                            <div className="rounded-md shadow-sm bg-white">
+                                <Tabs value={activeTab}>
                                     <TabsHeader
+                                        className="h-full overflow-x-scroll whitespace-nowrap [scrollbar-width:none]"
                                         indicatorProps={{
                                             className:
-                                                "h-full bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
+                                                " h-full bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
                                         }}
                                     >
                                         {detailsData?.webinar_info.map(
@@ -156,10 +158,10 @@ export default function WebinarDetails() {
                                                             };
                                                         })
                                                     }
-                                                    className={`max-w-[400px] ${
+                                                    className={`flex-[0_0_150px] h-[60px] whitespace-nowrap bg-[#ebebeb] px-2.5 py-0 max-w-[400px] ${
                                                         activeTab ===
                                                         item?.value
-                                                            ? "text-tertiary"
+                                                            ? "text-tertiary bg-"
                                                             : "text-gray-900"
                                                     }`}
                                                 >
@@ -168,23 +170,26 @@ export default function WebinarDetails() {
                                             )
                                         )}
                                     </TabsHeader>
-                                </div>
-                                <TabsBody className="my-5">
-                                    <p
-                                        className="text-[#212121]"
-                                        dangerouslySetInnerHTML={{
-                                            __html: detailsData?.webinar_info?.find(
-                                                (item) => {
-                                                    return (
-                                                        item?.value == activeTab
-                                                    );
-                                                }
-                                            )?.desc,
-                                        }}
-                                    />
-                                </TabsBody>
-                            </Tabs>
+
+                                    <TabsBody className="m-5">
+                                        <p
+                                            className="text-[#212121]"
+                                            dangerouslySetInnerHTML={{
+                                                __html: detailsData?.webinar_info?.find(
+                                                    (item) => {
+                                                        return (
+                                                            item?.value ==
+                                                            activeTab
+                                                        );
+                                                    }
+                                                )?.desc,
+                                            }}
+                                        />
+                                    </TabsBody>
+                                </Tabs>
+                            </div>
                         ) : null}
+                        <div className="rounded-md shadow-sm bg-white"></div>
                     </div>
                 </Container>
             </div>

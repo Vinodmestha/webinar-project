@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { MoveRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import useWebinars from "../../../../utils/helpers/useWebinars";
 
 import { H2, SubHeading } from "../../../../components/Typography";
@@ -15,6 +16,7 @@ import { getAPI } from "../../../../utils/api";
 import { webinarsURL } from "../../../../utils/endpoints";
 
 export default function Webinars() {
+    let navigate = useNavigate();
     const [state, setState] = useState({
         currentMode: "",
         data: [],
@@ -22,19 +24,19 @@ export default function Webinars() {
         typesData: [],
     });
 
-    const { typesData, filters } = state;
+    const { currentMode, typesData, filters } = state;
 
     const { webinarsData, webinarsLoading } = useWebinars(filters);
 
     useEffect(() => {
         getAPI(webinarsURL?.TYPES).then((res) => {
             let responseData = res?.data?.data?.types;
-            changeTypeHandler(responseData[1]?.slug, responseData[1]?._id);
+            changeTypeHandler(responseData[0]?.slug, responseData[0]?._id);
             setState((prev) => {
                 return {
                     ...prev,
                     typesData: responseData,
-                    currentMode: responseData[1]?.slug,
+                    currentMode: responseData[0]?.slug,
                 };
             });
         });
@@ -50,9 +52,15 @@ export default function Webinars() {
         });
     };
 
+    const redirectToAll = () => {
+        return navigate(
+            `/webinars?typeId=${filters?.webinar_type}&type=${currentMode}`
+        );
+    };
+
     return (
-        <Container>
-            <H2>Our Latest Webinars</H2>
+        <Container className={"!py-24"}>
+            <H2>Our Featured Webinars</H2>
             <SubHeading className="mb-20">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -88,49 +96,6 @@ export default function Webinars() {
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
                         {webinarsData.slice(0, 6)?.map((item) => (
                             <WebinarCard data={item} />
-                            // <div
-                            //     key={item?._id}
-                            //     className="relative w-full h-full rounded-xl overflow-hidden group bg-black z-[10]"
-                            // >
-                            //     <img
-                            //         src={webinarDummy}
-                            //         alt={item?.title}
-                            //         className="!w-full !h-full object-cover opacity-70 group-hover:opacity-20 z-[5]"
-                            //     />
-                            //     <div className="absolute bottom-3 left-8 right-10 group-hover:animate-fadeUp flex flex-col justify-center items-center text-center text-white">
-                            //         <h4 className="font-axiSemiBold text-[26px] capitalize">
-                            //             {item?.title}
-                            //         </h4>
-                            //         <div className="hidden group-hover:block">
-                            //             <h5
-                            //                 className="text-[16px] text-grey2 mb-10 text-white"
-                            //                 dangerouslySetInnerHTML={{
-                            //                     __html: `${item?.description?.slice(
-                            //                         0,
-                            //                         100
-                            //                     )}...`,
-                            //                 }}
-                            //             />
-                            //             <p
-                            //                 className="font-semibold text-blue1 cursor-pointer hover:text-[rgb(92,152,242/0.6)]"
-                            //                 onClick={() =>
-                            //                     navigate(
-                            //                         `/webinars/details?_id=${item?._id}&name=${item?.title}`,
-                            //                         {
-                            //                             state: {
-                            //                                 typeName:
-                            //                                     state?.currentMode,
-                            //                                 webinarId: item?._id,
-                            //                             },
-                            //                         }
-                            //                     )
-                            //                 }
-                            //             >
-                            //                 View Details
-                            //             </p>
-                            //         </div>
-                            //     </div>
-                            // </div>
                         ))}
                     </div>
                     <div className="flex justify-center my-8">
@@ -138,6 +103,7 @@ export default function Webinars() {
                             className="!border- !bg- rounded-lg shadow-md hover:"
                             label="Explore More Webinars"
                             icon={<MoveRight />}
+                            onClick={redirectToAll}
                         />
                     </div>
                 </>

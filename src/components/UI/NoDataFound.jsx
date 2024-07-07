@@ -6,7 +6,7 @@ import { Container } from "./Container";
 
 export default function NoDataFound({ label, imageSize }) {
     return (
-        <Container className="flex flex-col w-full items-center !py-10 justify-center">
+        <Container className="flex flex-col w-full items-center justify-center">
             <img
                 src={noDataFound}
                 alt="No Data"
