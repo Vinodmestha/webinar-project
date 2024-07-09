@@ -3,6 +3,11 @@ import { logo, cartIcon, webinarDummy } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import {
+    Popover,
+    PopoverHandler,
+    PopoverContent,
+} from "@material-tailwind/react";
 
 import { navMenu } from "../../db/dummy";
 import { H4 } from "../../components/Typography";
@@ -28,8 +33,7 @@ export default function NavbarContent(props) {
     });
     const navigate = useNavigate(),
         location = useLocation(),
-        webinarRef = useRef(),
-        profileRef = useRef();
+        webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
     let authData = JSON.parse(localStorage.getItem("userAuth"));
 
@@ -51,7 +55,6 @@ export default function NavbarContent(props) {
     };
 
     useClickOutside(webinarRef, menuChildHandler);
-    useClickOutside(profileRef, profileMenuHandler);
 
     const { typesData, typesLoading } = useTypes();
     const { logoutHandler, logoutLoading } = useLogout();
@@ -200,18 +203,28 @@ export default function NavbarContent(props) {
                             {cartCount}
                         </p>
                     </figure>
-                    <img
-                        src={userIcon}
-                        alt="webinar user"
-                        ref={profileRef}
-                        className="w-12 h-12 border-2 border-gray-300 rounded-full cursor-pointer"
-                        onClick={() => profileMenuHandler(true)}
-                    />
-                    {state?.profileMenu ? (
-                        <MenuCard className="top-20 w-fit max-w-60 right-0">
+
+                    <Popover
+                        placement="bottom"
+                        animate={{
+                            mount: { scale: 1, x: -110, y: 20 },
+                            unmount: { scale: 0, x: 0, y: 0 },
+                        }}
+                        open={state.profileMenu}
+                        handler={profileMenuHandler}
+                    >
+                        <PopoverHandler>
+                            <img
+                                src={userIcon}
+                                alt="user"
+                                className="w-12 h-12 border-2 border-gray-300 rounded-full cursor-pointer"
+                                onClick={() => profileMenuHandler(true)}
+                            />
+                        </PopoverHandler>
+                        <PopoverContent className="w-72">
                             {authData?.info?.loggedIn &&
                             authData?.info?.data?.token ? (
-                                <div ref={profileRef}>
+                                <div>
                                     <div
                                         className={`flex items-center gap-2 border-b border-gray-600 p-2 capitalize`}
                                     >
@@ -249,7 +262,7 @@ export default function NavbarContent(props) {
                                     </ul>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-2 gap-5">
+                                <div className="grid grid-cols-2 gap-5 *:text-white">
                                     <Button
                                         label="Signup"
                                         className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
@@ -262,8 +275,8 @@ export default function NavbarContent(props) {
                                     />
                                 </div>
                             )}
-                        </MenuCard>
-                    ) : null}
+                        </PopoverContent>
+                    </Popover>
                 </div>
             </Container>
         </header>
