@@ -12,7 +12,7 @@ export const Input = ({
     const [state, setState] = useState({ focused: false });
     return (
         <div className="flex flex-col gap-2 items-start">
-            <label className="text-white font-semibold">
+            <label className="text-tertiary font-semibold">
                 {label}
                 {props?.required ? (
                     <span className="ml-1 text-red-300">*</span>
@@ -22,13 +22,18 @@ export const Input = ({
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`w-full rounded-xl !px-5 !py-3 !outline-none border-none bg-blac ${
-                    state?.focused ? "border-2 !border-tertiary" : ""
+                className={`w-full rounded-xl !px-5 !py-3 !outline-none  text-gray-600 !bg-gray-100 ${
+                    state?.focused ? "border !border-gray-300" : ""
                 } ${className ?? ""}`}
                 onChange={(v) => onChange(v?.target?.value)}
                 onFocus={(v) =>
                     setState((prev) => {
                         return { ...prev, focused: true };
+                    })
+                }
+                onBlur={(v) =>
+                    setState((prev) => {
+                        return { ...prev, focused: false };
                     })
                 }
             />

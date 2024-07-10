@@ -61,7 +61,7 @@ export default function Auth(props) {
             } mx-auto`}
         >
             <p
-                className="flex items-center gap-2 text-xl mb-3 font-semibold text-blue-200 hover:text-blue-400 transition-all duration-200 w-fit cursor-pointer"
+                className="flex items-center gap-2 text-xl mb-3 font-semibold text-blue-600 hover:text-blue-400 transition-all duration-200 w-fit cursor-pointer"
                 onClick={() => navigate("/")}
             >
                 <svg
@@ -102,7 +102,7 @@ export default function Auth(props) {
                     </span> */}
                 </div>
                 {currentAuthHandler()}
-                <span className="flex items-center gap-2 mt-4 justify-center">
+                <span className="flex items-center gap-2 mt-4 justify-center text-black">
                     {headerContent[authPage]?.footerText}
                     <b
                         className="underline cursor-pointer text-tertiary"

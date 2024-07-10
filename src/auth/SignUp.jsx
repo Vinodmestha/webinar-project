@@ -105,7 +105,7 @@ export default function SignUp(props) {
             <Button
                 label={signUpLoading ? <DotedLoader fill="#fff" /> : "Sign Up"}
                 onClick={submitHandler}
-                className="w-1/2 mx-auto mt-5 border-none rounded-lg !bg-tertiary"
+                className="w-1/2 mx-auto mt-5 border-none rounded-lg text-white !bg-primaryBtn"
             />
         </div>
     );

@@ -113,7 +113,7 @@ export default function Login(props) {
             <Button
                 label={loginLoading ? <DotedLoader fill="#fff" /> : "Login"}
                 onClick={submitHandler}
-                className="mt-5 border-none rounded-lg !bg-tertiary"
+                className="mt-5 border-none rounded-lg !bg-primaryBtn text-white"
             />
         </div>
     );
