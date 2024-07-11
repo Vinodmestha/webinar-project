@@ -85,8 +85,8 @@ export default function SignUp(props) {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
                 {[
                     { label: "Name", name: "name", required: true },
-                    { label: "Password", name: "password", required: true },
                     { label: "Email", name: "email", required: true },
+                    { label: "Password", name: "password", required: true },
                     { label: "Mobile", name: "mobile", required: true },
                 ]?.map((item) => (
                     <Fragment key={item?.name}>

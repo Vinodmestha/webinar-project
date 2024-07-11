@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { useContext, Fragment, useState } from "react";
+import { UserContext } from "../store/UserContext";
 
-import { Input } from "../components/Input";
-import { Button } from "../components/UI/Button";
-import DotedLoader from "../components/UI/loaders/DotedLoader";
+import { Input, Button, DotedLoader } from "../components";
 
 import { postAPI } from "../utils/api";
 import { authURL } from "../utils/endpoints";
 
 export default function Login(props) {
+    const { handleLogin } = useContext(UserContext);
     const [state, setState] = useState({
         inputData: { email: "", password: "" },
         errorData: { email: "", password: "" },
@@ -64,13 +64,10 @@ export default function Login(props) {
             .then((res) => {
                 const responseData = res?.data?.data;
                 let authData = {
-                    info: {
-                        loggedIn: true,
-                        ...responseData,
-                    },
+                    ...responseData,
                 };
-
-                localStorage.setItem("userAuth", JSON.stringify(authData));
+                handleLogin(authData);
+                // localStorage.setItem("userAuth", JSON.stringify(authData));
             })
             .then(() => {
                 props?.navigate("/");

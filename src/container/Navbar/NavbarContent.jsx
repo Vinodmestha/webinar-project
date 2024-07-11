@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { logo, cartIcon, webinarDummy } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
@@ -19,12 +19,14 @@ import {
     DotedLoader,
 } from "../../components/UI";
 
+import { UserContext } from "../../store/UserContext";
 import useTypes from "../../utils/helpers/useTypes";
 import useLogout from "../../utils/helpers/useLogout";
 import useCartCount from "../../utils/helpers/useCartCount";
 import useClickOutside from "../../utils/helpers/useClickOutside";
 
 export default function NavbarContent(props) {
+    const { userInfo, isLoggedIn } = useContext(UserContext);
     const [state, setState] = useState({
         authComp: "",
         menuChild: false,
@@ -35,7 +37,8 @@ export default function NavbarContent(props) {
         location = useLocation(),
         webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
-    let authData = JSON.parse(localStorage.getItem("userAuth"));
+
+    console.log(userInfo, isLoggedIn);
 
     const menuChildHandler = (v) => {
         setState((prev) => {
@@ -222,13 +225,12 @@ export default function NavbarContent(props) {
                             />
                         </PopoverHandler>
                         <PopoverContent className="w-72">
-                            {authData?.info?.loggedIn &&
-                            authData?.info?.data?.token ? (
+                            {isLoggedIn || userInfo?.data?.token ? (
                                 <div>
                                     <div
                                         className={`flex items-center gap-2 border-b border-gray-600 p-2 capitalize`}
                                     >
-                                        Hi<H4>{authData?.info?.data?.name}</H4>
+                                        Hi<H4>{userInfo?.data?.name}</H4>
                                     </div>
                                     <ul>
                                         {navMenu?.map((item, i) => (

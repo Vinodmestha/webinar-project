@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { getAPI } from "../api";
 import { webinarsURL } from "../endpoints";
+import { UserContext } from "../../store/UserContext";
 
 export default function useLogout() {
+    const { handleLogout } = useContext(UserContext);
     const [state, setState] = useState({
         logoutLoading: false,
     });
@@ -14,15 +16,9 @@ export default function useLogout() {
         });
         getAPI(webinarsURL?.TYPES)
             .then((res) => {
-                let authData = {
-                    info: {
-                        loggedIn: false,
-                        data: {},
-                    },
-                };
+                handleLogout();
 
-                console.log(authData);
-                localStorage.setItem("userAuth", JSON.stringify(authData));
+                // localStorage.setItem("userAuth", JSON.stringify(authData));
             })
             .finally(() => {
                 setState((prev) => {

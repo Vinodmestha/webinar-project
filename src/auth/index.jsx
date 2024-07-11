@@ -22,11 +22,16 @@ export default function Auth(props) {
             case "login":
                 return <Login navigate={navigate} setAuthPage={setAuthPage} />;
             case "signup":
-                return <SignUp navigate={navigate} />;
+                return <SignUp navigate={navigate} setAuthPage={setAuthPage} />;
             case "forgotPassword":
-                return <ForgotPassword navigate={navigate} />;
+                return (
+                    <ForgotPassword
+                        navigate={navigate}
+                        setAuthPage={setAuthPage}
+                    />
+                );
             default:
-                return <Login navigate={navigate} />;
+                return <Login navigate={navigate} setAuthPage={setAuthPage} />;
         }
     };
 
@@ -68,13 +73,13 @@ export default function Auth(props) {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
-                    class="w-8 h-8"
+                    className="w-8 h-8"
                 >
                     <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
                     />
                 </svg>
@@ -89,13 +94,13 @@ export default function Auth(props) {
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
-                            stroke-width="1.5"
+                            strokeWidth="1.5"
                             stroke="currentColor"
-                            class="w-8 h-8"
+                            className="w-8 h-8"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                                 d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                             />
                         </svg>
