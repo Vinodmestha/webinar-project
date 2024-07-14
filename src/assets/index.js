@@ -17,6 +17,7 @@ import authBg from "./vectors/authBg.jpg";
 import certificate from "./icons/certificate.svg";
 import comment from "./icons/comment.svg";
 import learning from "./icons/learning.svg";
+import logout from "./icons/logout.svg";
 
 export {
     logo,
@@ -36,4 +37,5 @@ export {
     certificate,
     comment,
     learning,
+    logout,
 };

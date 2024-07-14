@@ -8,6 +8,7 @@ import {
     PopoverHandler,
     PopoverContent,
 } from "@material-tailwind/react";
+import { CircleUserRound } from "lucide-react";
 
 import { navMenu } from "../../db/dummy";
 import { H4 } from "../../components/Typography";
@@ -104,7 +105,7 @@ export default function NavbarContent(props) {
     ];
 
     let menuListStyles =
-        "cursor-pointer hover:bg-yellow-800 rounded-lg p-2 my-1";
+        "flex text-[15px] font-semibold cursor-pointer hover:bg-gray-300 rounded-lg p-2 my-1";
 
     const { menuChild, childData } = state;
 
@@ -226,13 +227,18 @@ export default function NavbarContent(props) {
                         </PopoverHandler>
                         <PopoverContent className="w-72">
                             {isLoggedIn || userInfo?.data?.token ? (
-                                <div>
+                                <div className="text-black">
                                     <div
-                                        className={`flex items-center gap-2 border-b border-gray-600 p-2 capitalize`}
+                                        className={`flex items-center gap-2 p-2 capitalize`}
                                     >
-                                        Hi<H4>{userInfo?.data?.name}</H4>
+                                        <CircleUserRound
+                                            color="#6c757d"
+                                            size={30}
+                                        />
+                                        <H4>{userInfo?.data?.name}</H4>
                                     </div>
-                                    <ul>
+                                    <hr />
+                                    {/* <ul>
                                         {navMenu?.map((item, i) => (
                                             <li
                                                 key={item?.id}
@@ -242,7 +248,11 @@ export default function NavbarContent(props) {
                                                     profileMenuHandler(false);
                                                 }}
                                             >
-                                                <div>{item?.label}</div>
+                                                {/* <img
+                                                    src={item?.icon}
+                                                    className="size-10"
+                                                /> 
+                                                <p>{item?.label}</p>
                                             </li>
                                         ))}
                                         <li
@@ -255,13 +265,13 @@ export default function NavbarContent(props) {
                                         >
                                             {logoutLoading ? (
                                                 <div className="flex justify-center ">
-                                                    <DotedLoader fill="#fff" />
+                                                    <DotedLoader fill="#000" />
                                                 </div>
                                             ) : (
                                                 "Logout"
                                             )}
                                         </li>
-                                    </ul>
+                                    </ul> */}
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-2 gap-5 *:text-white">

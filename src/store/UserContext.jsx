@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
         userInfo: localStorage.getItem("userInfo")
             ? JSON.parse(localStorage.getItem("userInfo"))
             : null,
-        isLoggedIn: localStorage.getItem("isLoggedIn") == true,
+        isLoggedIn: !!localStorage.getItem("isLoggedIn"),
     });
 
     const { userInfo, isLoggedIn } = state;

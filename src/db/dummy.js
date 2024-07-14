@@ -11,6 +11,7 @@ import ceuApproved from "../assets/vectors/ceuApproved.svg";
 import journalWhills from "../assets/icons/journal-whills.svg";
 import businessTime from "../assets/icons/business-time.svg";
 import userShield from "../assets/icons/user-shield.svg";
+import profile from "../assets/icons/profile.svg";
 
 import { certificate, comment, learning } from "../assets";
 
@@ -111,7 +112,7 @@ export const footerHelp = [
 ];
 
 export const navMenu = [
-    { id: 1, label: "Profile", slug: "profile" },
-    { id: 2, label: "Orders", slug: "orders" },
-    { id: 3, label: "Webinars", slug: "webinars" },
+    { id: 1, label: "Profile", slug: "profile", icon: profile },
+    { id: 2, label: "Orders", slug: "orders", icon: userShield },
+    { id: 3, label: "Webinars", slug: "webinars", icon: profile },
 ];
