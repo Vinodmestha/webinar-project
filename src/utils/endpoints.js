@@ -16,6 +16,7 @@ export const otherURL = {
 export const authURL = {
     SIGNUP: "/auth/signup",
     LOGIN: "/auth/login",
+    LOGOUT: "/auth/logout",
 };
 
 export const contactURL = {

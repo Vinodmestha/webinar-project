@@ -238,8 +238,8 @@ export default function NavbarContent(props) {
                                         <H4>{userInfo?.data?.name}</H4>
                                     </div>
                                     <hr />
-                                    {/* <ul>
-                                        {navMenu?.map((item, i) => (
+                                    <ul>
+                                        {/* {navMenu?.map((item, i) => (
                                             <li
                                                 key={item?.id}
                                                 className={`${menuListStyles}`}
@@ -254,7 +254,7 @@ export default function NavbarContent(props) {
                                                 /> 
                                                 <p>{item?.label}</p>
                                             </li>
-                                        ))}
+                                        ))}*/}
                                         <li
                                             onClick={() => logoutHandler()}
                                             className={`${
@@ -271,7 +271,7 @@ export default function NavbarContent(props) {
                                                 "Logout"
                                             )}
                                         </li>
-                                    </ul> */}
+                                    </ul>
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-2 gap-5 *:text-white">

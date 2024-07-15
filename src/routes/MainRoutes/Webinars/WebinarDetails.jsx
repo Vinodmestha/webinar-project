@@ -8,16 +8,12 @@ import {
     TabsHeader,
     TabsBody,
     Tab,
-    TabPanel,
+    ButtonGroup,
+    Button,
 } from "@material-tailwind/react";
 
-import { H1, H4 } from "../../../components/Typography";
-import {
-    Container,
-    DotedLoader,
-    Button,
-    RedirectionButton,
-} from "../../../components/";
+import { H1, H3, H4, H5 } from "../../../components/Typography";
+import { Container } from "../../../components/";
 
 import { postAPI } from "../../../utils/api";
 import useCartCount from "../../../utils/helpers/useCartCount";
@@ -171,25 +167,42 @@ export default function WebinarDetails() {
                                         )}
                                     </TabsHeader>
 
-                                    <TabsBody className="m-5">
-                                        <p
-                                            className="text-[#212121]"
-                                            dangerouslySetInnerHTML={{
-                                                __html: detailsData?.webinar_info?.find(
-                                                    (item) => {
-                                                        return (
-                                                            item?.value ==
-                                                            activeTab
-                                                        );
-                                                    }
-                                                )?.desc,
-                                            }}
-                                        />
-                                    </TabsBody>
+                                    <TabsBody
+                                        className="p-5 text-[#212121]"
+                                        dangerouslySetInnerHTML={{
+                                            __html: detailsData?.webinar_info?.find(
+                                                (item) => {
+                                                    return (
+                                                        item?.value == activeTab
+                                                    );
+                                                }
+                                            )?.desc,
+                                        }}
+                                    />
                                 </Tabs>
                             </div>
                         ) : null}
-                        <div className="rounded-md shadow-sm bg-white"></div>
+                        <div className="flex flex-col justify-between rounded-md shadow-sm bg-white">
+                            <div className="p-5">
+                                <H5 className="!text-black">Add ons</H5>
+                            </div>
+                            <ButtonGroup className="grid grid-cols-2 *:rounded-none">
+                                <Button
+                                    // loading={true}
+                                    onClick={() => {}}
+                                    className="bg-green-300"
+                                >
+                                    Buy Now
+                                </Button>
+                                <Button
+                                    loading={addLoading}
+                                    onClick={() => addToCartHandler()}
+                                    className="bg-blue-400"
+                                >
+                                    Add to Cart
+                                </Button>
+                            </ButtonGroup>
+                        </div>
                     </div>
                 </Container>
             </div>

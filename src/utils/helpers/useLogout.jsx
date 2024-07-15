@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { getAPI } from "../api";
-import { webinarsURL } from "../endpoints";
+import { authURL } from "../endpoints";
 import { UserContext } from "../../store/UserContext";
 
 export default function useLogout() {
@@ -14,7 +14,7 @@ export default function useLogout() {
         setState((prev) => {
             return { ...prev, logoutLoading: true };
         });
-        getAPI(webinarsURL?.TYPES)
+        getAPI(authURL?.LOGOUT)
             .then((res) => {
                 handleLogout();
 

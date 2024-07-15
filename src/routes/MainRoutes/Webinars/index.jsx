@@ -36,22 +36,24 @@ export default function Webinars() {
         <Container>
             <H2 className="!mb-16 capitalize">{currentType} Webinars</H2>
 
-            <div className="grid grid-cols-3 gap-8">
-                {webinarsLoading ? (
-                    new Array(5)
-                        ?.fill("")
-                        ?.map((v, i) => (
-                            <div
-                                className="animate-pulse bg-gray-300 h-40 rounded-lg"
-                                key={i}
-                            />
-                        ))
-                ) : webinarsData?.length ? (
-                    webinarsData?.map((item) => <WebinarCard data={item} />)
-                ) : (
-                    <NoDataFound label="No Webinars found" />
-                )}
-            </div>
+            {webinarsLoading ? (
+                new Array(5)
+                    ?.fill("")
+                    ?.map((v, i) => (
+                        <div
+                            className="grid grid-cols-3 gap-8 animate-pulse bg-gray-300 h-40 rounded-lg"
+                            key={i}
+                        />
+                    ))
+            ) : webinarsData?.length ? (
+                <div className="grid grid-cols-3 gap-8">
+                    {webinarsData?.map((item) => (
+                        <WebinarCard data={item} />
+                    ))}
+                </div>
+            ) : (
+                <NoDataFound label="No Webinars found" />
+            )}
         </Container>
     );
 }
