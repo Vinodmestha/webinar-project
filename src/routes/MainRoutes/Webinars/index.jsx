@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -47,8 +47,10 @@ export default function Webinars() {
                     ))
             ) : webinarsData?.length ? (
                 <div className="grid grid-cols-3 gap-8">
-                    {webinarsData?.map((item) => (
-                        <WebinarCard data={item} />
+                    {webinarsData?.map((item, i) => (
+                        <Fragment key={i}>
+                            <WebinarCard data={item} />
+                        </Fragment>
                     ))}
                 </div>
             ) : (

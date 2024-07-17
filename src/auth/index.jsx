@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 // import { authImage, authBg } from "../assets";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { H2 } from "../components/Typography";
+
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
-import { H2 } from "../components/Typography";
 
 export default function Auth(props) {
     let navigate = useNavigate();

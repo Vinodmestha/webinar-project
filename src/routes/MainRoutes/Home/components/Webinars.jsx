@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { MoveRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -94,8 +94,10 @@ export default function Webinars() {
             ) : webinarsData?.length ? (
                 <>
                     <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
-                        {webinarsData.slice(0, 6)?.map((item) => (
-                            <WebinarCard data={item} />
+                        {webinarsData.slice(0, 6)?.map((item, i) => (
+                            <Fragment key={i}>
+                                <WebinarCard data={item} />
+                            </Fragment>
                         ))}
                     </div>
                     <div className="flex justify-center my-8">

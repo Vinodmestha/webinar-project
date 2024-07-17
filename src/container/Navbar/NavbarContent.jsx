@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { logo, cartIcon, webinarDummy } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
     Popover,
     PopoverHandler,
@@ -39,7 +39,7 @@ export default function NavbarContent(props) {
         webinarRef = useRef();
     let pathname = location?.pathname?.replace("/", "");
 
-    console.log(userInfo, isLoggedIn);
+    // console.log(userInfo, isLoggedIn);
 
     const menuChildHandler = (v) => {
         setState((prev) => {

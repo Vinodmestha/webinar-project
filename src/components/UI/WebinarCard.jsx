@@ -8,7 +8,6 @@ import { H4, H5 } from "../Typography";
 
 export default function WebinarCard({ data, ...props }) {
     let navigate = useNavigate();
-    console.log(data);
 
     const redirectToDetails = (id, title, type) => {
         navigate(`/webinars/details?_id=${id}&name=${title}`, {

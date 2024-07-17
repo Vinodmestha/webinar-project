@@ -1,7 +1,7 @@
 import React from "react";
 import { noDataFound } from "../../assets";
 
-import { H3, H4 } from "../Typography";
+import { H3 } from "../Typography";
 import { Container } from "./Container";
 
 export default function NoDataFound({ label, imageSize }) {

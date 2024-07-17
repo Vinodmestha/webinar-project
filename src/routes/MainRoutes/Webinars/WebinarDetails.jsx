@@ -10,9 +10,10 @@ import {
     Tab,
     ButtonGroup,
     Button,
+    Checkbox,
 } from "@material-tailwind/react";
 
-import { H1, H3, H4, H5 } from "../../../components/Typography";
+import { H1, H5 } from "../../../components/Typography";
 import { Container } from "../../../components/";
 
 import { postAPI } from "../../../utils/api";
@@ -22,6 +23,7 @@ import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 export default function WebinarDetails() {
     const [state, setState] = useState({
         detailsData: {},
+        selectedAddons: [],
         selectedInfo: "",
         detailsLoading: false,
         addLoading: false,
@@ -60,17 +62,42 @@ export default function WebinarDetails() {
             });
     }, [location]);
 
-    const { detailsData, detailsLoading, selectedInfo, activeTab, addLoading } =
-        state;
+    const {
+        detailsData,
+        detailsLoading,
+        selectedInfo,
+        activeTab,
+        addLoading,
+        selectedAddons,
+    } = state;
 
     const { cartCountHandler } = useCartCount();
-    console.log(detailsData);
+    // console.log(detailsData);
+
+    const addOnsHandler = (id) => {
+        let selected = [...selectedAddons];
+
+        if (selected?.includes(id)) {
+            selected = selected?.filter((item) => {
+                return item !== id;
+            });
+        } else {
+            selected.push(id);
+        }
+
+        return setState((prev) => {
+            return { ...prev, selectedAddons: selected };
+        });
+    };
 
     const addToCartHandler = () => {
         setState((prev) => {
             return { ...prev, addLoading: true };
         });
-        postAPI(cartURL?.ADD_TO_CART, { id: detailsData?._id })
+        postAPI(cartURL?.ADD_TO_CART, {
+            id: detailsData?._id,
+            add_ons: selectedAddons,
+        })
             .then((res) => {
                 cartCountHandler();
             })
@@ -140,7 +167,7 @@ export default function WebinarDetails() {
                                                 " h-full bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
                                         }}
                                     >
-                                        {detailsData?.webinar_info.map(
+                                        {detailsData?.webinar_info?.map(
                                             (item) => (
                                                 <Tab
                                                     key={item?.value}
@@ -182,9 +209,44 @@ export default function WebinarDetails() {
                                 </Tabs>
                             </div>
                         ) : null}
-                        <div className="flex flex-col justify-between rounded-md shadow-sm bg-white">
-                            <div className="p-5">
-                                <H5 className="!text-black">Add ons</H5>
+                        <div className="flex flex-col justify-between rounded-md overflow-hidden shadow-sm bg-white">
+                            <div className=" *:!text-black">
+                                <H5 className="font-semibold p-5 bg-blue-100">
+                                    Available Options(add ons)
+                                </H5>
+                                <div className="p-5">
+                                    {detailsData?.add_ons?.length
+                                        ? detailsData?.add_ons
+                                              ?.filter((option) => {
+                                                  return option?.price;
+                                              })
+                                              ?.map((item) => (
+                                                  <>
+                                                      <div className="flex gap-3 items-center justify-between">
+                                                          <Checkbox
+                                                              key={item?._id}
+                                                              color="red"
+                                                              className="inline-flex"
+                                                              label={
+                                                                  item?.label
+                                                              }
+                                                              checked={selectedAddons?.includes(
+                                                                  item?._id
+                                                              )}
+                                                              onChange={() =>
+                                                                  addOnsHandler(
+                                                                      item?._id
+                                                                  )
+                                                              }
+                                                              on
+                                                          />
+                                                          <b className="text-blue-500">{`$${item?.price}`}</b>
+                                                      </div>
+                                                      <hr />
+                                                  </>
+                                              ))
+                                        : "No add ons available."}
+                                </div>
                             </div>
                             <ButtonGroup className="grid grid-cols-2 *:rounded-none">
                                 <Button
