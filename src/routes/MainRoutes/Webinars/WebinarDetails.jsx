@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { minus, plus } from "../../../assets";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { Calendar } from "lucide-react";
@@ -11,23 +12,26 @@ import {
     ButtonGroup,
     Button,
     Checkbox,
+    Input,
 } from "@material-tailwind/react";
 
-import { H1, H5 } from "../../../components/Typography";
-import { Container } from "../../../components/";
+import { H1, H3, H4, H5 } from "../../../components/Typography";
+import { Container, IconButton } from "../../../components/";
 
 import { postAPI } from "../../../utils/api";
 import useCartCount from "../../../utils/helpers/useCartCount";
 import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 
-export default function WebinarDetails() {
+export default function WebinarDetails(props) {
     const [state, setState] = useState({
         detailsData: {},
         selectedAddons: [],
         selectedInfo: "",
         detailsLoading: false,
         addLoading: false,
+        buyLoading: false,
         activeTab: "html",
+        quantity: 1,
     });
     const location = useLocation();
     const [params, setParams] = useSearchParams();
@@ -65,10 +69,12 @@ export default function WebinarDetails() {
     const {
         detailsData,
         detailsLoading,
-        selectedInfo,
+
         activeTab,
         addLoading,
+        buyLoading,
         selectedAddons,
+        quantity,
     } = state;
 
     const { cartCountHandler } = useCartCount();
@@ -90,13 +96,42 @@ export default function WebinarDetails() {
         });
     };
 
+    const quantityHandler = (quantity) => {
+        setState((prev) => {
+            return {
+                ...prev,
+                quantity: quantity,
+            };
+        });
+    };
+
+    const buyNowHandler = () => {
+        setState((prev) => {
+            return { ...prev, buyLoading: true };
+        });
+        postAPI(expressCartURL?.ADD_TO_CART, {
+            _id: detailsData?._id,
+            add_ons: selectedAddons,
+            quantity: quantity,
+        })
+            .then((res) => {
+                console.log(res);
+            })
+            .finally(() => {
+                setState((prev) => {
+                    return { ...prev, buyLoading: false };
+                });
+            });
+    };
+
     const addToCartHandler = () => {
         setState((prev) => {
             return { ...prev, addLoading: true };
         });
         postAPI(cartURL?.ADD_TO_CART, {
-            id: detailsData?._id,
+            _id: detailsData?._id,
             add_ons: selectedAddons,
+            quantity: quantity,
         })
             .then((res) => {
                 cartCountHandler();
@@ -210,6 +245,29 @@ export default function WebinarDetails() {
                             </div>
                         ) : null}
                         <div className="flex flex-col justify-between rounded-md overflow-hidden shadow-sm bg-white">
+                            <div className="flex items-center justify-between p-2">
+                                <H4>Quantity: </H4>
+                                <div className="flex items-center justify-between gap-4">
+                                    <IconButton
+                                        icon={minus}
+                                        disabled={quantity === 1}
+                                        onClick={() =>
+                                            quantityHandler(quantity - 1)
+                                        }
+                                    />
+                                    <input
+                                        disabled
+                                        value={quantity}
+                                        className="text-center w-16 h-10 border rounded-lg text-black text-[22px] font-semibold"
+                                    />
+                                    <IconButton
+                                        icon={plus}
+                                        onClick={() =>
+                                            quantityHandler(quantity + 1)
+                                        }
+                                    />
+                                </div>
+                            </div>
                             <div className=" *:!text-black">
                                 <H5 className="font-semibold p-5 bg-blue-100">
                                     Available Options(add ons)
@@ -250,8 +308,8 @@ export default function WebinarDetails() {
                             </div>
                             <ButtonGroup className="grid grid-cols-2 *:rounded-none">
                                 <Button
-                                    // loading={true}
-                                    onClick={() => {}}
+                                    loading={buyLoading}
+                                    onClick={() => buyNowHandler()}
                                     className="bg-green-300"
                                 >
                                     Buy Now

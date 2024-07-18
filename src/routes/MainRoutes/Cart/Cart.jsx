@@ -2,26 +2,14 @@ import React, { useEffect, useState } from "react";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 import { minus, plus } from "../../../assets";
 
-import { Container } from "../../../components/UI/Container";
+import { H3 } from "../../../components/Typography";
 import CartSummary from "./CartSummary";
+import { NoDataFound, IconButton, Container } from "../../../components";
+
 import { getAPI, postAPI } from "../../../utils/api";
 import { cartURL, orderURL } from "../../../utils/endpoints";
-import { H3, H4 } from "../../../components/Typography";
 import Paypal from "../../../Payments/Paypal";
-import NoDataFound from "../../../components/UI/NoDataFound";
-import DotedLoader from "../../../components/UI/loaders/DotedLoader";
 
-const IconButton = (props) => {
-    return props?.loading ? (
-        <div className=" border-2 border-tertiary px-[1px] py-2 rounded-full">
-            <DotedLoader fill="#C49102" />
-        </div>
-    ) : (
-        <button onClick={props?.onClick}>
-            <img src={props?.icon} alt={props?.value} className="size-10" />
-        </button>
-    );
-};
 export default function Cart(props) {
     const [state, setState] = useState({
         cartData: {},
@@ -57,7 +45,7 @@ export default function Cart(props) {
     const updateHandler = (id, quantity) => {
         postAPI(cartURL?.UPDATE_CART, {
             cart_id: cartData?.cart_id,
-            item_id: id,
+            _id: id,
             quantity: quantity,
         })
             .then((res) => {

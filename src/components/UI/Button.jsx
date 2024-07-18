@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import redirect from "../../assets/icons/redirect.svg";
+import DotedLoader from "./loaders/DotedLoader";
 
 export const RedirectionButton = ({
     label,
@@ -52,6 +53,28 @@ export const Button = ({ label, icon, className, onClick }) => {
             ) : null}
             <p>{label}</p>
             {React.isValidElement(icon) ? icon : null}
+        </button>
+    );
+};
+
+export const IconButton = (props) => {
+    return props?.loading ? (
+        <div className=" border-2 border-tertiary px-[1px] py-2 rounded-full">
+            <DotedLoader fill="#0077b6" />
+        </div>
+    ) : (
+        <button
+            onClick={props?.onClick}
+            disabled={props?.disabled}
+            className={`${
+                props?.disabled ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
+        >
+            {React.isValidElement(props?.icon) ? (
+                props?.icon
+            ) : (
+                <img src={props?.icon} alt={props?.value} className="size-10" />
+            )}
         </button>
     );
 };
