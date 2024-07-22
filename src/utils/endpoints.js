@@ -33,6 +33,8 @@ export const cartURL = {
     UPDATE_CART: "/cart/update",
     CART_COUNT: "/cart/count",
     CART_SUMMARY: "/cart/summary",
+    REMOVE_ITEM: "/cart/remove-item",
+    EMPTY_CART: "/cart/remove-all",
 };
 
 export const orderURL = {

@@ -13,6 +13,8 @@ import {
     Button,
     Checkbox,
     Input,
+    Alert,
+    alert,
 } from "@material-tailwind/react";
 
 import { H1, H3, H4, H5 } from "../../../components/Typography";
@@ -106,6 +108,7 @@ export default function WebinarDetails(props) {
     };
 
     const buyNowHandler = () => {
+        return alert("Will be Available soon!!");
         setState((prev) => {
             return { ...prev, buyLoading: true };
         });

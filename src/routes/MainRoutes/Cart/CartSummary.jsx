@@ -7,13 +7,16 @@ import PaymentGateways from "./PaymentGateways";
 export default function CartSummary(props) {
     const { cartData } = props;
     return (
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-3 *:!text-black">
             <div className="border border-gray-800 rounded bg-bgHero p-2">
-                <H3 className="text-tertiary">Cart Summary</H3>
+                <H3>Cart Summary</H3>
                 <hr className="border-gray-600" />
                 <div className="my-4">
                     {cartData?.summary?.map((item, i) => (
-                        <span key={i} className="flex justify-between mt-3">
+                        <span
+                            key={i}
+                            className="flex justify-between mt-3 *:!text-black"
+                        >
                             <H5>{item?.label}</H5>
                             <H5>{item?.value}</H5>
                         </span>
