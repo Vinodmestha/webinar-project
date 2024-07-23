@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 
-import { H3 } from "../../../components/Typography";
+import { H3, H4 } from "../../../components/Typography";
 import CartSummary from "./CartSummary";
 import {
     NoDataFound,
@@ -132,7 +132,7 @@ export default function Cart(props) {
         <Container className="py-0 sm:!py-10">
             {Object?.keys(cartData)?.length ? (
                 <div className="grid grid-cols-[1fr_0.65fr] gap-4">
-                    <section className="w-full px-4 bordr border-gray-800 rounded flex flex-col gap-5">
+                    <section className="w-full px-4 rounded flex flex-col gap-5">
                         {cartData?.items?.map((item, i) => (
                             <>
                                 <div
@@ -178,9 +178,34 @@ export default function Cart(props) {
                                                         )}...`,
                                                     }}
                                                 /> */}
-                                                <H3 className="!text-tertiary">
-                                                    ${item?.price}
-                                                </H3>
+                                                <div className="flex gap-2 text-gray-500 mb-2">
+                                                    <p>Add ons :</p>
+                                                    <div className="flex gap-2 text-gray-600 font-semibold">
+                                                        {item?.selected_add_ons?.map(
+                                                            (add_on) => (
+                                                                <span className="flex gap-1 underline">
+                                                                    {
+                                                                        add_on?.label
+                                                                    }
+                                                                    <p>
+                                                                        ($
+                                                                        {
+                                                                            add_on?.price
+                                                                        }
+                                                                        )
+                                                                    </p>
+                                                                    ,
+                                                                </span>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                <div className="flex gap-2 text-gray-500 mb-3">
+                                                    <p>Price :</p>
+                                                    <H4 className="!text-tertiary">
+                                                        ${item?.price}
+                                                    </H4>
+                                                </div>
                                             </div>
                                             <div className="flex flex-col">
                                                 <div className="flex items-center justify-between gap-4">
@@ -229,13 +254,13 @@ export default function Cart(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <hr
+                                {/* <hr
                                     className={`${
                                         cartData?.items?.length === i + 1
                                             ? "hidden"
                                             : ""
                                     } border-gray-700`}
-                                />
+                                /> */}
                             </>
                         ))}
                     </section>

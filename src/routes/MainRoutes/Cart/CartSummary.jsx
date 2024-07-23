@@ -8,7 +8,7 @@ export default function CartSummary(props) {
     const { cartData } = props;
     return (
         <section className="flex flex-col gap-3 *:!text-black">
-            <div className="border border-gray-800 rounded bg-bgHero p-2">
+            <div className="border border-gray-300 rounded bg-bgHero p-2">
                 <H3>Cart Summary</H3>
                 <hr className="border-gray-600" />
                 <div className="my-4">

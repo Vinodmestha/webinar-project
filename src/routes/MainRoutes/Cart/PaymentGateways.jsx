@@ -5,7 +5,7 @@ import { H4, H5 } from "../../../components/Typography";
 
 export default function PaymentGateways({ paymentGateways, currentGateway }) {
     return (
-        <div className="border border-gray-800 rounded bg-bgHero p-2">
+        <div className="border border-gray-300 rounded bg-bgHero p-2">
             <H4>Payment methods</H4>
             <hr className="border-gray-600" />
             {paymentGateways?.map((item) => (
