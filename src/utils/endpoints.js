@@ -25,8 +25,8 @@ export const contactURL = {
 };
 
 export const expressCartURL = {
-    ADD_TO_CART: "/webinars/express-cart/add-to-cart",
-    UPDATE_CART: "/webinars/express-cart/update-cart",
+    ADD_TO_CART: "/express-cart/add",
+    UPDATE_CART: "/express-cart/update",
 };
 export const cartURL = {
     ADD_TO_CART: "/cart/add",

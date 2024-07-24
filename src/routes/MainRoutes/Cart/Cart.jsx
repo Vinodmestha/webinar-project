@@ -3,8 +3,8 @@ import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 import { minus, plus } from "../../../assets";
 
 import { Trash2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { H3, H4 } from "../../../components/Typography";
 import CartSummary from "./CartSummary";
@@ -16,26 +16,36 @@ import {
 } from "../../../components";
 
 import { getAPI, postAPI } from "../../../utils/api";
-import { cartURL, orderURL } from "../../../utils/endpoints";
+import { cartURL, expressCartURL, orderURL } from "../../../utils/endpoints";
 import Paypal from "../../../Payments/Paypal";
 
 export default function Cart(props) {
-    const navigate = useNavigate();
+    const navigate = useNavigate(),
+        location = useLocation();
     const [state, setState] = useState({
         cartData: {},
         paymentPage: false,
         itemLoaders: { removeLoaders: {} },
     });
 
+    let navigateData = location?.state;
+    let expressCart = navigateData?.cartType === "express";
+    console.log(expressCart);
     useEffect(() => {
-        getAPI(cartURL?.CART_SUMMARY).then((res) => {
+        if (expressCart) {
             setState((prev) => {
-                return {
-                    ...prev,
-                    cartData: res?.data?.data?.cart_details ?? {},
-                };
+                return { ...prev, cartData: navigateData?.cartData ?? {} };
             });
-        });
+        } else {
+            getAPI(cartURL?.CART_SUMMARY).then((res) => {
+                setState((prev) => {
+                    return {
+                        ...prev,
+                        cartData: res?.data?.data?.cart_details ?? {},
+                    };
+                });
+            });
+        }
     }, []);
 
     const { cartData, itemLoaders } = state;
@@ -56,7 +66,10 @@ export default function Cart(props) {
     };
 
     const updateHandler = (id, i, quantity) => {
-        postAPI(cartURL?.UPDATE_CART, {
+        let url = expressCart
+            ? expressCartURL?.UPDATE_CART
+            : cartURL?.UPDATE_CART;
+        postAPI(url, {
             cart_id: cartData?.cart_id,
             _id: id,
             quantity: quantity,
@@ -151,20 +164,26 @@ export default function Cart(props) {
                                             <H3 className="capitalize">
                                                 {item?.title}
                                             </H3>
-                                            {itemLoaders.removeLoaders[i] ? (
-                                                <DotedLoader />
-                                            ) : (
-                                                <Trash2
-                                                    onClick={() =>
-                                                        removeItemHandler(
-                                                            i,
-                                                            item?._id
-                                                        )
-                                                    }
-                                                    color="red"
-                                                    size={25}
-                                                    className="cursor-pointer hover:aimate-bounce"
-                                                />
+                                            {expressCart ? null : (
+                                                <>
+                                                    {itemLoaders.removeLoaders[
+                                                        i
+                                                    ] ? (
+                                                        <DotedLoader />
+                                                    ) : (
+                                                        <Trash2
+                                                            onClick={() =>
+                                                                removeItemHandler(
+                                                                    i,
+                                                                    item?._id
+                                                                )
+                                                            }
+                                                            color="red"
+                                                            size={25}
+                                                            className="cursor-pointer hover:aimate-bounce"
+                                                        />
+                                                    )}
+                                                </>
                                             )}
                                         </div>
                                         <div className="flex items-center justify-between gap-4">

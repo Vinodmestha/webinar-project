@@ -3,7 +3,7 @@ import { minus, plus } from "../../../assets";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { Calendar } from "lucide-react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
     Tabs,
     TabsHeader,
@@ -12,9 +12,6 @@ import {
     ButtonGroup,
     Button,
     Checkbox,
-    Input,
-    Alert,
-    alert,
 } from "@material-tailwind/react";
 
 import { H1, H3, H4, H5 } from "../../../components/Typography";
@@ -25,6 +22,7 @@ import useCartCount from "../../../utils/helpers/useCartCount";
 import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 
 export default function WebinarDetails(props) {
+    const navigate = useNavigate();
     const [state, setState] = useState({
         detailsData: {},
         selectedAddons: [],
@@ -71,7 +69,6 @@ export default function WebinarDetails(props) {
     const {
         detailsData,
         detailsLoading,
-
         activeTab,
         addLoading,
         buyLoading,
@@ -80,7 +77,6 @@ export default function WebinarDetails(props) {
     } = state;
 
     const { cartCountHandler } = useCartCount();
-    // console.log(detailsData);
 
     const addOnsHandler = (id) => {
         let selected = [...selectedAddons];
@@ -108,7 +104,7 @@ export default function WebinarDetails(props) {
     };
 
     const buyNowHandler = () => {
-        return alert("Will be Available soon!!");
+        // return alert("Will be Available soon!!");
         setState((prev) => {
             return { ...prev, buyLoading: true };
         });
@@ -118,7 +114,17 @@ export default function WebinarDetails(props) {
             quantity: quantity,
         })
             .then((res) => {
-                console.log(res);
+                let responseData = res?.data?.data?.cart_details;
+                console.log(responseData);
+                navigate("/webinars/checkout", {
+                    state: {
+                        cartType: "express",
+                        cartData: responseData,
+                        // webinarId: webinarId ?? currentWebinarId,
+                        // typeName: typeName,
+                        // webinarName: currentWebinarName,
+                    },
+                });
             })
             .finally(() => {
                 setState((prev) => {
