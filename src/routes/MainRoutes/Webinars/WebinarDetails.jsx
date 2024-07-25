@@ -115,7 +115,7 @@ export default function WebinarDetails(props) {
         })
             .then((res) => {
                 let responseData = res?.data?.data?.cart_details;
-                console.log(responseData);
+
                 navigate("/webinars/checkout", {
                     state: {
                         cartType: "express",

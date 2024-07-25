@@ -30,7 +30,7 @@ export default function Cart(props) {
 
     let navigateData = location?.state;
     let expressCart = navigateData?.cartType === "express";
-    console.log(expressCart);
+
     useEffect(() => {
         if (expressCart) {
             setState((prev) => {
@@ -150,7 +150,7 @@ export default function Cart(props) {
                             <>
                                 <div
                                     key={item?._id}
-                                    className="flex items-center justify-between gap-5 rounded p-2 bg-gray-50 border border-gray-200"
+                                    className="flex items-center justify-between gap-5 rounded p-2 bg-gray-50 border border-gray-300"
                                 >
                                     <figure className="">
                                         <img

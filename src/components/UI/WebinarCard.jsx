@@ -43,7 +43,7 @@ export default function WebinarCard({ data, ...props }) {
                     </span>
                 </div>
                 <H5 className="!my-4 text-base font-semibold !text-black capitalize hover:text-primaryBtn">
-                    {data?.title} demo demo demo
+                    {data?.title}
                 </H5>
                 <div className="my-2 text-sm font-semibold *:!text-[#4e6579]">
                     <span className="flex items-center gap-2">
