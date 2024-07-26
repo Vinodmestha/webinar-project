@@ -19,6 +19,10 @@ import comment from "./icons/comment.svg";
 import learning from "./icons/learning.svg";
 import logout from "./icons/logout.svg";
 
+//vectors
+import auth1 from "./vectors/auth1.svg";
+import auth2 from "./vectors/auth2.svg";
+
 export {
     logo,
     bannerList,
@@ -38,4 +42,6 @@ export {
     comment,
     learning,
     logout,
+    auth1,
+    auth2,
 };

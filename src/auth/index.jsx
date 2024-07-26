@@ -1,5 +1,5 @@
 import React from "react";
-// import { authImage, authBg } from "../assets";
+import { authImage, authBg, auth1, auth2 } from "../assets";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -38,6 +38,7 @@ export default function Auth(props) {
 
     const headerContent = {
         login: {
+            poster: auth1,
             heading: "Login",
             desc: "Please enter log in details",
             footerText: "Don't have a account?",
@@ -45,6 +46,7 @@ export default function Auth(props) {
             footerLink: "signup",
         },
         signup: {
+            poster: auth2,
             heading: "Sign up",
             desc: "Please enter your details",
             footerText: " Already have a account?",
@@ -62,11 +64,11 @@ export default function Auth(props) {
 
     return (
         <div
-            className={`grid md:grid-cols-1 py-20 w-full ${
-                authPage === "signup" ? "max-w-screen-lg" : "max-w-screen-md"
+            className={`grid md:grid-cols-2 py20 w-full ${
+                "" // authPage === "signup" ? "max-w-screen-lg" : "max-w-screen-md"
             } mx-auto`}
         >
-            <p
+            {/* <p
                 className="flex items-center gap-2 text-xl mb-3 font-semibold text-blue-600 hover:text-blue-400 transition-all duration-200 w-fit cursor-pointer"
                 onClick={() => navigate("/")}
             >
@@ -85,8 +87,14 @@ export default function Auth(props) {
                     />
                 </svg>
                 Back to home
-            </p>
-            <div className="border border-gray-700 p-10 rounded-lg">
+            </p> */}
+            <div className="bg-tertiary">
+                <img
+                    src={headerContent[authPage]?.poster}
+                    className="size-10/12"
+                />
+            </div>
+            <div className="borde border-gray-700 p-10 rounded-lg">
                 <div className="relative *:text-gray-400 text-center mb-10">
                     <H2>{headerContent[authPage]?.heading}</H2>
                     <p>{headerContent[authPage]?.desc}</p>
