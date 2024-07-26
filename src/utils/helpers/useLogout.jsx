@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
-import { getAPI } from "../api";
+import { postAPI } from "../api";
 import { authURL } from "../endpoints";
 import { UserContext } from "../../store/UserContext";
 
@@ -14,8 +14,8 @@ export default function useLogout() {
         setState((prev) => {
             return { ...prev, logoutLoading: true };
         });
-        getAPI(authURL?.LOGOUT)
-            .then((res) => {
+        postAPI(authURL?.LOGOUT)
+            .then(() => {
                 handleLogout();
 
                 // localStorage.setItem("userAuth", JSON.stringify(authData));

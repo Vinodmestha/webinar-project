@@ -88,10 +88,10 @@ export default function Auth(props) {
                 </svg>
                 Back to home
             </p> */}
-            <div className="bg-tertiary">
+            <div className="bg-blue-900 flex items-center justify-center">
                 <img
                     src={headerContent[authPage]?.poster}
-                    className="size-10/12"
+                    className="size-9/12"
                 />
             </div>
             <div className="borde border-gray-700 p-10 rounded-lg">

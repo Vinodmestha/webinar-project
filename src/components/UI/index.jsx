@@ -4,6 +4,7 @@ export { Container } from "./Container";
 export { Wrapper } from "./Container";
 export { RedirectionButton } from "./Button";
 export { Button } from "./Button";
+export { default as Message } from "./Message";
 export { IconButton } from "./Button";
 export { default as DotedLoader } from "./loaders/DotedLoader";
 export { default as Modal } from "./Modal";

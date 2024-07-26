@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
+import { UserContext } from "../store/UserContext";
 
-import { Input } from "../components/Input";
-import { Button } from "../components/UI/Button";
-import DotedLoader from "../components/UI/loaders/DotedLoader";
+import { Input, Button, DotedLoader, Message } from "../components";
 
 import { postAPI } from "../utils/api";
 import { authURL } from "../utils/endpoints";
 
 export default function SignUp(props) {
+    const { handleLogin } = useContext(UserContext);
     const [state, setState] = useState({
         inputData: {
             email: "",
@@ -68,7 +68,23 @@ export default function SignUp(props) {
         postAPI(authURL?.SIGNUP, { ...inputData })
             .then((res) => {})
             .then(() => {
-                props?.setAuthPage("login");
+                // props?.setAuthPage("login");
+
+                postAPI(authURL?.LOGIN, {
+                    email: inputData?.email,
+                    password: inputData?.password,
+                })
+                    .then((res) => {
+                        const responseData = res?.data?.data;
+                        let authData = {
+                            ...responseData,
+                        };
+                        handleLogin(authData);
+                        // localStorage.setItem("userAuth", JSON.stringify(authData));
+                    })
+                    .then(() => {
+                        props?.navigate("/");
+                    });
             })
             .catch((err) => {
                 console.log(err);
