@@ -1,7 +1,10 @@
+const withMT = require("@material-tailwind/react/utils/withMT");
+
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = withMT({
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
+        screens: { xl: "1280px" },
         extend: {
             colors: {
                 primary: "#023e8a",
@@ -37,6 +40,8 @@ export default {
             animation: {
                 fadeInDown: "fadeInDown 0.4s",
                 fadeUp: "fadeUp 0.15s forwards",
+                "msg-in": "msg-in .3s cubic-bezier(.08, .82, .17, 1)",
+                "msg-out": "msg-out .3s cubic-bezier(.6, .04, .98, .34)",
             },
             keyframes: {
                 fadeInDown: {
@@ -56,6 +61,29 @@ export default {
                     "75%": { bottom: "15%" },
                     "100%": { bottom: "20%" },
                 },
+                "msg-in": {
+                    from: {
+                        opacity: 0,
+                        transform: "translateX(-50%) translateY(-50%)",
+                    },
+
+                    to: {
+                        opacity: 1,
+                        transform: "translateX(-50%) translateY(0)",
+                    },
+                },
+
+                "msg-out": {
+                    from: {
+                        opacity: 1,
+                        transform: "translateX(-50%) translateY(0)",
+                    },
+
+                    to: {
+                        opacity: 0,
+                        transform: "translateX(-50%) translateY(-50%)",
+                    },
+                },
             },
             backgroundImage: {
                 authBg: "url('../src/vectors/authBg.jpg')",
@@ -63,4 +91,4 @@ export default {
         },
     },
     plugins: [],
-};
+});

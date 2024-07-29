@@ -12,6 +12,7 @@ import journalWhills from "../assets/icons/journal-whills.svg";
 import businessTime from "../assets/icons/business-time.svg";
 import userShield from "../assets/icons/user-shield.svg";
 import profile from "../assets/icons/profile.svg";
+import orders from "../assets/icons/orders.svg";
 
 import { certificate, comment, learning } from "../assets";
 
@@ -24,16 +25,21 @@ export const navLinks = [
         label: "Webinars",
         slug: "webinars",
         child: [
-            { id: 1, label: "Upcoming", slug: "upcoming", image: upcoming },
+            { id: "3a", label: "Upcoming", slug: "upcoming", image: upcoming },
             {
-                id: 2,
+                id: "3b",
                 label: "Pre Recorded",
                 slug: "pre-recorded",
                 image: preRecorded,
             },
-            { id: 3, label: "On Demand", slug: "on-demand", image: onDemand },
             {
-                id: 4,
+                id: "3c",
+                label: "On Demand",
+                slug: "on-demand",
+                image: onDemand,
+            },
+            {
+                id: "3d",
                 label: "CEU Approved",
                 slug: "ceu-approved",
                 image: ceuApproved,
@@ -113,6 +119,6 @@ export const footerHelp = [
 
 export const navMenu = [
     { id: 1, label: "Profile", slug: "profile", icon: profile },
-    { id: 2, label: "Orders", slug: "orders", icon: userShield },
-    { id: 3, label: "Webinars", slug: "webinars", icon: profile },
+    { id: 2, label: "Orders", slug: "orders", icon: orders },
+    // { id: 3, label: "Webinars", slug: "webinars", icon: profile },
 ];

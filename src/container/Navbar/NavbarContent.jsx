@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { logo, cartIcon, webinarDummy } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
-import { useLocation, useNavigate } from "react-router-dom";
 import {
     Popover,
     PopoverHandler,
     PopoverContent,
 } from "@material-tailwind/react";
 import { CircleUserRound } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { navMenu } from "../../db/dummy";
 import { H4 } from "../../components/Typography";
@@ -20,6 +20,7 @@ import {
     DotedLoader,
 } from "../../components/UI";
 
+import Auth from "../../auth";
 import { UserContext } from "../../store/UserContext";
 import useTypes from "../../utils/helpers/useTypes";
 import useLogout from "../../utils/helpers/useLogout";
@@ -29,7 +30,7 @@ import useClickOutside from "../../utils/helpers/useClickOutside";
 export default function NavbarContent(props) {
     const { userInfo, isLoggedIn } = useContext(UserContext);
     const [state, setState] = useState({
-        authComp: "",
+        authPage: "",
         menuChild: false,
         childData: {},
         profileMenu: false,
@@ -65,13 +66,16 @@ export default function NavbarContent(props) {
 
     const { cartCount, cartCountHandler } = useCartCount();
     let count = localStorage.getItem("cart-count");
-
     useEffect(() => {
         cartCountHandler();
     }, [count]);
 
     const setAuthPage = (type) => {
-        navigate(`/auth?action=${type}`);
+        // navigate(`/auth?action=${type}`);
+        setState((prev) => {
+            return { ...prev, authPage: type };
+        });
+
         profileMenuHandler(false);
     };
 
@@ -105,23 +109,23 @@ export default function NavbarContent(props) {
     ];
 
     let menuListStyles =
-        "flex text-[15px] font-semibold cursor-pointer hover:bg-gray-300 rounded-lg p-2 my-1";
+        "flex items-center gap-3 text-[15px] font-semibold cursor-pointer hover:bg-gray-300 rounded-lg p-2 my-1";
 
-    const { menuChild, childData } = state;
+    const { menuChild, childData, authPage } = state;
 
     return (
         <header className="">
             <Container className="  relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
-                <figure>
+                {/* <figure>
                     <img
                         src={logo}
                         alt="webinar"
                         className="w-40 h-16 cursor-pointer"
                         onClick={() => navigate("/")}
                     />
-                </figure>
+                </figure>  
 
-                <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
+                  <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
                     {navLinks?.map((item) => (
                         <li
                             key={item?.id}
@@ -195,7 +199,7 @@ export default function NavbarContent(props) {
                             </div>
                         </MenuCard>
                     ) : null}
-                </ul>
+                </ul> */}
 
                 <div className="flex items-center gap-10">
                     <figure
@@ -226,7 +230,7 @@ export default function NavbarContent(props) {
                             />
                         </PopoverHandler>
                         <PopoverContent className="w-72">
-                            {isLoggedIn || userInfo?.data?.token ? (
+                            {!isLoggedIn || userInfo?.data?.token ? (
                                 <div className="text-black">
                                     <div
                                         className={`flex items-center gap-2 p-2 capitalize`}
@@ -239,7 +243,7 @@ export default function NavbarContent(props) {
                                     </div>
                                     <hr />
                                     <ul>
-                                        {/* {navMenu?.map((item, i) => (
+                                        {navMenu?.map((item, i) => (
                                             <li
                                                 key={item?.id}
                                                 className={`${menuListStyles}`}
@@ -248,13 +252,13 @@ export default function NavbarContent(props) {
                                                     profileMenuHandler(false);
                                                 }}
                                             >
-                                                {/* <img
+                                                <img
                                                     src={item?.icon}
-                                                    className="size-10"
-                                                /> 
+                                                    className="size-7"
+                                                />
                                                 <p>{item?.label}</p>
                                             </li>
-                                        ))}*/}
+                                        ))}
                                         <li
                                             onClick={() => logoutHandler()}
                                             className={`${
@@ -291,6 +295,7 @@ export default function NavbarContent(props) {
                     </Popover>
                 </div>
             </Container>
+            <Auth authModal={!!authPage} authPage={authPage} />
         </header>
     );
 }

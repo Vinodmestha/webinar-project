@@ -9,8 +9,8 @@ const successMessage = "text-white bg-[#52c41a]";
 const warnMessage = "text-white bg-[#faad14]";
 const errorMessage = "text-white bg-[#f5222d]";
 
+// const dom = document?.createElement("div");
 function Message() {
-    // const dom = document?.createElement("div");
     // dom.className = messageStyles;
     // window.onload = () => document.body.appendChild(dom);
 }
@@ -44,7 +44,7 @@ Message.prototype.show = function (
 
     contentText.innerText = content;
     contentBox.className = `${boxStyles} ${typeHandler(type)}`;
-    contentBox.classList.add("animate-rwc-msg-in");
+    contentBox.classList.add("animate-msg-in");
     // contentBox.appendChild(icon);
     contentBox.appendChild(contentText);
     contentBox.style.top = `${this.count * 42}px`;
@@ -54,7 +54,7 @@ Message.prototype.show = function (
 
     // remove message box after duration
     setTimeout(() => {
-        contentBox.classList.add("animate-rwc-msg-out");
+        contentBox.classList.add("animate-msg-out");
         setTimeout(() => {
             dom.removeChild(contentBox);
 

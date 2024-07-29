@@ -98,22 +98,46 @@ export default function SignUp(props) {
 
     return (
         <div className="flex flex-col gap-5  ">
-            <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
+            <div className="grid  grid-cols-1 gap-8">
                 {[
-                    { label: "Name", name: "name", required: true },
-                    { label: "Email", name: "email", required: true },
-                    { label: "Password", name: "password", required: true },
-                    { label: "Mobile", name: "mobile", required: true },
+                    {
+                        label: "Name",
+                        name: "name",
+                        type: "text",
+                        required: true,
+                    },
+                    {
+                        label: "Email",
+                        name: "email",
+                        type: "email",
+                        required: true,
+                    },
+                    {
+                        label: "Mobile",
+                        name: "mobile",
+                        type: "mobile",
+                        required: true,
+                        countryCode: true,
+                    },
+                    {
+                        label: "Password",
+                        name: "password",
+                        type: "password",
+                        required: true,
+                    },
                 ]?.map((item) => (
                     <Fragment key={item?.name}>
                         <Input
                             onChange={(v) => setData(item?.name, v)}
+                            error={errorData[item?.name]}
+                            type={item?.type}
                             label={item?.label}
                             placeholder={`Enter your ${item?.name}`}
                             value={inputData[item?.name]}
                             required={item?.required}
                             className="bg-primary"
                             errorText={errorData[item?.name]}
+                            countryCode={item?.countryCode}
                         />
                     </Fragment>
                 ))}
@@ -121,7 +145,7 @@ export default function SignUp(props) {
             <Button
                 label={signUpLoading ? <DotedLoader fill="#fff" /> : "Sign Up"}
                 onClick={submitHandler}
-                className="w-1/2 mx-auto mt-5 border-none rounded-lg text-white !bg-primaryBtn"
+                className="w-full mx-auto mt-5 border-none rounded-lg text-white !bg-primaryBtn"
             />
         </div>
     );
