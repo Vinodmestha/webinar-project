@@ -7,7 +7,7 @@ import { postAPI } from "../utils/api";
 import { authURL } from "../utils/endpoints";
 
 export default function Login(props) {
-    const { handleLogin } = useContext(UserContext);
+    const { handleLogin, setAuthPage } = useContext(UserContext);
     const [state, setState] = useState({
         inputData: { email: "", password: "" },
         errorData: { email: "", password: "" },
@@ -67,7 +67,7 @@ export default function Login(props) {
                     ...responseData,
                 };
                 handleLogin(authData);
-                // localStorage.setItem("userAuth", JSON.stringify(authData));
+                setAuthPage(false);
             })
             .then(() => {
                 props?.navigate("/");
@@ -83,18 +83,29 @@ export default function Login(props) {
     };
 
     return (
-        <div className="flex flex-col gap-5 ">
+        <div className="flex flex-col gap-5">
             {[
-                { label: "Email", name: "email", required: true },
-                { label: "Password", name: "password", required: true },
+                {
+                    label: "Email",
+                    name: "email",
+                    type: "email",
+                    required: true,
+                },
+                {
+                    label: "Password",
+                    name: "password",
+                    type: "password",
+                    required: true,
+                },
             ]?.map((item) => (
                 <Fragment key={item?.name}>
                     <Input
-                        onChange={(v) => setData(item?.name, v)}
+                        type={item?.type}
                         label={item?.label}
+                        value={inputData[item?.name]}
                         placeholder={`Enter your ${item?.name}`}
+                        onChange={(v) => setData(item?.name, v)}
                         required={item?.required}
-                        className="bg-primary"
                         errorText={errorData[item?.name]}
                     />
                 </Fragment>

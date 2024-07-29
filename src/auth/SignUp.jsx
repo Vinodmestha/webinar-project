@@ -7,7 +7,7 @@ import { postAPI } from "../utils/api";
 import { authURL } from "../utils/endpoints";
 
 export default function SignUp(props) {
-    const { handleLogin } = useContext(UserContext);
+    const { handleLogin, setAuthPage } = useContext(UserContext);
     const [state, setState] = useState({
         inputData: {
             email: "",
@@ -80,7 +80,7 @@ export default function SignUp(props) {
                             ...responseData,
                         };
                         handleLogin(authData);
-                        // localStorage.setItem("userAuth", JSON.stringify(authData));
+                        setAuthPage(false);
                     })
                     .then(() => {
                         props?.navigate("/");
@@ -128,14 +128,12 @@ export default function SignUp(props) {
                 ]?.map((item) => (
                     <Fragment key={item?.name}>
                         <Input
-                            onChange={(v) => setData(item?.name, v)}
-                            error={errorData[item?.name]}
                             type={item?.type}
                             label={item?.label}
-                            placeholder={`Enter your ${item?.name}`}
                             value={inputData[item?.name]}
+                            placeholder={`Enter your ${item?.name}`}
+                            onChange={(v) => setData(item?.name, v)}
                             required={item?.required}
-                            className="bg-primary"
                             errorText={errorData[item?.name]}
                             countryCode={item?.countryCode}
                         />

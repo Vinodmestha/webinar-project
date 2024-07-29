@@ -21,16 +21,16 @@ export default function ContactUs() {
                         Get In Touch with us !
                     </SubHeading>
                     <H2 className="mt-1 sm:!leading-[3.5rem] !items-start">
-                        Let's Work Together
+                        Let's Connect
                     </H2>
                     <H5 className="mb-4">
                         Just tell us your requirements, and we will assist you!
                     </H5>
                     <div className="flex flex-col gap-1 !text-gray-600">
                         <Telephone className="!text-2xl">
-                            +91 1234567890
+                            +91 9599850620
                         </Telephone>
-                        <Mail>demmy@gmail.com</Mail>
+                        <Mail>dummy@gmail.com</Mail>
                     </div>
                     <div className="mt-5">
                         <Button

@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { authImage, authBg, auth1, auth2 } from "../assets";
 
-import {
-    Dialog,
-    DialogHeader,
-    DialogBody,
-    DialogFooter,
-    Input,
-} from "@material-tailwind/react";
 import { CircleX } from "lucide-react";
+import { Dialog, DialogBody } from "@material-tailwind/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { H3 } from "../components/Typography";
@@ -16,44 +10,25 @@ import { H3 } from "../components/Typography";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import ForgotPassword from "./ForgotPassword";
+import { UserContext } from "../store/UserContext";
 
 export default function Auth(props) {
+    const { authModal, authPage, setAuthPage } = useContext(UserContext);
     let navigate = useNavigate();
-    const [state, setState] = useState({
-        authModal: false,
-        authPage: "login",
-    });
-
-    useEffect(() => {
-        setAuthPage(props?.authModal, props?.authPage);
-    }, [props]);
 
     // const [params, setParams] = useSearchParams();
     // let authPage = params?.get("action");
 
-    const { authModal, authPage } = state;
-
-    const setAuthPage = (v, type) => {
-        setState((prev) => {
-            return { ...prev, authModal: v, authPage: type };
-        });
-        // navigate(`/auth?action=${type}`);
-    };
     const currentAuthHandler = () => {
         switch (authPage) {
             case "login":
-                return <Login navigate={navigate} setAuthPage={setAuthPage} />;
+                return <Login navigate={navigate} />;
             case "signup":
-                return <SignUp navigate={navigate} setAuthPage={setAuthPage} />;
+                return <SignUp navigate={navigate} />;
             case "forgotPassword":
-                return (
-                    <ForgotPassword
-                        navigate={navigate}
-                        setAuthPage={setAuthPage}
-                    />
-                );
+                return <ForgotPassword navigate={navigate} />;
             default:
-                return <Login navigate={navigate} setAuthPage={setAuthPage} />;
+                return <Login navigate={navigate} />;
         }
     };
 
@@ -111,7 +86,10 @@ export default function Auth(props) {
                         <b
                             className="underline cursor-pointer text-tertiary"
                             onClick={() =>
-                                setAuthPage(headerContent[authPage]?.footerLink)
+                                setAuthPage(
+                                    true,
+                                    headerContent[authPage]?.footerLink
+                                )
                             }
                         >
                             {headerContent[authPage]?.linkText}

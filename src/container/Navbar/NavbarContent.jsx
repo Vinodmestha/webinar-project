@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { logo, cartIcon, webinarDummy } from "../../assets";
+import { logo, cartIcon, webinarDummy, avatar, logout } from "../../assets";
 import userIcon from "../../assets/icons/user.svg";
 
 import {
@@ -7,7 +7,7 @@ import {
     PopoverHandler,
     PopoverContent,
 } from "@material-tailwind/react";
-import { CircleUserRound } from "lucide-react";
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { navMenu } from "../../db/dummy";
@@ -28,9 +28,10 @@ import useCartCount from "../../utils/helpers/useCartCount";
 import useClickOutside from "../../utils/helpers/useClickOutside";
 
 export default function NavbarContent(props) {
-    const { userInfo, isLoggedIn } = useContext(UserContext);
+    const { userInfo, isLoggedIn, authModal, authPage, setAuthPage } =
+        useContext(UserContext);
+
     const [state, setState] = useState({
-        authPage: "",
         menuChild: false,
         childData: {},
         profileMenu: false,
@@ -70,15 +71,6 @@ export default function NavbarContent(props) {
         cartCountHandler();
     }, [count]);
 
-    const setAuthPage = (type) => {
-        // navigate(`/auth?action=${type}`);
-        setState((prev) => {
-            return { ...prev, authPage: type };
-        });
-
-        profileMenuHandler(false);
-    };
-
     const navLinks = [
         { id: 1, label: "About Us", slug: "about" },
         {
@@ -109,23 +101,23 @@ export default function NavbarContent(props) {
     ];
 
     let menuListStyles =
-        "flex items-center gap-3 text-[15px] font-semibold cursor-pointer hover:bg-gray-300 rounded-lg p-2 my-1";
+        "flex items-center gap-3 text-[15px] cursor-pointer hover:bg-gray-300 rounded-lg p-2 my-1";
 
-    const { menuChild, childData, authPage } = state;
+    const { menuChild, childData } = state;
 
     return (
         <header className="">
-            <Container className="  relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
-                {/* <figure>
+            <Container className="relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
+                <figure>
                     <img
                         src={logo}
                         alt="webinar"
                         className="w-40 h-16 cursor-pointer"
                         onClick={() => navigate("/")}
                     />
-                </figure>  
+                </figure>
 
-                  <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
+                <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
                     {navLinks?.map((item) => (
                         <li
                             key={item?.id}
@@ -199,7 +191,7 @@ export default function NavbarContent(props) {
                             </div>
                         </MenuCard>
                     ) : null}
-                </ul> */}
+                </ul>
 
                 <div className="flex items-center gap-10">
                     <figure
@@ -230,16 +222,22 @@ export default function NavbarContent(props) {
                             />
                         </PopoverHandler>
                         <PopoverContent className="w-72">
-                            {!isLoggedIn || userInfo?.data?.token ? (
+                            {isLoggedIn || userInfo?.data?.token ? (
                                 <div className="text-black">
                                     <div
                                         className={`flex items-center gap-2 p-2 capitalize`}
                                     >
-                                        <CircleUserRound
-                                            color="#6c757d"
-                                            size={30}
+                                        <img
+                                            src={avatar}
+                                            alt="profile"
+                                            className="size-14"
                                         />
-                                        <H4>{userInfo?.data?.name}</H4>
+                                        <div>
+                                            <H4>{userInfo?.data?.name}</H4>
+                                            <p className="text-gray-600">
+                                                {userInfo?.data?.email}
+                                            </p>
+                                        </div>
                                     </div>
                                     <hr />
                                     <ul>
@@ -254,7 +252,7 @@ export default function NavbarContent(props) {
                                             >
                                                 <img
                                                     src={item?.icon}
-                                                    className="size-7"
+                                                    className="size-6"
                                                 />
                                                 <p>{item?.label}</p>
                                             </li>
@@ -272,7 +270,13 @@ export default function NavbarContent(props) {
                                                     <DotedLoader fill="#000" />
                                                 </div>
                                             ) : (
-                                                "Logout"
+                                                <>
+                                                    <img
+                                                        src={logout}
+                                                        className="size-6"
+                                                    />
+                                                    <p>Logout</p>
+                                                </>
                                             )}
                                         </li>
                                     </ul>
@@ -282,12 +286,18 @@ export default function NavbarContent(props) {
                                     <Button
                                         label="Signup"
                                         className="border-none rounded-lg !bg-pink-600 hover:!shadow-2xl"
-                                        onClick={() => setAuthPage("signup")}
+                                        onClick={() => {
+                                            setAuthPage(true, "signup");
+                                            profileMenuHandler(false);
+                                        }}
                                     />
                                     <Button
                                         label="Login"
                                         className="border-none rounded-lg !bg-blue-600 hover:!shadow-2xl"
-                                        onClick={() => setAuthPage("login")}
+                                        onClick={() => {
+                                            setAuthPage(true, "login");
+                                            profileMenuHandler(false);
+                                        }}
                                     />
                                 </div>
                             )}
@@ -295,7 +305,7 @@ export default function NavbarContent(props) {
                     </Popover>
                 </div>
             </Container>
-            <Auth authModal={!!authPage} authPage={authPage} />
+            <Auth />
         </header>
     );
 }

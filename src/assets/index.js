@@ -13,6 +13,7 @@ import minus from "./icons/minus.svg";
 import plus from "./icons/plus.svg";
 import authImage from "./vectors/login.svg";
 import authBg from "./vectors/authBg.jpg";
+import avatar from "./icons/avatar.svg";
 
 import certificate from "./icons/certificate.svg";
 import comment from "./icons/comment.svg";
@@ -44,4 +45,5 @@ export {
     logout,
     auth1,
     auth2,
+    avatar,
 };

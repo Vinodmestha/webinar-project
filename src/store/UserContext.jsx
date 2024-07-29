@@ -7,10 +7,12 @@ export const UserProvider = ({ children }) => {
         userInfo: localStorage.getItem("userInfo")
             ? JSON.parse(localStorage.getItem("userInfo"))
             : null,
-        isLoggedIn: !!localStorage.getItem("isLoggedIn"),
+        isLoggedIn: !!JSON.parse(localStorage.getItem("isLoggedIn")),
+        authModal: false,
+        authPage: "",
     });
 
-    const { userInfo, isLoggedIn } = state;
+    const { userInfo, isLoggedIn, authModal, authPage } = state;
 
     const handleLogin = (userInfo) => {
         setState((prev) => {
@@ -28,9 +30,24 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("isLoggedIn", false);
     };
 
+    const setAuthPage = (v, type) => {
+        setState((prev) => {
+            return { ...prev, authModal: v, authPage: type };
+        });
+        // navigate(`/auth?action=${type}`);
+    };
+
     return (
         <UserContext.Provider
-            value={{ userInfo, isLoggedIn, handleLogin, handleLogout }}
+            value={{
+                userInfo,
+                isLoggedIn,
+                authModal,
+                authPage,
+                setAuthPage,
+                handleLogin,
+                handleLogout,
+            }}
         >
             {children}
         </UserContext.Provider>
