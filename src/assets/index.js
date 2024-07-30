@@ -1,5 +1,6 @@
 //home
-import logo from "./icons/logo.png";
+// import logo from "./icons/logo.png";
+import logo from "./icons/logo.svg";
 import bannerList from "./home/bannerList.gif";
 import bannerList1 from "./home/bannerList1.gif";
 import heroImage from "./home/heroImage.png";

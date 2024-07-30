@@ -30,7 +30,7 @@ export default function ContactUs() {
                         <Telephone className="!text-2xl">
                             +91 9599850620
                         </Telephone>
-                        <Mail>dummy@gmail.com</Mail>
+                        <Mail>support@us-cpe.com</Mail>
                     </div>
                     <div className="mt-5">
                         <Button

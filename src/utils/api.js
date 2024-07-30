@@ -2,7 +2,7 @@ import axios from "axios";
 
 const path = import.meta.env.VITE_API_URL;
 // const prefix = import.meta.env.VITE_URL_PREFIX;
-const prefix = "/api/rajWebinar";
+const prefix = "/api";
 
 let userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
