@@ -11,7 +11,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { navMenu } from "../../db/dummy";
-import { H4 } from "../../components/Typography";
+import { H1, H4 } from "../../components/Typography";
 import {
     Button,
     MenuCard,
@@ -108,14 +108,15 @@ export default function NavbarContent(props) {
     return (
         <header className="">
             <Container className="relative border-b shadow-lg rounded-b-3xl border-gray-200 h-full !p-2.5 !my-0 flex items-center justify-between">
-                <figure>
+                {/* <figure>
                     <img
                         src={logo}
                         alt="webinar"
                         className="w-40 h-16 cursor-pointer"
                         onClick={() => navigate("/")}
                     />
-                </figure>
+                </figure> */}
+                <H1 className="!text-3xl">US CPE</H1>
 
                 <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
                     {navLinks?.map((item) => (
