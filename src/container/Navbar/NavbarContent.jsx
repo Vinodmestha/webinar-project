@@ -116,7 +116,7 @@ export default function NavbarContent(props) {
                         onClick={() => navigate("/")}
                     />
                 </figure> */}
-                <H1 className="!text-3xl">US CPE</H1>
+                <H1 className="!text-3xl">USdaf CPE</H1>
 
                 <ul className="flex items-center h-full justify-center gap-16 text-lg font-semibold">
                     {navLinks?.map((item) => (
