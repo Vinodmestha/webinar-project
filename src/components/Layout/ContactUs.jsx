@@ -28,9 +28,9 @@ export default function ContactUs() {
                     </H5>
                     <div className="flex flex-col gap-1 !text-gray-600">
                         <Telephone className="!text-2xl">
-                            +91 9599850620
+                            +91 99876543210
                         </Telephone>
-                        <Mail>dummy@gmail.com</Mail>
+                        <Mail>support@us-cpe.com</Mail>
                     </div>
                     <div className="mt-5">
                         <Button
