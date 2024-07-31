@@ -205,7 +205,7 @@ export default function WebinarDetails(props) {
                             <div className="rounded-md shadow-sm bg-white">
                                 <Tabs value={activeTab}>
                                     <TabsHeader
-                                        className="h-full overflow-x-scroll whitespace-nowrap [scrollbar-width:none]"
+                                        className="h-full overflow-x-scroll whitespace-nowrap [scrollbar-width:none] bg-[#ebebeb]"
                                         indicatorProps={{
                                             className:
                                                 " h-full bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
@@ -225,7 +225,7 @@ export default function WebinarDetails(props) {
                                                             };
                                                         })
                                                     }
-                                                    className={`flex-[0_0_150px] h-[60px] whitespace-nowrap bg-[#ebebeb] px-2.5 py-0 max-w-[400px] ${
+                                                    className={`flex-[0_0_150px] h-[60px] whitespace-nowrap  px-2.5 py-0 max-w-[400px] ${
                                                         activeTab ===
                                                         item?.value
                                                             ? "text-tertiary bg-"
@@ -254,66 +254,69 @@ export default function WebinarDetails(props) {
                             </div>
                         ) : null}
                         <div className="flex flex-col justify-between rounded-md overflow-hidden shadow-sm bg-white">
-                            <div className="flex items-center justify-between p-2">
-                                <H4>Quantity: </H4>
-                                <div className="flex items-center justify-between gap-4">
-                                    <IconButton
-                                        icon={minus}
-                                        disabled={quantity === 1}
-                                        onClick={() =>
-                                            quantityHandler(quantity - 1)
-                                        }
-                                    />
-                                    <input
-                                        disabled
-                                        value={quantity}
-                                        className="text-center w-16 h-10 border rounded-lg text-black text-[22px] font-semibold"
-                                    />
-                                    <IconButton
-                                        icon={plus}
-                                        onClick={() =>
-                                            quantityHandler(quantity + 1)
-                                        }
-                                    />
+                            <div>
+                                <div className="flex items-center justify-between p-2 bg-blue-50">
+                                    <H4>Quantity: </H4>
+                                    <div className="flex items-center justify-between gap-4">
+                                        <IconButton
+                                            icon={minus}
+                                            disabled={quantity === 1}
+                                            onClick={() =>
+                                                quantityHandler(quantity - 1)
+                                            }
+                                        />
+                                        <input
+                                            disabled
+                                            value={quantity}
+                                            className="text-center w-16 h-10 border rounded-lg text-black text-[22px] font-semibold"
+                                        />
+                                        <IconButton
+                                            icon={plus}
+                                            onClick={() =>
+                                                quantityHandler(quantity + 1)
+                                            }
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className=" *:!text-black">
-                                <H5 className="font-semibold p-5 bg-blue-100">
-                                    Available Options(add ons)
-                                </H5>
-                                <div className="p-5">
-                                    {detailsData?.add_ons?.length
-                                        ? detailsData?.add_ons
-                                              ?.filter((option) => {
-                                                  return option?.price;
-                                              })
-                                              ?.map((item) => (
-                                                  <>
-                                                      <div className="flex gap-3 items-center justify-between">
-                                                          <Checkbox
-                                                              key={item?._id}
-                                                              color="red"
-                                                              className="inline-flex"
-                                                              label={
-                                                                  item?.label
-                                                              }
-                                                              checked={selectedAddons?.includes(
-                                                                  item?._id
-                                                              )}
-                                                              onChange={() =>
-                                                                  addOnsHandler(
-                                                                      item?._id
-                                                                  )
-                                                              }
-                                                              on
-                                                          />
-                                                          <b className="text-blue-500">{`$${item?.price}`}</b>
-                                                      </div>
-                                                      <hr />
-                                                  </>
-                                              ))
-                                        : "No add ons available."}
-                                </div>
+                                {detailsData?.add_ons?.length && false ? (
+                                    <div className=" *:!text-black">
+                                        <H5 className="font-semibold p-5 bg-blue-100">
+                                            Available Options(add ons)
+                                        </H5>
+                                        <div className="p-5">
+                                            {detailsData?.add_ons
+                                                ?.filter((option) => {
+                                                    return option?.price;
+                                                })
+                                                ?.map((item) => (
+                                                    <>
+                                                        <div className="flex gap-3 items-center justify-between">
+                                                            <Checkbox
+                                                                key={item?._id}
+                                                                color="red"
+                                                                className="inline-flex"
+                                                                label={
+                                                                    item?.label
+                                                                }
+                                                                checked={selectedAddons?.includes(
+                                                                    item?._id
+                                                                )}
+                                                                onChange={() =>
+                                                                    addOnsHandler(
+                                                                        item?._id
+                                                                    )
+                                                                }
+                                                                on
+                                                            />
+                                                            <b className="text-blue-500">{`$${item?.price}`}</b>
+                                                        </div>
+                                                        <hr />
+                                                    </>
+                                                ))}
+                                        </div>
+                                    </div>
+                                ) : null}
+                                {/* : "No add ons available." */}
                             </div>
                             <ButtonGroup className="grid grid-cols-2 *:rounded-none">
                                 <Button
