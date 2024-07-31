@@ -197,28 +197,31 @@ export default function Cart(props) {
                                                         )}...`,
                                                     }}
                                                 /> */}
-                                                <div className="flex gap-2 text-gray-500 mb-2">
-                                                    <p>Add ons :</p>
-                                                    <div className="flex gap-2 text-gray-600 font-semibold">
-                                                        {item?.selected_add_ons?.map(
-                                                            (add_on) => (
-                                                                <span className="flex gap-1 underline">
-                                                                    {
-                                                                        add_on?.label
-                                                                    }
-                                                                    <p>
-                                                                        ($
+                                                {item?.selected_add_ons
+                                                    ?.length ? (
+                                                    <div className="flex gap-2 text-gray-500 mb-2">
+                                                        <p>Add ons :</p>
+                                                        <div className="flex gap-2 text-gray-600 font-semibold">
+                                                            {item?.selected_add_ons?.map(
+                                                                (add_on) => (
+                                                                    <span className="flex gap-1 underline">
                                                                         {
-                                                                            add_on?.price
+                                                                            add_on?.label
                                                                         }
-                                                                        )
-                                                                    </p>
-                                                                    ,
-                                                                </span>
-                                                            )
-                                                        )}
+                                                                        <p>
+                                                                            ($
+                                                                            {
+                                                                                add_on?.price
+                                                                            }
+                                                                            )
+                                                                        </p>
+                                                                        ,
+                                                                    </span>
+                                                                )
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                ) : null}
                                                 <div className="flex gap-2 text-gray-500 mb-3">
                                                     <p>Price :</p>
                                                     <H4 className="!text-tertiary">
