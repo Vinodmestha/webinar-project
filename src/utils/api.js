@@ -1,13 +1,15 @@
 import axios from "axios";
 
-const path = import.meta.env.VITE_API_URL;
 // const prefix = import.meta.env.VITE_URL_PREFIX;
 const prefix = "/api";
 
 let userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
 const requestHandler = (url, config) => {
-    let base_path = import.meta.env.VITE_API_BASE_URL ?? path + prefix + url;
+    let base_path =
+        import.meta.env.VITE_API_BASE_URL +
+        import.meta.env.VITE_API_PREFIX +
+        url;
 
     let headers = {
         Accept: "application/json",
