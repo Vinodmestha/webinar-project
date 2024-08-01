@@ -70,7 +70,8 @@ export default function Login(props) {
                 setAuthPage(false);
             })
             .then(() => {
-                props?.navigate("/");
+                // props?.navigate("/");
+                window.location.reload();
             })
             .catch((err) => {
                 console.log(err);

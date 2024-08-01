@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { minus, plus } from "../../../assets";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
-import { Calendar } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
     Tabs,
@@ -18,10 +18,14 @@ import { H1, H3, H4, H5 } from "../../../components/Typography";
 import { Container, IconButton } from "../../../components/";
 
 import { postAPI } from "../../../utils/api";
-import useCartCount from "../../../utils/helpers/useCartCount";
+// import useCartCount from "../../../utils/helpers/useCartCount";
 import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
+import { UserContext } from "../../../store/UserContext";
 
 export default function WebinarDetails(props) {
+    const { authModal, setAuthPage } = useContext(UserContext);
+
+    // console.log(authModal);
     const navigate = useNavigate();
     const [state, setState] = useState({
         detailsData: {},
@@ -42,7 +46,7 @@ export default function WebinarDetails(props) {
         currentWebinarName = params?.get("name");
 
     useEffect(() => {
-        // window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
         setState((prev) => {
             return { ...prev, detailsLoading: true };
         });
@@ -76,7 +80,7 @@ export default function WebinarDetails(props) {
         quantity,
     } = state;
 
-    const { cartCountHandler } = useCartCount();
+    // const { cartCountHandler } = useCartCount();
 
     const addOnsHandler = (id) => {
         let selected = [...selectedAddons];
@@ -126,6 +130,11 @@ export default function WebinarDetails(props) {
                     },
                 });
             })
+            .catch((err) => {
+                if (err?.response?.status === 401) {
+                    setAuthPage(true, "login");
+                }
+            })
             .finally(() => {
                 setState((prev) => {
                     return { ...prev, buyLoading: false };
@@ -143,7 +152,12 @@ export default function WebinarDetails(props) {
             quantity: quantity,
         })
             .then((res) => {
-                cartCountHandler();
+                // cartCountHandler();
+            })
+            .catch((err) => {
+                if (err?.response?.status === 401) {
+                    setAuthPage(true, "login");
+                }
             })
             .finally(() => {
                 setState((prev) => {
@@ -177,7 +191,10 @@ export default function WebinarDetails(props) {
                                         )?.toLocaleDateString()}
                                     </p>
                                 </span>
-                                <span></span>
+                                {/* <span>
+                                    <Clock color="#f33066" />
+                                    <p>{detailsData?.time}</p>
+                                </span> */}
                             </div>
                             <p
                                 className="text-[15px] text-gray-500"
@@ -225,10 +242,10 @@ export default function WebinarDetails(props) {
                                                             };
                                                         })
                                                     }
-                                                    className={`flex-[0_0_150px] h-[60px] whitespace-nowrap  px-2.5 py-0 max-w-[400px] ${
+                                                    className={`flex-[0_0_150px] font-semibold  h-[60px] whitespace-nowrap  px-2.5 py-0 max-w-[400px] ${
                                                         activeTab ===
                                                         item?.value
-                                                            ? "text-tertiary bg-"
+                                                            ? "text-tertiary bg-gray-300"
                                                             : "text-gray-900"
                                                     }`}
                                                 >

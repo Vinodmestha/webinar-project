@@ -11,7 +11,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { navMenu } from "../../db/dummy";
-import { H1, H4 } from "../../components/Typography";
+import { H4 } from "../../components/Typography";
 import {
     Button,
     MenuCard,
@@ -24,12 +24,11 @@ import Auth from "../../auth";
 import { UserContext } from "../../store/UserContext";
 import useTypes from "../../utils/helpers/useTypes";
 import useLogout from "../../utils/helpers/useLogout";
-import useCartCount from "../../utils/helpers/useCartCount";
+// import useCartCount from "../../utils/helpers/useCartCount";
 import useClickOutside from "../../utils/helpers/useClickOutside";
 
 export default function NavbarContent(props) {
-    const { userInfo, isLoggedIn, authModal, authPage, setAuthPage } =
-        useContext(UserContext);
+    const { userInfo, isLoggedIn, setAuthPage } = useContext(UserContext);
 
     const [state, setState] = useState({
         menuChild: false,
@@ -65,10 +64,10 @@ export default function NavbarContent(props) {
     const { typesData, typesLoading } = useTypes();
     const { logoutHandler, logoutLoading } = useLogout();
 
-    const { cartCount, cartCountHandler } = useCartCount();
+    // const { cartCount, cartCountHandler } = useCartCount();
     let count = localStorage.getItem("cart-count");
     useEffect(() => {
-        cartCountHandler();
+        // if (isLoggedIn) cartCountHandler();
     }, [count]);
 
     const navLinks = [
@@ -201,7 +200,7 @@ export default function NavbarContent(props) {
                     >
                         <img src={cartIcon} alt="cart" className="w-20 h-11 " />
                         <p className="absolute -top-1 right-6 bg-tertiary text-white font-axiSemiBold rounded-full w-fit px-2">
-                            {cartCount}
+                            {/* {cartCount} */}
                         </p>
                     </figure>
 

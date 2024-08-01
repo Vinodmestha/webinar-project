@@ -12,6 +12,7 @@ import Cart from "./Cart/Cart";
 import { navLinks } from "../../db/dummy";
 import BackNavigate from "../../components/UI/BackNavigate";
 import Speakers from "./Home/components/Speakers";
+import ResultPages from "../../components/Layout/ResultPages";
 
 export default function MainRoutes(props) {
     const [state, setState] = useState({ title: "" });
@@ -36,6 +37,7 @@ export default function MainRoutes(props) {
             children: [
                 { path: "", element: <Webinars /> },
                 { path: "checkout", element: <Cart /> },
+                { path: "checkout/result", element: <ResultPages /> },
                 { path: ":key", element: <WebinarDetails /> },
             ],
         },

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import webinarDummy from "../../../assets/home/webinarDummy.jpg";
+import React, { useContext, useEffect, useState } from "react";
 import { minus, plus } from "../../../assets";
+import webinarDummy from "../../../assets/home/webinarDummy.jpg";
+import { UserContext } from "../../../store/UserContext";
 
 import { Trash2 } from "lucide-react";
 import { Button } from "@material-tailwind/react";
@@ -20,6 +21,7 @@ import { cartURL, expressCartURL, orderURL } from "../../../utils/endpoints";
 import Paypal from "../../../Payments/Paypal";
 
 export default function Cart(props) {
+    const { isLoggedIn, setAuthPage } = useContext(UserContext);
     const navigate = useNavigate(),
         location = useLocation();
     const [state, setState] = useState({
@@ -32,21 +34,26 @@ export default function Cart(props) {
     let expressCart = navigateData?.cartType === "express";
 
     useEffect(() => {
-        if (expressCart) {
-            setState((prev) => {
-                return { ...prev, cartData: navigateData?.cartData ?? {} };
-            });
-        } else {
-            getAPI(cartURL?.CART_SUMMARY).then((res) => {
+        if (isLoggedIn) {
+            if (expressCart) {
                 setState((prev) => {
-                    return {
-                        ...prev,
-                        cartData: res?.data?.data?.cart_details ?? {},
-                    };
+                    return { ...prev, cartData: navigateData?.cartData ?? {} };
                 });
-            });
+            } else {
+                getAPI(cartURL?.CART_SUMMARY).then((res) => {
+                    setState((prev) => {
+                        return {
+                            ...prev,
+                            cartData: res?.data?.data?.cart_details ?? {},
+                        };
+                    });
+                });
+            }
+        } else {
+            setAuthPage(true, "login");
+            navigate("/");
         }
-    }, []);
+    }, [isLoggedIn]);
 
     const { cartData, itemLoaders } = state;
 

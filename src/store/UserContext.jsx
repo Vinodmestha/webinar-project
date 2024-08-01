@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 export const UserContext = createContext();
 
@@ -52,4 +52,9 @@ export const UserProvider = ({ children }) => {
             {children}
         </UserContext.Provider>
     );
+};
+
+// Custom hook to use the context
+export const useMyContext = () => {
+    return useContext(UserContext);
 };

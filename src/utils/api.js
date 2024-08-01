@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { apiErrorHandler } from "./validators";
 
 // const prefix = import.meta.env.VITE_URL_PREFIX;
 const prefix = "/api";
@@ -34,7 +35,7 @@ export const getAPI = async (url, config) => {
                 resolve(response);
             })
             .catch((error) => {
-                // Message.error(error?.response?.data?.message);
+                // apiErrorHandler(error);
                 reject(error);
             });
     });
@@ -52,6 +53,7 @@ export const postAPI = async (url, data, config) => {
             })
             .catch((error) => {
                 reject(error);
+                // apiErrorHandler(error);
             });
     });
     return result;
