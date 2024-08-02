@@ -141,11 +141,11 @@ export default function Cart(props) {
     };
 
     const placeOrder = (id) => {
-        console.log(id);
-
-        postAPI(orderURL?.CREATE_ORDER, { cart_id: id }).then((res) => {
-            console.log(res);
-        });
+        // console.log(id);
+        // setState();
+        // postAPI(orderURL?.CREATE_ORDER, { cart_id: id }).then((res) => {
+        //     console.log(res);
+        // });
     };
 
     return (

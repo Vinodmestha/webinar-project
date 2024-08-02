@@ -1,107 +1,25 @@
 import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
+import { postAPI } from "../utils/api";
+import { orderURL } from "../utils/endpoints";
 
-// import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
-// export default function Paypal(props) {
-//     const paypalOptions = {
-//         "client-id":
-//             "AfYIpFusbeV_OX-UFTxEJpGiEW23-ME3RnPLDg1uw8DKQr_P0Rsan6HcTDUm10Q32cABi7ZKSUq_Y_j8",
-//         currency: "USD",
-//     };
-
-//     const handleError = (err) => {
-//         // Handle payment error
-//     };
-
-//     const handleCancel = (data) => {
-//         // Handle payment cancellation
-//     };
-
-//     useEffect(() => {
-//         // let script = document.createElement("script");
-//         // script.defer = true;
-//         // script.src = `https://www.paypal.com/sdk/js?client-id=${paypalOptions?.["client-id"]}`;
-//     }, []);
-
-//     const createOrder = (data) => {
-//         // Order is created on the server and the order id is returned
-//         return fetch("/my-server/create-paypal-order", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
+// async (data, actions) => {
+//     props?.placeOrder(props?.cartData?.cart_id);
+//     return actions.order.create({
+//         purchase_units: [
+//             {
+//                 amount: {
+//                     value: props?.cartData?.grand_total, // Specify the payment amount
+//                 },
 //             },
-//             // use the "body" param to optionally pass additional order information
-//             // like product skus and quantities
-//             body: JSON.stringify({
-//                 cart: [
-//                     {
-//                         sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
-//                         quantity: "YOUR_PRODUCT_QUANTITY",
-//                     },
-//                 ],
-//             }),
-//         })
-//             .then((response) => response.json())
-//             .then((order) => order.id);
-//     };
-//     const handleApprove = (data) => {
-//         // Order is captured on the server and the response is returned to the browser
-//         return fetch("/my-server/capture-paypal-order", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//                 orderID: data.orderID,
-//             }),
-//         }).then((response) => response.json());
-//     };
-
-//     return (
-//         <PayPalScriptProvider options={paypalOptions}>
-//             <PayPalButtons
-//                 className="  z-[1000]"
-//                 createOrder={(data, actions) => {
-//                     return actions.order.create({
-//                         purchase_units: [
-//                             {
-//                                 amount: {
-//                                     value: "10.00",
-//                                 },
-//                             },
-//                         ],
-//                     });
-//                 }}
-//                 onApprove={handleApprove}
-//                 onError={handleError}
-//                 onCancel={handleCancel}
-//             />
-//         </PayPalScriptProvider>
-//     );
-// }
-
-const createOrder = () => {
-    async () => {
-        try {
-            const response = await fetch("/create-order", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                // use the "body" param to optionally pass additional order information
-                // like product ids and quantities
-                body: JSON.stringify({
-                    cart: [
-                        {
-                            id: "YOUR_PRODUCT_ID",
-                            quantity: 1,
-                        },
-                    ],
-                }),
-            });
-
-            const orderData = await response.json();
+//         ],
+//     });
+// },
+const createOrder = async (cart_id) => {
+    try {
+        return postAPI(orderURL?.CREATE_ORDER, {
+            cart_id: cart_id,
+        }).then((res) => {
+            const orderData = res.data;
 
             if (orderData.id) {
                 return orderData.id;
@@ -113,63 +31,67 @@ const createOrder = () => {
 
                 throw new Error(errorMessage);
             }
-        } catch (error) {
-            console.error(error);
-            setMessage(`Could not initiate PayPal Checkout...${error}`);
-        }
-    };
+        });
+    } catch (error) {
+        setMessage(`Could not initiate PayPal Checkout...${error}`);
+    }
 };
-
-const onApprove = () => {
-    async (data, actions) => {
-        try {
-            const response = await fetch(`/orders/${data.orderID}/capture`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            const orderData = await response.json();
-            // Three cases to handle:
-            //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-            //   (2) Other non-recoverable errors -> Show a failure message
-            //   (3) Successful transaction -> Show confirmation or thank you message
-
-            const errorDetail = orderData?.details?.[0];
-            console.log(errorDetail);
-            if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
-                return actions.restart();
-            } else if (errorDetail) {
-                throw new Error(
-                    `${errorDetail.description} (${orderData.debug_id})`
-                );
-            } else {
-                console.log("console1");
-                const transaction =
-                    orderData.purchase_units[0].payments.captures[0];
-                console.log("console2");
-                setMessage(
-                    `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
-                );
-                console.log(
-                    "Capture result",
-                    orderData,
-                    JSON.stringify(orderData, null, 2)
-                );
-                navigate(`/webinars/checkout/result`);
+// async (data, actions) => {
+//     return actions.order
+//         .capture()
+//         .then(function (details) {
+//             // Display a success message or redirect to a success page
+//             console.log(
+//                 "Payment completed successfully:",
+//                 details
+//             );
+//             navigate(`/webinars/checkout/result`);
+//         });
+// },
+const onApprove = async (data, actions) => {
+    console.log("onApprove>>>", data);
+    try {
+        postAPI(orderURL?.APPROVE_PAYMENT, { order_id: data?.orderID }).then(
+            (res) => {
+                console.log("approved", res);
+                console.log("actions", actions);
             }
-        } catch (error) {
-            console.error(error);
-            setMessage(
-                `Sorry, your transaction could not be processed...${error}`
-            );
-        }
-    };
+        );
+
+        // const orderData = await response.json();
+
+        // const errorDetail = orderData?.details?.[0];
+        // console.log(errorDetail);
+        // if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+        //     return actions.restart();
+        // } else if (errorDetail) {
+        //     throw new Error(
+        //         `${errorDetail.description} (${orderData.debug_id})`
+        //     );
+        // } else {
+        //     console.log("console1");
+        //     const transaction =
+        //         orderData.purchase_units[0].payments.captures[0];
+        //     console.log("console2");
+        //     setMessage(
+        //         `Transaction ${transaction.status}: ${transaction.id}. See console for all available details`
+        //     );
+        //     console.log(
+        //         "Capture result",
+        //         orderData,
+        //         JSON.stringify(orderData, null, 2)
+        //     );
+        //     navigate(`/webinars/checkout/result`);
+        // }
+    } catch (error) {
+        console.error(error);
+        setMessage(`Sorry, your transaction could not be processed...${error}`);
+    }
 };
 
 const Paypal = (props) => {
     console.log(props);
+
     useEffect(() => {
         const initializePayPalButton = () => {
             window.paypal
@@ -180,43 +102,18 @@ const Paypal = (props) => {
                         shape: "rect", // 'rect', 'pill'
                         label: "pay", // 'paypal', 'checkout', 'pay', 'buynow', 'installment'
                     },
-                    createOrder:
-                        // createOrder(),
-                        async (data, actions) => {
-                            props?.placeOrder(props?.cartData?.cart_id);
-                            return actions.order.create({
-                                purchase_units: [
-                                    {
-                                        amount: {
-                                            value: props?.cartData?.grand_total, // Specify the payment amount
-                                        },
-                                    },
-                                ],
-                            });
-                        },
-                    onApprove: onApprove(),
-                    // async (data, actions) => {
-                    //     return actions.order
-                    //         .capture()
-                    //         .then(function (details) {
-                    //             // Display a success message or redirect to a success page
-                    //             console.log(
-                    //                 "Payment completed successfully:",
-                    //                 details
-                    //             );
-                    //             navigate(`/webinars/checkout/result`);
-                    //         });
-                    // },
-                    // onCancel: function (data) {
-                    //     // Handle payment cancellation
-                    //     console.log("Payment cancelled:", data);
-                    // },
-                    // onError: function (err) {
-                    //     // Handle errors
-                    //     console.error("Error:", err);
-                    // },
+                    createOrder: () => createOrder(props?.cartData?.cart_id),
+
+                    onApprove: onApprove,
+
+                    onCancel: (data) => {
+                        console.log("Payment cancelled:", data);
+                    },
+                    onError: (err) => {
+                        console.error("Error:", err);
+                    },
                 })
-                .render("#orderNowButton"); // Render the PayPal button inside the "Order Now" button
+                .render("#orderNowButton");
         };
 
         // Load PayPal SDK script
@@ -237,51 +134,5 @@ const Paypal = (props) => {
 
     return <div id="orderNowButton" className="mt-5" />;
 };
-
-// function Paypal() {
-//     const PayPalButton = paypal.Buttons.driver("react", {
-//         React,
-//         ReactDOM,
-//     });
-//     const createOrder = async (data) => {
-//         // Order is created on the server and the order id is returned
-//         return fetch("/my-server/create-paypal-order", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             // use the "body" param to optionally pass additional order information
-//             // like product skus and quantities
-//             body: JSON.stringify({
-//                 cart: [
-//                     {
-//                         sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
-//                         quantity: "YOUR_PRODUCT_QUANTITY",
-//                     },
-//                 ],
-//             }),
-//         })
-//             .then((response) => response.json())
-//             .then((order) => order.id);
-//     };
-//     const onApprove = async (data) => {
-//         // Order is captured on the server and the response is returned to the browser
-//         return fetch("/my-server/capture-paypal-order", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//                 orderID: data.orderID,
-//             }),
-//         }).then((response) => response.json());
-//     };
-//     return (
-//         <PayPalButton
-//             createOrder={(data) => createOrder(data, actions)}
-//             onApprove={(data) => onApprove(data, actions)}
-//         />
-//     );
-// }
 
 export default Paypal;

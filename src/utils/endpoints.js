@@ -39,4 +39,5 @@ export const cartURL = {
 
 export const orderURL = {
     CREATE_ORDER: "/cart/create-order",
+    APPROVE_PAYMENT: `/cart/capture-order`,
 };
