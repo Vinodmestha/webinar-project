@@ -94,8 +94,8 @@ const Paypal = (props) => {
 
     useEffect(() => {
         const initializePayPalButton = () => {
-            window.paypal
-                .Buttons({
+            window?.paypal
+                ?.Buttons({
                     style: {
                         layout: "horizontal", // 'horizontal' (default) or 'vertical'
                         color: "gold", // 'gold', 'blue', 'silver', 'black'

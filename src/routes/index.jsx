@@ -5,6 +5,7 @@ import { useRoutes } from "react-router-dom";
 import Auth from "../auth";
 import MainRoutes from "./MainRoutes";
 import NavbarRoutes from "./NavbarRoutes";
+import FooterRoutes from "./FooterRoutes";
 
 export default function Routes(props) {
     const routes = useRoutes([
@@ -14,7 +15,19 @@ export default function Routes(props) {
         },
         {
             path: "/*",
-            element: [<MainRoutes {...props} />, <NavbarRoutes />],
+            // children: [
+            //     {
+            //         path: "*",
+            //         element: <FooterRoutes {...props} />,
+            //     },
+            //     { path: "*", element: <MainRoutes {...props} /> },
+            //     { path: "*", element: <NavbarRoutes {...props} /> },
+            // ],
+            element: [
+                <MainRoutes {...props} />,
+                <NavbarRoutes {...props} />,
+                <FooterRoutes {...props} />,
+            ],
         },
     ]);
     return <main className="">{routes}</main>;

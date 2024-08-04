@@ -154,48 +154,47 @@ export default function Cart(props) {
                 <div className="grid grid-cols-[1fr_0.65fr] gap-4">
                     <section className="w-full px-4 rounded flex flex-col gap-5">
                         {cartData?.items?.map((item, i) => (
-                            <>
-                                <div
-                                    key={item?._id}
-                                    className="flex items-center justify-between gap-5 rounded p-2 bg-gray-50 border border-gray-300"
-                                >
-                                    <figure className="">
-                                        <img
-                                            src={webinarDummy}
-                                            alt={item?.slug}
-                                            className="size-32 rounded"
-                                        />
-                                    </figure>
-                                    <div className="w-full">
-                                        <div className="w-full flex items-start justify-between">
-                                            <H3 className="capitalize">
-                                                {item?.title}
-                                            </H3>
-                                            {expressCart ? null : (
-                                                <>
-                                                    {itemLoaders.removeLoaders[
-                                                        i
-                                                    ] ? (
-                                                        <DotedLoader />
-                                                    ) : (
-                                                        <Trash2
-                                                            onClick={() =>
-                                                                removeItemHandler(
-                                                                    i,
-                                                                    item?._id
-                                                                )
-                                                            }
-                                                            color="red"
-                                                            size={25}
-                                                            className="cursor-pointer hover:aimate-bounce"
-                                                        />
-                                                    )}
-                                                </>
-                                            )}
-                                        </div>
-                                        <div className="flex items-center justify-between gap-4">
-                                            <div>
-                                                {/* <p
+                            <div
+                                key={item?._id}
+                                className="flex items-center justify-between gap-5 rounded p-2 bg-gray-50 border border-gray-300"
+                            >
+                                <figure className="">
+                                    <img
+                                        src={webinarDummy}
+                                        alt={item?.slug}
+                                        className="size-32 rounded"
+                                    />
+                                </figure>
+                                <div className="w-full">
+                                    <div className="w-full flex items-start justify-between">
+                                        <H3 className="capitalize">
+                                            {item?.title}
+                                        </H3>
+                                        {expressCart ? null : (
+                                            <>
+                                                {itemLoaders.removeLoaders[
+                                                    i
+                                                ] ? (
+                                                    <DotedLoader />
+                                                ) : (
+                                                    <Trash2
+                                                        onClick={() =>
+                                                            removeItemHandler(
+                                                                i,
+                                                                item?._id
+                                                            )
+                                                        }
+                                                        color="red"
+                                                        size={25}
+                                                        className="cursor-pointer hover:aimate-bounce"
+                                                    />
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div>
+                                            {/* <p
                                                     className="text-[15px] text-gray-500"
                                                     dangerouslySetInnerHTML={{
                                                         __html: `${item?.description?.slice(
@@ -204,93 +203,87 @@ export default function Cart(props) {
                                                         )}...`,
                                                     }}
                                                 /> */}
-                                                {item?.selected_add_ons
-                                                    ?.length ? (
-                                                    <div className="flex gap-2 text-gray-500 mb-2">
-                                                        <p>Add ons :</p>
-                                                        <div className="flex gap-2 text-gray-600 font-semibold">
-                                                            {item?.selected_add_ons?.map(
-                                                                (add_on) => (
-                                                                    <span className="flex gap-1 underline">
+                                            {item?.selected_add_ons?.length ? (
+                                                <div className="flex gap-2 text-gray-500 mb-2">
+                                                    <p>Add ons :</p>
+                                                    <div className="flex gap-2 text-gray-600 font-semibold">
+                                                        {item?.selected_add_ons?.map(
+                                                            (add_on) => (
+                                                                <span className="flex gap-1 underline">
+                                                                    {
+                                                                        add_on?.label
+                                                                    }
+                                                                    <p>
+                                                                        ($
                                                                         {
-                                                                            add_on?.label
+                                                                            add_on?.price
                                                                         }
-                                                                        <p>
-                                                                            ($
-                                                                            {
-                                                                                add_on?.price
-                                                                            }
-                                                                            )
-                                                                        </p>
-                                                                        ,
-                                                                    </span>
-                                                                )
-                                                            )}
-                                                        </div>
+                                                                        )
+                                                                    </p>
+                                                                    ,
+                                                                </span>
+                                                            )
+                                                        )}
                                                     </div>
-                                                ) : null}
-                                                <div className="flex gap-2 text-gray-500 mb-3">
-                                                    <p>Price :</p>
-                                                    <H4 className="!text-tertiary">
-                                                        ${item?.price}
-                                                    </H4>
                                                 </div>
+                                            ) : null}
+                                            <div className="flex gap-2 text-gray-500 mb-3">
+                                                <p>Price :</p>
+                                                <H4 className="!text-tertiary">
+                                                    ${item?.price}
+                                                </H4>
                                             </div>
-                                            <div className="flex flex-col">
-                                                <div className="flex items-center justify-between gap-4">
-                                                    <IconButton
-                                                        icon={minus}
-                                                        value="-"
-                                                        loading={
-                                                            itemLoaders[i] ===
-                                                            "dec"
-                                                        }
-                                                        onClick={() =>
-                                                            updateItems(
-                                                                item?._id,
-                                                                i,
-                                                                "dec",
-                                                                item?.quantity -
-                                                                    1
-                                                            )
-                                                        }
-                                                    />
-                                                    <button
-                                                        disabled
-                                                        className="text-2xl font-semibold text-tertiary"
-                                                    >
-                                                        {item?.quantity}
-                                                    </button>
-                                                    <IconButton
-                                                        icon={plus}
-                                                        value="+"
-                                                        loading={
-                                                            itemLoaders[i] ===
-                                                            "inc"
-                                                        }
-                                                        onClick={() =>
-                                                            updateItems(
-                                                                item?._id,
-                                                                i,
-                                                                "inc",
-                                                                item?.quantity +
-                                                                    1
-                                                            )
-                                                        }
-                                                    />
-                                                </div>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <div className="flex items-center justify-between gap-4">
+                                                <IconButton
+                                                    icon={minus}
+                                                    value="-"
+                                                    loading={
+                                                        itemLoaders[i] === "dec"
+                                                    }
+                                                    onClick={() =>
+                                                        updateItems(
+                                                            item?._id,
+                                                            i,
+                                                            "dec",
+                                                            item?.quantity - 1
+                                                        )
+                                                    }
+                                                />
+                                                <button
+                                                    disabled
+                                                    className="text-2xl font-semibold text-tertiary"
+                                                >
+                                                    {item?.quantity}
+                                                </button>
+                                                <IconButton
+                                                    icon={plus}
+                                                    value="+"
+                                                    loading={
+                                                        itemLoaders[i] === "inc"
+                                                    }
+                                                    onClick={() =>
+                                                        updateItems(
+                                                            item?._id,
+                                                            i,
+                                                            "inc",
+                                                            item?.quantity + 1
+                                                        )
+                                                    }
+                                                />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {/* <hr
-                                    className={`${
-                                        cartData?.items?.length === i + 1
-                                            ? "hidden"
-                                            : ""
-                                    } border-gray-700`}
-                                /> */}
-                            </>
+                            </div>
+                            //  <hr
+                            //     className={`${
+                            //         cartData?.items?.length === i + 1
+                            //             ? "hidden"
+                            //             : ""
+                            //     } border-gray-700`}
+                            // />
                         ))}
                     </section>
                     <section>

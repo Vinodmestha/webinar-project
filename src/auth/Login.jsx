@@ -9,7 +9,7 @@ import { authURL } from "../utils/endpoints";
 export default function Login(props) {
     const { handleLogin, setAuthPage } = useContext(UserContext);
     const [state, setState] = useState({
-        inputData: { email: "", password: "" },
+        inputData: { email: "test@abc.com", password: "test" },
         errorData: { email: "", password: "" },
         loginLoading: false,
     });
@@ -70,7 +70,6 @@ export default function Login(props) {
                 setAuthPage(false);
             })
             .then(() => {
-                // props?.navigate("/");
                 window.location.reload();
             })
             .catch((err) => {

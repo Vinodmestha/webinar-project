@@ -9,7 +9,7 @@ export default function PaymentGateways({ paymentGateways, currentGateway }) {
             <H4>Payment methods</H4>
             <hr className="border-gray-600" />
             {paymentGateways?.map((item) => (
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center gap-2 mt-4" key={item?._id}>
                     <input
                         type="radio"
                         className="!rounded-lg size-5"

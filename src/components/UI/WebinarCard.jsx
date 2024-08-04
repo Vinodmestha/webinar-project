@@ -9,8 +9,8 @@ import { H4, H5 } from "../Typography";
 export default function WebinarCard({ data, ...props }) {
     let navigate = useNavigate();
 
-    const redirectToDetails = (id, title, type) => {
-        navigate(`/webinars/details?_id=${id}&name=${title}`, {
+    const redirectToDetails = (id, slug, type) => {
+        navigate(`/webinars/details?_id=${id}&name=${slug}`, {
             state: {
                 typeName: type,
                 webinarId: id,
@@ -22,7 +22,7 @@ export default function WebinarCard({ data, ...props }) {
         <div
             className="rounded-md hover:shadow-2xl transition-all duration-300 border cursor-pointer shadow-lg"
             onClick={() =>
-                redirectToDetails(data?._id, data?.title, data?.category[0])
+                redirectToDetails(data?._id, data?.slug, data?.category[0])
             }
             key={data?._id}
         >

@@ -44,13 +44,26 @@ export const H5 = ({ children, className }) => {
         </h5>
     );
 };
-
+export const H6 = ({ children, className }) => {
+    return (
+        <h5 className={`text-[17px] font-axiSemiBold  ${className}`}>
+            {children}
+        </h5>
+    );
+};
 export const SubHeading = ({ children, className, ...props }) => {
     return (
         <h3
             className={`max-w-screen-lg mx-auto text-[18px] font-medium text-center text-gray-400 ${className}`}
             {...props}
         >
+            {children}
+        </h3>
+    );
+};
+export const CustomP = ({ children, className, ...props }) => {
+    return (
+        <h3 className={`text-[17px] font-axiSemiBold ${className}`} {...props}>
             {children}
         </h3>
     );

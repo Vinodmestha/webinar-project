@@ -96,25 +96,25 @@ export const socialIcons = [
     { id: 4, icon: linkedin, link: "" },
 ];
 export const footerPolicies = [
-    { id: 1, label: "Privacy Policy", slug: "" },
-    { id: 2, label: "Terms & Conditions", slug: "" },
-    { id: 3, label: "Support", slug: "" },
+    { id: 1, label: "Privacy Policy", slug: "privacy-policy" },
+    { id: 2, label: "Terms & Conditions", slug: "terms-and-conditions" },
+    // { id: 3, label: "Support", slug: "" },
 ];
 export const footerServices = [
-    { id: 1, label: "Email Marketing", slug: "" },
-    { id: 2, label: "Campaigns", slug: "" },
-    { id: 3, label: "Event", slug: "" },
-    { id: 4, label: "Business", slug: "" },
+    { id: 1, label: "Up Coming", slug: "upcoming" },
+    { id: 2, label: "Pre Recorded", slug: "recorded" },
+    { id: 3, label: "On Demand", slug: "on-demand" },
+    { id: 4, label: "CEU Approved", slug: "ceu-approved" },
 ];
 export const footerAbout = [
-    { id: 1, label: "Our Story", slug: "" },
-    { id: 2, label: "Benefits", slug: "" },
-    { id: 3, label: "Team", slug: "" },
-    { id: 4, label: "Careers", slug: "" },
+    // { id: 1, label: "Our Story", slug: "" },
+    // { id: 2, label: "Benefits", slug: "" },
+    { id: 3, label: "Speakers", slug: "speakers" },
+    // { id: 4, label: "Careers", slug: "" },
 ];
 export const footerHelp = [
     { id: 1, label: "FAQs", slug: "" },
-    { id: 2, label: "Contact Us", slug: "" },
+    // { id: 2, label: "Contact Us", slug: "" },
 ];
 
 export const navMenu = [

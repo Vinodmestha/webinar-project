@@ -13,6 +13,7 @@ import {
 import { H4, H5 } from "../../components/Typography";
 
 const Footer = (props) => {
+    console.log(props);
     return (
         <div className="bg-[#1d2636]">
             <Container className="grid grid-cols-2 justify-between lg:py-20 lg:px-5">
@@ -21,18 +22,18 @@ const Footer = (props) => {
                         Empowering learning <br />
                         through live webinars
                     </h2>
-                    <RedirectionButton
+                    {/* <RedirectionButton
                         label=" Download Webinar Now"
                         redirectLink="/"
-                    />
+                    /> */}
                 </div>
                 <div className="flex justify-end lg:gap-28">
                     <div className="flex flex-col gap-2.5">
-                        <H4>Services</H4>
+                        <H4>Webinars</H4>
                         {footerServices?.map((item) => (
                             <Link
                                 key={item?.id}
-                                to={item?.slug}
+                                to={`webinars?type=${item?.slug}`}
                                 className="font-medium text-gray-400"
                             >
                                 {item?.label}
@@ -40,7 +41,7 @@ const Footer = (props) => {
                         ))}
                     </div>
                     <div className="flex flex-col gap-2.5">
-                        <H4>About</H4>
+                        <H4>Information</H4>
                         {footerAbout?.map((item) => (
                             <Link
                                 key={item?.id}
@@ -51,7 +52,7 @@ const Footer = (props) => {
                             </Link>
                         ))}
                     </div>
-                    <div className="flex flex-col gap-2.5">
+                    {/* <div className="flex flex-col gap-2.5">
                         <H4>Help</H4>
                         {footerHelp?.map((item) => (
                             <Link
@@ -62,7 +63,7 @@ const Footer = (props) => {
                                 {item?.label}
                             </Link>
                         ))}
-                    </div>
+                    </div> */}
                 </div>
             </Container>
             <section className="lg:p-5 !text-white bg-black">
@@ -86,7 +87,7 @@ const Footer = (props) => {
                             ))}
                         </div>
                     </div>
-                    <p>&copy; Webinar All rights reserved </p>
+                    <p>&copy; US - CPE All rights reserved </p>
                 </Container>
             </section>
         </div>

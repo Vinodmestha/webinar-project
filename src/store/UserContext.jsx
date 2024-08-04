@@ -8,11 +8,13 @@ export const UserProvider = ({ children }) => {
             ? JSON.parse(localStorage.getItem("userInfo"))
             : null,
         isLoggedIn: !!JSON.parse(localStorage.getItem("isLoggedIn")),
+        redirectPending: !!JSON.parse(localStorage.getItem("redirectPending")),
         authModal: false,
         authPage: "",
     });
 
-    const { userInfo, isLoggedIn, authModal, authPage } = state;
+    const { userInfo, isLoggedIn, authModal, authPage, redirectPending } =
+        state;
 
     const handleLogin = (userInfo) => {
         setState((prev) => {
@@ -36,6 +38,12 @@ export const UserProvider = ({ children }) => {
         });
         // navigate(`/auth?action=${type}`);
     };
+    const handlePendingRedirect = (v) => {
+        setState((prev) => {
+            return { ...prev, redirectPending: v };
+        });
+        localStorage.setItem("redirectPending", v);
+    };
 
     return (
         <UserContext.Provider
@@ -47,6 +55,8 @@ export const UserProvider = ({ children }) => {
                 setAuthPage,
                 handleLogin,
                 handleLogout,
+                handlePendingRedirect,
+                redirectPending,
             }}
         >
             {children}

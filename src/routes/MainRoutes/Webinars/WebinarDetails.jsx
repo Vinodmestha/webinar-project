@@ -23,7 +23,13 @@ import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 import { UserContext } from "../../../store/UserContext";
 
 export default function WebinarDetails(props) {
-    const { authModal, setAuthPage } = useContext(UserContext);
+    const {
+        authModal,
+        isLoggedIn,
+        handlePendingRedirect,
+        redirectPending,
+        setAuthPage,
+    } = useContext(UserContext);
 
     // console.log(authModal);
     const navigate = useNavigate();
@@ -44,6 +50,16 @@ export default function WebinarDetails(props) {
         webinarId = location?.state?.webinarId;
     let currentWebinarId = params?.get("_id"),
         currentWebinarName = params?.get("name");
+
+    const {
+        detailsData,
+        detailsLoading,
+        activeTab,
+        addLoading,
+        buyLoading,
+        selectedAddons,
+        quantity,
+    } = state;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -70,15 +86,14 @@ export default function WebinarDetails(props) {
             });
     }, [location]);
 
-    const {
-        detailsData,
-        detailsLoading,
-        activeTab,
-        addLoading,
-        buyLoading,
-        selectedAddons,
-        quantity,
-    } = state;
+    console.log(detailsData, isLoggedIn, redirectPending);
+
+    useEffect(() => {
+        if (redirectPending && isLoggedIn && detailsData) {
+            console.log("again adding");
+            buyNowHandler();
+        }
+    }, [redirectPending, isLoggedIn, detailsData]);
 
     // const { cartCountHandler } = useCartCount();
 
@@ -108,10 +123,10 @@ export default function WebinarDetails(props) {
     };
 
     const buyNowHandler = () => {
-        // return alert("Will be Available soon!!");
         setState((prev) => {
             return { ...prev, buyLoading: true };
         });
+        console.log("buying again");
         postAPI(expressCartURL?.ADD_TO_CART, {
             _id: detailsData?._id,
             add_ons: selectedAddons,
@@ -119,7 +134,7 @@ export default function WebinarDetails(props) {
         })
             .then((res) => {
                 let responseData = res?.data?.data?.cart_details;
-
+                handlePendingRedirect(false);
                 navigate("/webinars/checkout", {
                     state: {
                         cartType: "express",
@@ -133,6 +148,7 @@ export default function WebinarDetails(props) {
             .catch((err) => {
                 if (err?.response?.status === 401) {
                     setAuthPage(true, "login");
+                    handlePendingRedirect(true);
                 }
             })
             .finally(() => {
