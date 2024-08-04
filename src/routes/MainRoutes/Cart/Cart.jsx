@@ -26,6 +26,7 @@ export default function Cart(props) {
         location = useLocation();
     const [state, setState] = useState({
         cartData: {},
+        orderData: {},
         paymentPage: false,
         itemLoaders: { removeLoaders: {} },
     });
@@ -55,7 +56,7 @@ export default function Cart(props) {
         }
     }, [isLoggedIn]);
 
-    const { cartData, itemLoaders } = state;
+    const { cartData, orderData, itemLoaders } = state;
 
     const updateItems = (id, index, type = "", quantity) => {
         setState((prev) => {
@@ -141,11 +142,32 @@ export default function Cart(props) {
     };
 
     const placeOrder = (id) => {
-        // console.log(id);
-        // setState();
-        // postAPI(orderURL?.CREATE_ORDER, { cart_id: id }).then((res) => {
-        //     console.log(res);
-        // });
+        return postAPI(orderURL?.CREATE_ORDER, {
+            cart_id: id,
+        })
+            .then((res) => {
+                let responseData = res?.data?.data;
+                setState((prev) => {
+                    return { ...prev, orderData: responseData };
+                });
+                if (responseData?.order_id) {
+                    return responseData?.order_id;
+                } else {
+                    const errorDetail = orderData?.details?.[0];
+                    const errorMessage = errorDetail
+                        ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+                        : JSON.stringify(orderData);
+
+                    throw new Error(errorMessage);
+                }
+            })
+            .catch((err) => {
+                if (err?.response?.status === 401) {
+                    setAuthPage(true, "login");
+                    // handlePendingRedirect(true);
+                }
+                Message.error(`Could not initiate PayPal Checkout...${err}`);
+            });
     };
 
     return (
@@ -288,7 +310,11 @@ export default function Cart(props) {
                     </section>
                     <section>
                         <CartSummary cartData={cartData} />
-                        <Paypal placeOrder={placeOrder} cartData={cartData} />
+                        <Paypal
+                            createOrder={placeOrder}
+                            cartData={cartData}
+                            orderData={orderData}
+                        />
                     </section>
                 </div>
             ) : (

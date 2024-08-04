@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { apiErrorHandler } from "./validators";
+import { apiErrorHandler } from "./validators";
 
 let userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -32,7 +32,7 @@ export const getAPI = async (url, config) => {
                 resolve(response);
             })
             .catch((error) => {
-                // apiErrorHandler(error);
+                apiErrorHandler(error);
                 reject(error);
             });
     });
@@ -50,7 +50,7 @@ export const postAPI = async (url, data, config) => {
             })
             .catch((error) => {
                 reject(error);
-                // apiErrorHandler(error);
+                apiErrorHandler(error);
             });
     });
     return result;

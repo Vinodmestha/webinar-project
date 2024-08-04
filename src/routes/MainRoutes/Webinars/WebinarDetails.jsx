@@ -23,15 +23,9 @@ import { cartURL, expressCartURL, webinarsURL } from "../../../utils/endpoints";
 import { UserContext } from "../../../store/UserContext";
 
 export default function WebinarDetails(props) {
-    const {
-        authModal,
-        isLoggedIn,
-        handlePendingRedirect,
-        redirectPending,
-        setAuthPage,
-    } = useContext(UserContext);
+    const { isLoggedIn, handlePendingRedirect, redirectPending, setAuthPage } =
+        useContext(UserContext);
 
-    // console.log(authModal);
     const navigate = useNavigate();
     const [state, setState] = useState({
         detailsData: {},
