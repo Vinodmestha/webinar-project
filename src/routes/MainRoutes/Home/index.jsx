@@ -14,7 +14,7 @@ export default function Home(props) {
             <HeroSection />
             {/* <TrustedBy /> */}
             <Webinars />
-            <WhyUs />
+            {/* <WhyUs /> */}
             <Speakers />
             {/* <Testimonials /> */}
             <ContactUs />

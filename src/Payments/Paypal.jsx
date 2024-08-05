@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { Message } from "../components";
 
 import { postAPI } from "../utils/api";
 import { orderURL } from "../utils/endpoints";
 
 const Paypal = (props) => {
-    console.log(props);
+    const navigate = useNavigate();
 
     const onApprove = async (data, actions) => {
-        console.log("onApprove>>>", data);
         try {
             postAPI(orderURL?.APPROVE_PAYMENT, {
                 order_id: data?.orderID,
             }).then((res) => {
-                console.log("approved", res);
-                console.log("actions", actions);
-                //     navigate(`/webinars/checkout/result`);
+                navigate(`/webinars/checkout/result`, {
+                    state: { resultData: res?.data?.data },
+                });
             });
 
             // if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
@@ -40,14 +41,13 @@ const Paypal = (props) => {
             //     );
             // }
         } catch (error) {
-            console.error(error);
             Message.error(`Sorry, your transaction could not be processed...`);
             // setMessage(
             //     `Sorry, your transaction could not be processed...${error}`
             // );
         }
     };
-    const { orderData } = props;
+
     useEffect(() => {
         const initializePayPalButton = () => {
             window?.paypal
@@ -83,7 +83,7 @@ const Paypal = (props) => {
 
         // Clean up
         return () => {
-            document.body.removeChild(script);
+            // document.body.removeChild(script);
         };
     }, []);
 

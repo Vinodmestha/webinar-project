@@ -29,9 +29,6 @@ export default function MainRoutes(props) {
     }, [path]);
 
     const routes = useRoutes([
-        { path: "/", element: <Home /> },
-        { path: "/about", element: <AboutUs /> },
-        { path: "/contact-us", element: <ContactUs /> },
         {
             path: "webinars",
             children: [
@@ -53,9 +50,9 @@ export default function MainRoutes(props) {
     ]);
     return (
         <div className="">
-            {window.location?.pathname !== "/" ? (
+            {/* {window.location?.pathname !== "/" ? (
                 <BackNavigate backLabel={state?.title} />
-            ) : null}
+            ) : null} */}
             {routes}
         </div>
     );

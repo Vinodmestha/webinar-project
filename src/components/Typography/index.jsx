@@ -39,14 +39,14 @@ export const H4 = ({ children, className }) => {
 };
 export const H5 = ({ children, className }) => {
     return (
-        <h5 className={`text-[15px] font-axiMedium text-white ${className}`}>
+        <h5 className={`text-[15px] font-axiMedium text-whit ${className}`}>
             {children}
         </h5>
     );
 };
 export const H6 = ({ children, className }) => {
     return (
-        <h5 className={`text-[17px] font-axiSemiBold  ${className}`}>
+        <h5 className={`text-[14px] font-axiSemiBold ${className}`}>
             {children}
         </h5>
     );

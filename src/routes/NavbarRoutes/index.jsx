@@ -5,6 +5,9 @@ import { navLinks } from "../../db/dummy";
 import { BackNavigate } from "../../components/UI";
 
 import Profile from "./Profile";
+import Home from "../MainRoutes/Home";
+import AboutUs from "../MainRoutes/AboutUs";
+import ContactUs from "../../components/Layout/ContactUs";
 
 export default function NavbarRoutes(props) {
     const [state, setState] = useState({ title: "" });
@@ -21,6 +24,9 @@ export default function NavbarRoutes(props) {
     }, [path]);
 
     const routes = useRoutes([
+        { path: "/", element: <Home /> },
+        { path: "/about", element: <AboutUs /> },
+        { path: "/contact-us", element: <ContactUs /> },
         { path: "/profile", element: <Profile /> },
         { path: "/orders", element: <Profile /> },
 
