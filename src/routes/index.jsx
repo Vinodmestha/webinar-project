@@ -15,14 +15,6 @@ export default function Routes(props) {
         },
         {
             path: "/*",
-            // children: [
-            //     {
-            //         path: "*",
-            //         element: <FooterRoutes {...props} />,
-            //     },
-            //     { path: "*", element: <MainRoutes {...props} /> },
-            //     { path: "*", element: <NavbarRoutes {...props} /> },
-            // ],
             element: [
                 <MainRoutes {...props} />,
                 <NavbarRoutes {...props} />,
