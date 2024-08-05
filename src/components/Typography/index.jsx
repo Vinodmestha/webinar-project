@@ -54,7 +54,7 @@ export const H6 = ({ children, className }) => {
 export const SubHeading = ({ children, className, ...props }) => {
     return (
         <h3
-            className={`max-w-screen-lg mx-auto text-[18px] font-medium text-center text-gray-400 ${className}`}
+            className={`max-w-screen-lg mx-auto text-[18px] font-medium text-center text-gray-500 ${className}`}
             {...props}
         >
             {children}

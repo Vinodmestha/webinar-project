@@ -62,9 +62,10 @@ export default function Webinars() {
         <Container className={"!py-24"}>
             <H2>Our Featured Webinars</H2>
             <SubHeading className="mb-20">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s
+                We offers an extensive catalogue of live and on-demand courses
+                led by top-rated instructors. We pride ourselves on providing
+                seamless continuing education that fits your lifestyle and
+                supports your career, while improving your clients’ portfolio.
             </SubHeading>
 
             <div className="flex items-center justify-center mb-10">
@@ -86,7 +87,7 @@ export default function Webinars() {
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
                     {new Array(6)?.fill("")?.map((v, i) => (
                         <div
-                            className="animate-pulse bg-gray-800 h-60 rounded-lg"
+                            className="animate-pulse bg-gray-300 h-60 rounded-lg"
                             key={i}
                         />
                     ))}
