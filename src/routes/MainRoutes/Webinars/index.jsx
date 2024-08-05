@@ -37,14 +37,14 @@ export default function Webinars() {
             <H2 className="!mb-16 capitalize">{currentType} Webinars</H2>
 
             {webinarsLoading ? (
-                new Array(5)
-                    ?.fill("")
-                    ?.map((v, i) => (
+                <div className="grid grid-cols-3 gap-8">
+                    {new Array(5)?.fill("")?.map((v, i) => (
                         <div
-                            className="grid grid-cols-3 gap-8 animate-pulse bg-gray-300 h-40 rounded-lg"
+                            className="animate-pulse bg-gray-300 h-80 rounded-lg"
                             key={i}
                         />
-                    ))
+                    ))}
+                </div>
             ) : webinarsData?.length ? (
                 <div className="grid grid-cols-3 gap-8">
                     {webinarsData?.map((item, i) => (

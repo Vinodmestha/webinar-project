@@ -186,58 +186,63 @@ export default function WebinarDetails(props) {
     };
 
     return detailsLoading ? (
-        "loading"
+        <Container className="!py-10">
+            <div className="grid grid-cols-[1fr_0.5fr] gap-5 h-72 overflow-hidden *:animate-pulse">
+                <div className="*:rounded-lg *:bg-gray-300">
+                    <p className="h-8 w-1/5 mb-5" />
+                    <h2 className="h-14 mb-5" />
+                    <div className="h-40" />
+                </div>
+                <div className="rounded-lg bg-gray-300" />
+            </div>
+            <div className="rounded-lg h-72 my-10 animate-pulse bg-gray-300"></div>
+        </Container>
     ) : (
         <>
-            <Container className={"!py-10"}>
-                {detailsLoading ? (
-                    "loading"
-                ) : (
-                    <div className="grid grid-cols-[1fr_0.5fr] gap-5 items-end text-[#3c4852]">
-                        <div className="flex flex-col *:text-left *:w-full">
-                            <div>
-                                <p className="text-sm px-2 py-[5px] rounded-xl w-fit text-[#4caf50] bg-[#4caf501c]">
-                                    Category
-                                </p>
-                            </div>
-                            <H1 className="!text-4xl my-4 capitalize">
-                                {detailsData?.title}
-                            </H1>
-                            <div className="mb-4 text-sm font-semibold *:!text-[#4e6579]">
-                                <span className="flex items-center gap-2">
-                                    <Calendar color="#f33066" />
-                                    <p>
-                                        {/* {date} */}
-                                        {convertDate(detailsData?.date)}
-                                        {/* {new Date(
+            <Container className="!py-10">
+                <div className="grid grid-cols-[1fr_0.5fr] gap-5 items-end text-[#3c4852]">
+                    <div className="flex flex-col *:text-left *:w-full">
+                        <div>
+                            <p className="text-sm px-2 py-[5px] rounded-xl w-fit text-[#4caf50] bg-[#4caf501c]">
+                                Category
+                            </p>
+                        </div>
+                        <H1 className="!text-4xl my-4 capitalize">
+                            {detailsData?.title}
+                        </H1>
+                        <div className="mb-4 text-sm font-semibold *:!text-[#4e6579]">
+                            <span className="flex items-center gap-2">
+                                <Calendar color="#f33066" />
+                                <p>
+                                    {/* {date} */}
+                                    {convertDate(detailsData?.date)}
+                                    {/* {new Date(
                                             detailsData?.date
                                         )?.toLocaleDateString()} */}
-                                    </p>
-                                </span>
-                                {/* <span>
+                                </p>
+                            </span>
+                            {/* <span>
                                     <Clock color="#f33066" />
                                     <p>{detailsData?.time}</p>
                                 </span> */}
-                            </div>
-                            <p
-                                className="text-[15px] text-gray-500"
-                                dangerouslySetInnerHTML={{
-                                    __html: detailsData?.description,
-                                }}
-                            />
-                            <div></div>
                         </div>
-                        <figure>
-                            <img
-                                src={webinarDummy}
-                                alt=""
-                                className="rounded-md w-full"
-                            />
-                        </figure>
+                        <p
+                            className="text-[15px] text-gray-500"
+                            dangerouslySetInnerHTML={{
+                                __html: detailsData?.description,
+                            }}
+                        />
+                        <div></div>
                     </div>
-                )}
+                    <figure>
+                        <img
+                            src={webinarDummy}
+                            alt=""
+                            className="rounded-md w-full"
+                        />
+                    </figure>
+                </div>
             </Container>
-
             <div className="bg-bgHero py-10">
                 <Container className="!py-0">
                     <div className="grid grid-cols-[1fr_0.6fr] gap-8">
