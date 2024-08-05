@@ -4,9 +4,14 @@ import { EMAIL_REGEX } from "./constants";
 
 export const apiErrorHandler = (error) => {
     if (error?.response?.status === 401) {
-        localStorage.removeItem("userInfo");
-        localStorage.setItem("isLoggedIn", false);
-        window.location.reload();
+        if (
+            JSON.parse(localStorage.getItem("userInfo")) ||
+            !!JSON.parse(localStorage.getItem("isLoggedIn"))
+        ) {
+            localStorage.removeItem("userInfo");
+            localStorage.setItem("isLoggedIn", false);
+            window.location.reload();
+        }
     }
     //     // const contextValues = contextManager.getContextValues();
     //     const Component = () => {

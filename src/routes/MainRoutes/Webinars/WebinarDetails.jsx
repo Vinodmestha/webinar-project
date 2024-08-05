@@ -3,6 +3,7 @@ import { minus, plus } from "../../../assets";
 import webinarDummy from "../../../assets/home/webinarDummy.jpg";
 
 import { Calendar, Clock } from "lucide-react";
+import { format, parseISO } from "date-fns";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
     Tabs,
@@ -176,7 +177,17 @@ export default function WebinarDetails(props) {
             });
     };
 
-    return (
+    const convertDate = (date) => {
+        if (date) {
+            const parsedDate = parseISO(date);
+            const formattedDate = format(parsedDate, "EEE MMM dd yyyy");
+            return formattedDate;
+        }
+    };
+
+    return detailsLoading ? (
+        "loading"
+    ) : (
         <>
             <Container className={"!py-10"}>
                 {detailsLoading ? (
@@ -196,9 +207,11 @@ export default function WebinarDetails(props) {
                                 <span className="flex items-center gap-2">
                                     <Calendar color="#f33066" />
                                     <p>
-                                        {new Date(
+                                        {/* {date} */}
+                                        {convertDate(detailsData?.date)}
+                                        {/* {new Date(
                                             detailsData?.date
-                                        )?.toLocaleDateString()}
+                                        )?.toLocaleDateString()} */}
                                     </p>
                                 </span>
                                 {/* <span>

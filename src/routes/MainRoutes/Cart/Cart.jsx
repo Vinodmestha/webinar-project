@@ -52,7 +52,7 @@ export default function Cart(props) {
             }
         } else {
             setAuthPage(true, "login");
-            navigate("/");
+            navigate(-1);
         }
     }, [isLoggedIn]);
 

@@ -17,6 +17,7 @@ export default function useLogout() {
         postAPI(authURL?.LOGOUT)
             .then(() => {
                 handleLogout();
+                window.location.reload();
 
                 // localStorage.setItem("userAuth", JSON.stringify(authData));
             })
