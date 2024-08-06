@@ -16,7 +16,7 @@ import {
 } from "@material-tailwind/react";
 
 import { H1, H3, H4, H5 } from "../../../components/Typography";
-import { Container, IconButton } from "../../../components/";
+import { BackNavigate, Container, IconButton } from "../../../components/";
 
 import { postAPI } from "../../../utils/api";
 // import useCartCount from "../../../utils/helpers/useCartCount";
@@ -200,6 +200,7 @@ export default function WebinarDetails(props) {
     ) : (
         <>
             <Container className="!py-10">
+                <BackNavigate backLabel="Details" className="mb-10" />
                 <div className="grid grid-cols-[1fr_0.5fr] gap-5 items-end text-[#3c4852]">
                     <div className="flex flex-col *:text-left *:w-full">
                         <div>

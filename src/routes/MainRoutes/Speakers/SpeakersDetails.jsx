@@ -3,7 +3,7 @@ import speaker from "../../../assets/icons/speaker.png";
 
 import { useLocation, useSearchParams } from "react-router-dom";
 
-import { Container } from "../../../components/UI/Container";
+import { Container, BackNavigate } from "../../../components";
 import { H2, H4, SubHeading } from "../../../components/Typography";
 
 import { getAPI, postAPI } from "../../../utils/api";
@@ -54,18 +54,35 @@ export default function SpeakersDetails(props) {
     const { detailsData, detailsLoading } = state;
 
     return (
-        <Container className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="text-center">
-                <H2>{detailsData?.name}</H2>
-                <H4>{detailsData?.designation}</H4>
-                <SubHeading
-                    className="my-10"
-                    dangerouslySetInnerHTML={{
-                        __html: detailsData?.about,
-                    }}
-                />
-            </div>
-            <img src={speaker} alt={detailsData?.slug} className="h-96" />
+        <Container>
+            <BackNavigate backLabel="Speaker" />
+            {detailsLoading ? (
+                <div className="flex flex-col gap-5 items-center *:rounded-lg *:animate-pulse *:bg-gray-300">
+                    <div className="size-60 !rounded-full" />
+                    <div className="w-60 h-10" />
+                    <div className="w-full h-80" />
+                </div>
+            ) : (
+                <div className="flex flex-col items-center justify-center">
+                    <img
+                        src={detailsData?.image}
+                        alt={detailsData?.slug}
+                        className="h-80"
+                    />
+                    <div className="text-center">
+                        <H2>{detailsData?.name}</H2>
+                        <H4>{detailsData?.designation}</H4>
+                    </div>
+                    <div className=" ">
+                        <p
+                            className="my-10"
+                            dangerouslySetInnerHTML={{
+                                __html: detailsData?.about,
+                            }}
+                        />
+                    </div>
+                </div>
+            )}
         </Container>
     );
 }

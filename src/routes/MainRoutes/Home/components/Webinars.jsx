@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { forwardRef, Fragment, useEffect, useState } from "react";
 
 import { MoveRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ import {
 import { getAPI } from "../../../../utils/api";
 import { webinarsURL } from "../../../../utils/endpoints";
 
-export default function Webinars() {
+const Webinars = forwardRef((props, ref) => {
     let navigate = useNavigate();
     const [state, setState] = useState({
         currentMode: "",
@@ -68,7 +68,11 @@ export default function Webinars() {
                 supports your career, while improving your clients’ portfolio.
             </SubHeading>
 
-            <div className="flex items-center justify-center mb-10">
+            <div
+                className="flex items-center justify-center mb-10"
+                id="home-webinars-box"
+                ref={ref}
+            >
                 {typesData?.map((item) => (
                     <Button
                         label={item?.label}
@@ -115,4 +119,5 @@ export default function Webinars() {
             )}
         </Container>
     );
-}
+});
+export default Webinars;

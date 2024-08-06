@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import play from "../../../../assets/icons/play.svg";
 import heroImage from "../../../../assets/home/heroImage.png";
 import bannerList from "../../../../assets/home/bannerList1.gif";
@@ -13,7 +13,13 @@ import {
 
 import { heroHighlights } from "../../../../db/dummy";
 
-export default function HeroSection(props) {
+const HeroSection = forwardRef((props, ref) => {
+    const scrollHandler = () => {
+        const webinars = document.querySelector("#home-webinars-box");
+        console.log(webinars);
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+        // window.scrollTo(webinars);
+    };
     return (
         <div className="bg-bgHero mb-10">
             <Container className="grid lg:grid-cols-[0.8fr_1fr] grid-cols-1 px-2 !pb-1 !py-10">
@@ -29,8 +35,9 @@ export default function HeroSection(props) {
                         <RedirectionButton
                             label="Get Started"
                             redirectLink="/"
+                            onClick={scrollHandler}
                         />
-                        <Button label="How It works" icon={play} />
+                        {/* <Button label="How It works" icon={play} /> */}
                     </div>
                 </section>
                 <section className="relative flex justify-center px-20">
@@ -71,4 +78,5 @@ export default function HeroSection(props) {
             </Container>
         </div>
     );
-}
+});
+export default HeroSection;

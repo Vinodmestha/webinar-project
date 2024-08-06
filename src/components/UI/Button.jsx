@@ -8,12 +8,23 @@ export const RedirectionButton = ({
     label,
     className,
     redirectLink,
+    onClick,
     ...props
 }) => {
     let navigate = useNavigate();
     return (
         <button
             className={`group flex items-center justify-center gap-3 px-4 py-3 rounded-3xl font-semibold text-white bg-primaryBtn ${className}`}
+            onClick={() =>
+                onClick
+                    ? onClick()
+                    : navigate(
+                          redirectLink,
+                          props.navigateData
+                              ? { state: { ...props.navigateData } }
+                              : null
+                      )
+            }
         >
             <p>{label}</p>
             {redirectLink ? (
@@ -21,14 +32,6 @@ export const RedirectionButton = ({
                     src={redirect}
                     alt="webinar"
                     className="w-6 h-6 group-hover:scale-125 transition-all duration-200"
-                    onClick={() =>
-                        navigate(
-                            redirectLink,
-                            props.navigateData
-                                ? { state: { ...props.navigateData } }
-                                : null
-                        )
-                    }
                 />
             ) : null}
         </button>

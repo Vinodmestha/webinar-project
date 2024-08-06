@@ -5,7 +5,12 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import useWebinars from "../../../utils/helpers/useWebinars";
 
 import { H2 } from "../../../components/Typography";
-import { Container, NoDataFound, WebinarCard } from "../../../components";
+import {
+    BackNavigate,
+    Container,
+    NoDataFound,
+    WebinarCard,
+} from "../../../components";
 
 export default function Webinars() {
     const [state, setState] = useState({ filters: {} });
@@ -34,8 +39,8 @@ export default function Webinars() {
 
     return (
         <Container>
+            <BackNavigate backLabel="Webinars" className="mb-10" />
             <H2 className="!mb-16 capitalize">{currentType} Webinars</H2>
-
             {webinarsLoading ? (
                 <div className="grid grid-cols-3 gap-8">
                     {new Array(5)?.fill("")?.map((v, i) => (

@@ -43,14 +43,15 @@ export default function Speakers() {
                     <div key={item?._id} className="mb-16">
                         <div className="flex flex-col items-center gap-3 text-center">
                             <figure
-                                className={`flex items-end justify-center w-56 h-52 !pt-10 [nth-child(3n-1):pb-2] cursor-pointer ${
-                                    item?.id % 2
-                                        ? "!bg-secondary rounded-type1"
-                                        : "!bg-tertiary rounded-type2"
-                                }`}
+                                className={`flex items-end justify-center w-56 h-52 !pt-10 [nth-child(3n-1):pb-2] cursor-pointer `}
+                                //     ${
+                                //     item?.id % 2
+                                //         ? "!bg-secondary rounded-type1"
+                                //         : "!bg-tertiary rounded-type2"
+                                // }
                             >
                                 <img
-                                    src={speaker}
+                                    src={item?.image}
                                     alt={item?.slug}
                                     className="w-80 !rounded-2xl hover:scale-105 transition-all duration-300"
                                     onClick={() =>

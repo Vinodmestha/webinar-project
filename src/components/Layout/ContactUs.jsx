@@ -16,7 +16,7 @@ export default function ContactUs() {
                 /> */}
             </div>
             <Container className="md:flex py-0 sm:!py-10">
-                <div className="mx-3 md:w-1/2 my-10 ">
+                <div className="mx-3 md:w-1/2 my-10">
                     <SubHeading className="!text-left">
                         Get In Touch with us !
                     </SubHeading>
