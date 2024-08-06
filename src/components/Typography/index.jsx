@@ -1,7 +1,7 @@
 export const H1 = ({ children, className }) => {
     return (
         <h1
-            className={`text-7xl [letter-spacing:0.4px] leading-[5.3rem] font-axiSemiBold text-textColor ${className}`}
+            className={`text-[54px] lg:text-7xl [letter-spacing:0.5px] leading-[3.8rem] lg:leading-[5.3rem] font-bold lg:font-axiSemiBold text-textColor ${className}`}
         >
             {children}
         </h1>
@@ -11,11 +11,11 @@ export const H1 = ({ children, className }) => {
 export const H2 = ({ children, className, ...props }) => {
     return (
         <h2
-            className={`flex flex-col items-center text-[33px] mb-5 !font-axiSemiBold text-textColor ${className}`}
+            className={`flex flex-col items-center text-3xl lg:text-[33px] mb-5 !font-axiSemiBold text-textColor ${className}`}
         >
             {children}
             {props?.underline === false ? null : (
-                <p className="w-36 h-[4px] bg-tertiary rounded-full -mt-1" />
+                <p className="w-36 h-[4px] bg-tertiary rounded-full mt-1" />
             )}
         </h2>
     );

@@ -55,7 +55,7 @@ export default function SpeakersDetails(props) {
 
     return (
         <Container>
-            <BackNavigate backLabel="Speaker" />
+            <BackNavigate backLabel="" />
             {detailsLoading ? (
                 <div className="flex flex-col gap-5 items-center *:rounded-lg *:animate-pulse *:bg-gray-300">
                     <div className="size-60 !rounded-full" />
@@ -63,11 +63,11 @@ export default function SpeakersDetails(props) {
                     <div className="w-full h-80" />
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col gap-5 items-center justify-center">
                     <img
                         src={detailsData?.image}
                         alt={detailsData?.slug}
-                        className="h-80"
+                        className="h-40 lg:h-80"
                     />
                     <div className="text-center">
                         <H2>{detailsData?.name}</H2>

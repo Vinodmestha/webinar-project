@@ -9,7 +9,7 @@ export default function BackNavigate({ backLabel, backLink, className }) {
     let navigate = useNavigate();
     return (
         <div
-            className={`flex items-center max-w-screen-xl gap-3 px-3 pt-24 mx-auto lg:pt-5 text-tertiary ${className}`}
+            className={`flex items-center max-w-screen-xl gap-3 px-3 pt-2 mx-auto lg:pt-5 text-tertiary ${className}`}
         >
             <img
                 src={backIcon}

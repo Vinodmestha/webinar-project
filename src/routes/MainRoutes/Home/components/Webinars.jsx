@@ -59,17 +59,20 @@ const Webinars = forwardRef((props, ref) => {
     };
 
     return (
-        <Container className={"!py-24"}>
+        <Container className="py-10 lg:py-24">
             <H2>Our Featured Webinars</H2>
-            <SubHeading className="mb-20">
+            <SubHeading className="mb-5 lg:mb-20">
                 We offers an extensive catalogue of live and on-demand courses
-                led by top-rated instructors. We pride ourselves on providing
-                seamless continuing education that fits your lifestyle and
-                supports your career, while improving your clients’ portfolio.
+                led by top-rated instructors.
+                <p className="hidden lg:block">
+                    We pride ourselves on providing seamless continuing
+                    education that fits your lifestyle and supports your career,
+                    while improving your clients’ portfolio.
+                </p>
             </SubHeading>
 
             <div
-                className="flex items-center justify-center mb-10"
+                className="flex items-center justify-center mb-10 overflow-x-scroll lg:overflow-auto"
                 id="home-webinars-box"
                 ref={ref}
             >
@@ -77,7 +80,7 @@ const Webinars = forwardRef((props, ref) => {
                     <Button
                         label={item?.label}
                         key={item?._id}
-                        className={`mx-7 border-none ${
+                        className={`mx-2 lg:mx-7 border-none ${
                             item?.slug === state?.currentMode
                                 ? "!bg-tertiary !text-white"
                                 : "!bg-gray-100 !text-black"
@@ -88,7 +91,7 @@ const Webinars = forwardRef((props, ref) => {
             </div>
 
             {webinarsLoading ? (
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {new Array(6)?.fill("")?.map((v, i) => (
                         <div
                             className="animate-pulse bg-gray-300 h-60 rounded-lg"
@@ -98,7 +101,7 @@ const Webinars = forwardRef((props, ref) => {
                 </div>
             ) : webinarsData?.length ? (
                 <>
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {webinarsData.slice(0, 6)?.map((item, i) => (
                             <Fragment key={i}>
                                 <WebinarCard data={item} />

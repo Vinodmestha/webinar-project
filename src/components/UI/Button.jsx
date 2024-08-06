@@ -54,7 +54,7 @@ export const Button = ({ label, icon, className, onClick }) => {
                     />
                 )
             ) : null}
-            <p>{label}</p>
+            <p className="w-max">{label}</p>
             {React.isValidElement(icon) ? icon : null}
         </button>
     );

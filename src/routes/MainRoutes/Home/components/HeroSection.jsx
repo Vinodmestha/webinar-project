@@ -15,24 +15,22 @@ import { heroHighlights } from "../../../../db/dummy";
 
 const HeroSection = forwardRef((props, ref) => {
     const scrollHandler = () => {
-        const webinars = document.querySelector("#home-webinars-box");
-        console.log(webinars);
         ref.current?.scrollIntoView({ behavior: "smooth" });
-        // window.scrollTo(webinars);
     };
     return (
         <div className="bg-bgHero mb-10">
-            <Container className="grid lg:grid-cols-[0.8fr_1fr] grid-cols-1 px-2 !pb-1 !py-10">
-                <section className="flex flex-col items-center justify-center px-6 py-20">
-                    <H1 className="mb-8">
+            <Container className="grid lg:grid-cols-[0.8fr_1fr] grid-cols-1 lg:px-2 py-8 lg:py-10 !pb-1">
+                <section className="flex flex-col items-center justify-center px-6 py-20 text-center lg:text-start">
+                    <H1 className="mb-2 lg:mb-8">
                         Best Platform For Stronger Connection
                     </H1>
-                    <p className="text-lg mb-16 text-gray-400">
+                    <p className="text-lg mb-14 md:mb-16 text-gray-400">
                         The World's largest platform to increase potential and
                         add new world knowledge digitally
                     </p>
-                    <div className="w-full flex justify-start gap-6">
+                    <div className="w-full flex justify-center lg:justify-start gap-6">
                         <RedirectionButton
+                            className="w-full md:w-fit rounded-lg md:rounded-3xl"
                             label="Get Started"
                             redirectLink="/"
                             onClick={scrollHandler}
@@ -40,7 +38,7 @@ const HeroSection = forwardRef((props, ref) => {
                         {/* <Button label="How It works" icon={play} /> */}
                     </div>
                 </section>
-                <section className="relative flex justify-center px-20">
+                <section className="relative hidden lg:flex justify-center px-20">
                     <div className="p-5 w-[450px]  rounded-full border-2 border-tertiary">
                         <div className="w-full h-full rounded-full bg-gradient-to-b from-secondary via-tertiary to-primary" />
                         <img
@@ -57,12 +55,12 @@ const HeroSection = forwardRef((props, ref) => {
                     {/* </figure> */}
                 </section>
             </Container>
-            <Container className="relative">
-                <section className="absolute w-full h-28 top-1/2 grid grid-cols-3 gap-10">
+            <Container className="hidden lg:block relative">
+                <section className="lg:absolute px-4 lg:px-0 w-full h-28 top-1/2 grid  grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
                     {heroHighlights?.map((item) => (
                         <div
                             key={item?.id}
-                            className="flex items-center gap-3 shadow-lg p-4 rounded-lg z-50  bg-white"
+                            className="flex flex-col lg:flex-row justify-center text-center lg:text-left items-center gap-3 shadow-lg p-2 lg:p-4 py-4 rounded-lg z-50 bg-white"
                         >
                             <img
                                 src={item.icon}
@@ -70,7 +68,9 @@ const HeroSection = forwardRef((props, ref) => {
                             />
                             <div className="*:!text-black">
                                 <H4>{item?.label}</H4>
-                                <p className="text-sm mt-1">{item?.desc}</p>
+                                <p className="text-sm mt-1 hidden lg:block">
+                                    {item?.desc}
+                                </p>
                             </div>
                         </div>
                     ))}

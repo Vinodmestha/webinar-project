@@ -36,14 +36,14 @@ export default function Speakers() {
 
     return (
         <Container className="">
-            <H2 className="!mb-16">Our Speakers</H2>
+            <H2 className="mb-0 lg:mb-16">Our Speakers</H2>
 
             <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-3">
                 {speakersData?.map((item) => (
-                    <div key={item?._id} className="mb-16">
+                    <div key={item?._id} className="mb-5 lg:mb-16">
                         <div className="flex flex-col items-center gap-3 text-center">
                             <figure
-                                className={`flex items-end justify-center w-56 h-52 !pt-10 [nth-child(3n-1):pb-2] cursor-pointer `}
+                                className={`flex items-end justify-center w-56 lg:h-52 !pt-10 [nth-child(3n-1):pb-2] cursor-pointer `}
                                 //     ${
                                 //     item?.id % 2
                                 //         ? "!bg-secondary rounded-type1"
@@ -53,7 +53,7 @@ export default function Speakers() {
                                 <img
                                     src={item?.image}
                                     alt={item?.slug}
-                                    className="w-80 !rounded-2xl hover:scale-105 transition-all duration-300"
+                                    className="w-36 lg:w-80 !rounded-2xl hover:scale-105 transition-all duration-300"
                                     onClick={() =>
                                         navigate(
                                             `/speakers/details?name=${item?.slug}`,
