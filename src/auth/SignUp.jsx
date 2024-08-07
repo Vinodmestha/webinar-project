@@ -83,7 +83,8 @@ export default function SignUp(props) {
                         setAuthPage(false);
                     })
                     .then(() => {
-                        props?.navigate("/");
+                        window.location.reload();
+                        // props?.navigate("/");
                     });
             })
             .catch((err) => {
