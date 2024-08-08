@@ -9,7 +9,7 @@ import { authURL } from "../utils/endpoints";
 export default function Login(props) {
     const { handleLogin, setAuthPage } = useContext(UserContext);
     const [state, setState] = useState({
-        inputData: { email: "test@abc.com", password: "test" },
+        inputData: { email: "", password: "" },
         errorData: { email: "", password: "" },
         loginLoading: false,
     });
