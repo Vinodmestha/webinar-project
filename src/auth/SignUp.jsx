@@ -13,9 +13,11 @@ export default function SignUp(props) {
             email: "",
             password: "",
             name: "",
+            lname: "",
+            dob:"",
             mobile: "",
         },
-        errorData: { email: "", password: "", name: "", mobile: "" },
+        errorData: { email: "", password: "", name: "",lname:"",dob:"", mobile: "" },
         signUpLoading: false,
     });
     const { inputData, errorData, signUpLoading } = state;
@@ -104,6 +106,18 @@ export default function SignUp(props) {
                     {
                         label: "Name",
                         name: "name",
+                        type: "text",
+                        required: true,
+                    },
+                    {
+                        label: "Last Name",
+                        name: "name",
+                        type: "text",
+                        required: true,
+                    },
+                    {
+                        label: "DOB",
+                        name: "dob",
                         type: "text",
                         required: true,
                     },
