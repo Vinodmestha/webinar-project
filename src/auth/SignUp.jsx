@@ -111,7 +111,7 @@ export default function SignUp(props) {
                     },
                     {
                         label: "Last Name",
-                        name: "name",
+                        name: "lname",
                         type: "text",
                         required: true,
                     },
